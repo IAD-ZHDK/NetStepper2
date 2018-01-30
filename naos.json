@@ -1,6 +1,11 @@
 {
   "version": "master",
-  "components": {},
+  "components": {
+    "art32": {
+      "repository": "https://github.com/256dpi/art32.git",
+      "version": "master"
+    }
+  },
   "broker": "mqtts://key:secret@broker.shiftr.io",
   "devices": {}
 }
