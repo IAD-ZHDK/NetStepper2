@@ -238,7 +238,7 @@ static uint32_t l6470_handle_param(uint8_t param, uint32_t value) {
 
 void l6470_set_param(uint8_t param, uint32_t value) {
   // send command
-  l6470_transmit(param | (uint8_t)L6570_CMD_SET_PARAM);
+  l6470_transmit(param | (uint8_t)L6470_CMD_SET_PARAM);
 
   // set param
   l6470_handle_param(param, value);
@@ -246,7 +246,7 @@ void l6470_set_param(uint8_t param, uint32_t value) {
 
 uint32_t l6470_get_param(uint8_t param) {
   // send command
-  l6470_transmit(param | (uint8_t)L6570_CMD_GET_PARAM);
+  l6470_transmit(param | (uint8_t)L6470_CMD_GET_PARAM);
 
   // handle param
   return l6470_handle_param(param, 0);
@@ -254,7 +254,24 @@ uint32_t l6470_get_param(uint8_t param) {
 
 // TODO: RUN 0x50
 // TODO: STEP_CLOCK 0x58
-// TODO: MOVE 0x40
+
+void l6470_move(uint8_t dir, uint32_t steps) {
+  // send command
+  l6470_transmit(L6470_CMD_MOVE);
+
+  // clamp to 22 bits
+  if (steps > 0x3FFFFF) {
+    steps = 0x3FFFFF;
+  }
+
+  // get pos as pointer
+  uint8_t* _steps = (uint8_t*)&steps;
+
+  // send steps
+  l6470_transmit(_steps[2]);
+  l6470_transmit(_steps[1]);
+  l6470_transmit(_steps[0]);
+}
 
 void l6470_go_to(int32_t pos) {
   // clamp to 22 bits
@@ -266,7 +283,7 @@ void l6470_go_to(int32_t pos) {
   uint8_t* _pos = (uint8_t*)&pos;
 
   // send command
-  l6470_transmit(L6570_CMD_GOTO);
+  l6470_transmit(L6470_CMD_GOTO);
 
   // send position
   l6470_transmit(_pos[2]);
@@ -291,7 +308,7 @@ l6470_status_t l6470_get_status_and_clear() {
   l6470_status_t status;
 
   // send command
-  l6470_transmit(L6570_CMD_GET_STATUS);
+  l6470_transmit(L6470_CMD_GET_STATUS);
 
   // read status
   status.second = l6470_transmit(0);
@@ -300,11 +317,36 @@ l6470_status_t l6470_get_status_and_clear() {
   return status;
 }
 
+void l6470_set_abs_pos(int32_t value) { l6470_set_param(L6470_REG_ABS_POS, (uint32_t)value); }
+
 /* PARAMETER HANDLING */
 
-// TODO: ABS_POS 0x01
+int32_t l6470_get_abs_pos() {
+  long value = l6470_get_param(L6470_REG_ABS_POS);
+
+  // fix sign for 22bit 2s complement
+  if (value & 0x00200000) {
+    value |= 0xffc00000;
+  }
+
+  return (int32_t)value;
+}
+
 // TODO: EL_POS 0x02
-// TODO: MARK 0x03
+
+void l6470_set_mark(int32_t value) { l6470_set_param(L6470_REG_MARK, (uint32_t)value); }
+
+int32_t l6470_get_mark() {
+  long temp = l6470_get_param(L6470_REG_MARK);
+
+  // fix sign for 22bit 2s complement
+  if (temp & 0x00200000) {
+    temp |= 0xffC00000;
+  }
+
+  return (int32_t)temp;
+}
+
 // TODO: SPEED 0x04
 // TODO: ACC 0x05
 // TODO: DECEL 0x06

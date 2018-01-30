@@ -66,5 +66,5 @@ void app_main() {
   naos_log("status: %d, %d", status.first, status.second);
 
   // set step mode
-  l6470_set_step_mode(L6570_STEP_MODE_1_128);
+  l6470_set_step_mode(L6470_STEP_MODE_1_128);
 }

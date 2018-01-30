@@ -39,15 +39,23 @@ l6470_status_t l6470_get_status_and_clear();
 
 /* PARAMETERS */
 
+void l6470_set_abs_pos(int32_t value);
+
+int32_t l6470_get_abs_pos();
+
+void l6470_set_mark(int32_t value);
+
+int32_t l6470_get_mark();
+
 typedef enum {
-  L6570_STEP_MODE_1 = 0x00,
-  L6570_STEP_MODE_1_2 = 0x01,
-  L6570_STEP_MODE_1_4 = 0x02,
-  L6570_STEP_MODE_1_8 = 0x03,
-  L6570_STEP_MODE_1_16 = 0x04,
-  L6570_STEP_MODE_1_32 = 0x05,
-  L6570_STEP_MODE_1_64 = 0x06,
-  L6570_STEP_MODE_1_128 = 0x07
+  L6470_STEP_MODE_1 = 0x00,
+  L6470_STEP_MODE_1_2 = 0x01,
+  L6470_STEP_MODE_1_4 = 0x02,
+  L6470_STEP_MODE_1_8 = 0x03,
+  L6470_STEP_MODE_1_16 = 0x04,
+  L6470_STEP_MODE_1_32 = 0x05,
+  L6470_STEP_MODE_1_64 = 0x06,
+  L6470_STEP_MODE_1_128 = 0x07
 } l6470_step_mode_t;
 
 void l6470_set_step_mode(l6470_step_mode_t value);
