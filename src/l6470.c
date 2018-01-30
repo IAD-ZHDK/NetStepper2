@@ -252,7 +252,24 @@ uint32_t l6470_get_param(uint8_t param) {
   return l6470_handle_param(param, 0);
 }
 
-// TODO: RUN 0x50
+void l6470_run(l6470_dir_t dir, uint32_t steps_per_tick) {
+  // send command
+  l6470_transmit(L6470_CMD_RUN);
+
+  // clamp to 20 bits
+  if (steps_per_tick > 0xFFFFF) {
+    steps_per_tick = 0xFFFFF;
+  };
+
+  // get pos as pointer
+  uint8_t* _steps_per_tick = (uint8_t*)&steps_per_tick;
+
+  // send steps per tick
+  l6470_transmit(_steps_per_tick[2]);
+  l6470_transmit(_steps_per_tick[1]);
+  l6470_transmit(_steps_per_tick[0]);
+}
+
 // TODO: STEP_CLOCK 0x58
 
 void l6470_move(uint8_t dir, uint32_t steps) {
@@ -291,7 +308,24 @@ void l6470_go_to(int32_t pos) {
   l6470_transmit(_pos[0]);
 }
 
-// TODO: GOTO_DIR 0x68
+void l6470_go_to_dir(int32_t pos, l6470_dir_t dir) {
+  // clamp to 22 bits
+  if (pos > 0x3FFFFF) {
+    pos = 0x3FFFFF;
+  }
+
+  // get pos as pointer
+  uint8_t* _pos = (uint8_t*)&pos;
+
+  // send command
+  l6470_transmit((uint8_t)(L6470_CMD_GOTO_DIR | dir));
+
+  // send position
+  l6470_transmit(_pos[2]);
+  l6470_transmit(_pos[1]);
+  l6470_transmit(_pos[0]);
+}
+
 // TODO: GO_UNTIL 0x82
 // TODO: RELEASE_SW 0x92
 

@@ -11,6 +11,7 @@ set(CMAKE_C_STANDARD 99)
 set(SOURCE_FILES
         src/l6470.c
         src/l6470.h
+        src/l6470_constants.h
         src/main.c)
 
 # create a fake library target
