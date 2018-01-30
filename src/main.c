@@ -25,10 +25,15 @@ void message(const char *topic, uint8_t *payload, size_t len, naos_scope_t scope
 void update(const char *param, const char *value) {}
 
 void loop() {
+  // get info
+  uint32_t speed = l6470_get_speed();
+  l6470_dir_t dir = l6470_get_status().dir;
+
   // check pos change
   if (new_position != old_position) {
-    // make a soft stop
-    l6470_soft_stop();
+    // change to run command
+    l6470_run(dir, speed);
+    // TODO: Wait for finish (busy).
 
     // set new position
     l6470_go_to(new_position);
@@ -36,6 +41,9 @@ void loop() {
     // set new position
     old_position = new_position;
   }
+
+  // log info
+  naos_log("speed: %ld, dir: %d", speed, dir);
 }
 
 void offline() {
@@ -59,9 +67,6 @@ void app_main() {
 
   // initialize l6470
   l6470_init();
-
-  // get status
-  l6470_status_t status = l6470_get_status_and_clear();
 
   // set step mode
   l6470_set_step_mode(L6470_STEP_MODE_1_128);
