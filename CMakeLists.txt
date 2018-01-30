@@ -8,7 +8,10 @@ project(naos-project)
 set(CMAKE_C_STANDARD 99)
 
 # add your source files
-set(SOURCE_FILES src/main.c)
+set(SOURCE_FILES
+        src/l6470.c
+        src/l6470.h
+        src/main.c)
 
 # create a fake library target
 add_library(${CMAKE_PROJECT_NAME} ${SOURCE_FILES})
