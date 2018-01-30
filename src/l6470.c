@@ -3,6 +3,7 @@
 #include <naos.h>
 
 #include "l6470.h"
+#include "l6470_constants.h"
 
 #define L6470_CS 5
 
@@ -237,7 +238,7 @@ static uint32_t l6470_handle_param(uint8_t param, uint32_t value) {
 
 void l6470_set_param(uint8_t param, uint32_t value) {
   // send command
-  l6470_transmit(param | (uint8_t)0x00);
+  l6470_transmit(param | (uint8_t)L6570_CMD_SET_PARAM);
 
   // set param
   l6470_handle_param(param, value);
@@ -245,7 +246,7 @@ void l6470_set_param(uint8_t param, uint32_t value) {
 
 uint32_t l6470_get_param(uint8_t param) {
   // send command
-  l6470_transmit(param | (uint8_t)0x20);
+  l6470_transmit(param | (uint8_t)L6570_CMD_GET_PARAM);
 
   // handle param
   return l6470_handle_param(param, 0);
@@ -265,7 +266,7 @@ void l6470_go_to(int32_t pos) {
   uint8_t* _pos = (uint8_t*)&pos;
 
   // send command
-  l6470_transmit(0x60);
+  l6470_transmit(L6570_CMD_GOTO);
 
   // send position
   l6470_transmit(_pos[2]);
@@ -290,7 +291,7 @@ l6470_status_t l6470_get_status_and_clear() {
   l6470_status_t status;
 
   // send command
-  l6470_transmit(0xD0);
+  l6470_transmit(L6570_CMD_GET_STATUS);
 
   // read status
   status.second = l6470_transmit(0);
@@ -301,4 +302,41 @@ l6470_status_t l6470_get_status_and_clear() {
 
 /* PARAMETER HANDLING */
 
+// TODO: ABS_POS 0x01
+// TODO: EL_POS 0x02
+// TODO: MARK 0x03
+// TODO: SPEED 0x04
+// TODO: ACC 0x05
+// TODO: DECEL 0x06
+// TODO: MAX_SPEED 0x07
+// TODO: MIN_SPEED 0x08
+// TODO: FS_SPD 0x15
+// TODO: KVAL_HOLD 0x09
+// TODO: KVAL_RUN 0x0A
+// TODO: KVAL_ACC 0x0B
+// TODO: KVAL_DEC 0x0C
+// TODO: INT_SPD 0x0D
+// TODO: ST_SLP 0x0E
+// TODO: FN_SLP_ACC 0x0F
+// TODO: FN_SLP_DEC 0x10
+// TODO: K_THERM 0x11
+// TODO: ADC_OUT 0x12
+// TODO: OCD_TH 0x13
+// TODO: STALL_TH 0x14
+// TODO: STEP_MODE
+// TODO: ALARM_EN 0x17
+// TODO: CONFIG 0x18
+// TODO: STATUS 0x19
 
+void l6470_set_step_mode(l6470_step_mode_t value) {
+  // get current register and clear step mode
+  uint8_t current = (uint8_t)l6470_get_param(L6470_REG_STEP_MODE) & (uint8_t)0xF8;
+
+  // set new value and respect mask
+  current |= (value & 0x07);
+
+  // update register
+  l6470_set_param(L6470_REG_STEP_MODE, current);
+}
+
+l6470_step_mode_t l6470_set_get_step_mode() { return (l6470_step_mode_t)(l6470_get_param(L6470_REG_STEP_MODE) & 0x07); }

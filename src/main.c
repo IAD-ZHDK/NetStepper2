@@ -64,4 +64,7 @@ void app_main() {
   // get status
   l6470_status_t status = l6470_get_status_and_clear();
   naos_log("status: %d, %d", status.first, status.second);
+
+  // set step mode
+  l6470_set_step_mode(L6570_STEP_MODE_1_128);
 }
