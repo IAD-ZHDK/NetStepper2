@@ -457,7 +457,6 @@ uint32_t l6470_get_decel() {
 // TODO: STEP_MODE
 // TODO: ALARM_EN 0x17
 // TODO: CONFIG 0x18
-// TODO: STATUS 0x19
 
 void l6470_set_step_mode(l6470_step_mode_t value) {
   // get current register and clear step mode
