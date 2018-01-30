@@ -317,12 +317,16 @@ l6470_status_t l6470_get_status_and_clear() {
   return status;
 }
 
-void l6470_set_abs_pos(int32_t value) { l6470_set_param(L6470_REG_ABS_POS, (uint32_t)value); }
+void l6470_set_abs_pos(int32_t value) {
+  // set parameter
+  l6470_set_param(L6470_REG_ABS_POS, (uint32_t)value);
+}
 
 /* PARAMETER HANDLING */
 
 int32_t l6470_get_abs_pos() {
-  long value = l6470_get_param(L6470_REG_ABS_POS);
+  // read parameter
+  uint32_t value = l6470_get_param(L6470_REG_ABS_POS);
 
   // fix sign for 22bit 2s complement
   if (value & 0x00200000) {
@@ -334,10 +338,14 @@ int32_t l6470_get_abs_pos() {
 
 // TODO: EL_POS 0x02
 
-void l6470_set_mark(int32_t value) { l6470_set_param(L6470_REG_MARK, (uint32_t)value); }
+void l6470_set_mark(int32_t value) {
+  // set parameter
+  l6470_set_param(L6470_REG_MARK, (uint32_t)value);
+}
 
 int32_t l6470_get_mark() {
-  long temp = l6470_get_param(L6470_REG_MARK);
+  // read parameter
+  uint32_t temp = l6470_get_param(L6470_REG_MARK);
 
   // fix sign for 22bit 2s complement
   if (temp & 0x00200000) {
@@ -381,4 +389,7 @@ void l6470_set_step_mode(l6470_step_mode_t value) {
   l6470_set_param(L6470_REG_STEP_MODE, current);
 }
 
-l6470_step_mode_t l6470_set_get_step_mode() { return (l6470_step_mode_t)(l6470_get_param(L6470_REG_STEP_MODE) & 0x07); }
+l6470_step_mode_t l6470_set_get_step_mode() {
+  // set parameter
+  return (l6470_step_mode_t)(l6470_get_param(L6470_REG_STEP_MODE) & 0x07);
+}
