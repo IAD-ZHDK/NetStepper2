@@ -27,9 +27,8 @@ void update(const char *param, const char *value) {}
 void loop() {
   // check pos change
   if (new_position != old_position) {
-    naos_log("position: %ld", new_position);
-
-    // TODO: Soft stop?
+    // make a soft stop
+    l6470_soft_stop();
 
     // set new position
     l6470_go_to(new_position);
@@ -63,7 +62,6 @@ void app_main() {
 
   // get status
   l6470_status_t status = l6470_get_status_and_clear();
-  naos_log("status: %d, %d", status.first, status.second);
 
   // set step mode
   l6470_set_step_mode(L6470_STEP_MODE_1_128);

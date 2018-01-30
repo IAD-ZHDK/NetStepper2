@@ -294,14 +294,39 @@ void l6470_go_to(int32_t pos) {
 // TODO: GOTO_DIR 0x68
 // TODO: GO_UNTIL 0x82
 // TODO: RELEASE_SW 0x92
-// TODO: GO_HOME 0x70
-// TODO: GO_MARK 0x78
+
+void l6470_go_home() {
+  // send command
+  l6470_transmit(L6470_CMD_GO_HOME);
+}
+
+void l6470_go_mark() {
+  // send command
+  l6470_transmit(L6470_CMD_GO_MARK);
+}
+
 // TODO: RESET_POS 0xD8
 // TODO: RESET_DEVICE 0xC0
-// TODO: SOFT_STOP 0xB0
-// TODO: HARD_STOP 0xB8
-// TODO: SOFT_HIZ 0xA0
-// TODO: HARD_HIZ 0xA8
+
+void l6470_soft_stop() {
+  // send command
+  l6470_transmit(L6470_CMD_SOFT_STOP);
+}
+
+void l6470_hard_stop() {
+  // send command
+  l6470_transmit(L6470_CMD_HARD_STOP);
+}
+
+void l6470_soft_hiz() {
+  // send command
+  l6470_transmit(L6470_CMD_SOFT_HIZ);
+}
+
+void l6470_hard_hiz() {
+  // send command
+  l6470_transmit(L6470_CMD_HARD_HIZ);
+}
 
 l6470_status_t l6470_get_status_and_clear() {
   // prepare status

@@ -1,5 +1,25 @@
 #include <stdint.h>
 
+void l6470_init();
+
+/* COMMANDS */
+
+void l6470_set_param(uint8_t param, uint32_t value);
+
+uint32_t l6470_get_param(uint8_t param);
+
+void l6470_move(uint8_t dir, uint32_t steps);
+
+void l6470_go_to(int32_t pos);
+
+void l6470_soft_stop();
+
+void l6470_hard_stop();
+
+void l6470_soft_hiz();
+
+void l6470_hard_hiz();
+
 typedef union {
   uint16_t data;
   struct {
@@ -24,16 +44,6 @@ typedef union {
     uint8_t hiz : 1;
   };
 } l6470_status_t;
-
-void l6470_init();
-
-/* COMMANDS */
-
-void l6470_set_param(uint8_t param, uint32_t value);
-
-uint32_t l6470_get_param(uint8_t param);
-
-void l6470_go_to(int32_t pos);
 
 l6470_status_t l6470_get_status_and_clear();
 
