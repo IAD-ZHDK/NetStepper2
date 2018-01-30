@@ -1,0 +1,6 @@
+{
+  "version": "master",
+  "components": {},
+  "broker": "mqtts://key:secret@broker.shiftr.io",
+  "devices": {}
+}
