@@ -97,3 +97,7 @@ void l6470_set_step_mode(l6470_step_mode_t value);
 l6470_step_mode_t l6470_set_get_step_mode();
 
 l6470_status_t l6470_get_status();
+
+/* HELPERS */
+
+void l6470_wait();

@@ -27,13 +27,13 @@ void update(const char *param, const char *value) {}
 void loop() {
   // get info
   uint32_t speed = l6470_get_speed();
-  l6470_dir_t dir = l6470_get_status().dir;
+  l6470_status_t status = l6470_get_status();
 
   // check pos change
   if (new_position != old_position) {
-    // change to run command
-    l6470_run(dir, speed);
-    // TODO: Wait for finish (busy).
+    // change to run command and wait until speed is reached
+    l6470_run(status.dir, speed);
+    l6470_wait();
 
     // set new position
     l6470_go_to(new_position);
@@ -43,7 +43,7 @@ void loop() {
   }
 
   // log info
-  naos_log("speed: %ld, dir: %d", speed, dir);
+  naos_log("speed: %ld, dir: %d, busy: %d", speed, status.dir, status.busy);
 }
 
 void offline() {

@@ -484,3 +484,10 @@ l6470_status_t l6470_get_status() {
 
   return status;
 }
+
+/* HELPERS */
+
+void l6470_wait() {
+  while (l6470_get_status().busy == 0) {
+  }
+}
