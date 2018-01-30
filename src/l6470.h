@@ -82,6 +82,18 @@ void l6470_set_mark(int32_t value);
 
 int32_t l6470_get_mark();
 
+uint32_t l6470_get_speed();
+
+void l6470_set_acc(uint32_t steps_per_tick);
+
+uint32_t l6470_get_acc();
+
+void l6470_set_decel(uint32_t steps_per_tick) ;
+
+uint32_t l6470_get_decel();
+
 void l6470_set_step_mode(l6470_step_mode_t value);
 
 l6470_step_mode_t l6470_set_get_step_mode();
+
+l6470_status_t l6470_get_status();

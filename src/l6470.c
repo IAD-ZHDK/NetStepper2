@@ -254,7 +254,7 @@ uint32_t l6470_get_param(uint8_t param) {
 
 void l6470_run(l6470_dir_t dir, uint32_t steps_per_tick) {
   // send command
-  l6470_transmit(L6470_CMD_RUN);
+  l6470_transmit((uint8_t)(L6470_CMD_RUN | dir));
 
   // clamp to 20 bits
   if (steps_per_tick > 0xFFFFF) {
@@ -274,7 +274,7 @@ void l6470_run(l6470_dir_t dir, uint32_t steps_per_tick) {
 
 void l6470_move(uint8_t dir, uint32_t steps) {
   // send command
-  l6470_transmit(L6470_CMD_MOVE);
+  l6470_transmit((uint8_t)(L6470_CMD_MOVE | dir));
 
   // clamp to 22 bits
   if (steps > 0x3FFFFF) {
@@ -414,9 +414,31 @@ int32_t l6470_get_mark() {
   return (int32_t)temp;
 }
 
-// TODO: SPEED 0x04
-// TODO: ACC 0x05
-// TODO: DECEL 0x06
+uint32_t l6470_get_speed() {
+  // read parameter
+  return l6470_get_param(L6470_REG_SPEED);
+}
+
+void l6470_set_acc(uint32_t steps_per_tick) {
+  // set param
+  l6470_set_param(L6470_REG_ACC, steps_per_tick);
+}
+
+uint32_t l6470_get_acc() {
+  // read parameter
+  return l6470_get_param(L6470_REG_ACC);
+}
+
+void l6470_set_decel(uint32_t steps_per_tick) {
+  // set param
+  l6470_set_param(L6470_REG_DECEL, steps_per_tick);
+}
+
+uint32_t l6470_get_decel() {
+  // read parameter
+  return l6470_get_param(L6470_REG_DECEL);
+}
+
 // TODO: MAX_SPEED 0x07
 // TODO: MIN_SPEED 0x08
 // TODO: FS_SPD 0x15
@@ -451,4 +473,14 @@ void l6470_set_step_mode(l6470_step_mode_t value) {
 l6470_step_mode_t l6470_set_get_step_mode() {
   // set parameter
   return (l6470_step_mode_t)(l6470_get_param(L6470_REG_STEP_MODE) & 0x07);
+}
+
+l6470_status_t l6470_get_status() {
+  // prepare status
+  l6470_status_t status;
+
+  // send command
+  status.data = (uint16_t)l6470_get_param(L6470_REG_STATUS);
+
+  return status;
 }
