@@ -59,4 +59,4 @@ uint32_t l6470_get_param(uint8_t param);
 
 void l6470_go_to(int32_t pos);
 
-l6470_status_t l6470_get_status();
+l6470_status_t l6470_get_status_and_clear();

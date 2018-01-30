@@ -39,6 +39,8 @@ void l6470_init() {
   naos_delay(100);
 }
 
+/* COMMUNICATION */
+
 static uint8_t l6470_transmit(uint8_t data) {
   // prepare transaction
   spi_transaction_t t = {
@@ -83,6 +85,8 @@ static uint32_t l6470_transfer(uint32_t data, size_t bits) {
 
   return ret & mask;
 }
+
+/* COMMANDS */
 
 static uint32_t l6470_handle_param(uint8_t param, uint32_t value) {
   switch (param) {
@@ -281,7 +285,7 @@ void l6470_go_to(int32_t pos) {
 // TODO: SOFT_HIZ 0xA0
 // TODO: HARD_HIZ 0xA8
 
-l6470_status_t l6470_get_status() {
+l6470_status_t l6470_get_status_and_clear() {
   // prepare status
   l6470_status_t status;
 
@@ -289,8 +293,12 @@ l6470_status_t l6470_get_status() {
   l6470_transmit(0xD0);
 
   // read status
-  status.first = l6470_transmit(0);
   status.second = l6470_transmit(0);
+  status.first = l6470_transmit(0);
 
   return status;
 }
+
+/* PARAMETER HANDLING */
+
+

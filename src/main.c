@@ -62,6 +62,6 @@ void app_main() {
   l6470_init();
 
   // get status
-  l6470_status_t status = l6470_get_status();
+  l6470_status_t status = l6470_get_status_and_clear();
   naos_log("status: %d, %d", status.first, status.second);
 }
