@@ -344,7 +344,10 @@ void l6470_reset_pos() {
   l6470_transmit(L6470_CMD_RESET_POS);
 }
 
-// TODO: RESET_DEVICE 0xC0
+void l6470_reset_device() {
+  // send command
+  l6470_transmit(L6470_CMD_RESET_DEVICE);
+}
 
 void l6470_soft_stop() {
   // send command

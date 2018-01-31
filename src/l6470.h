@@ -64,6 +64,8 @@ void l6470_go_mark();
 
 void l6470_reset_pos();
 
+void l6470_reset_device();
+
 void l6470_soft_stop();
 
 void l6470_hard_stop();
