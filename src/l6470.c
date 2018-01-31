@@ -439,9 +439,42 @@ uint32_t l6470_get_decel() {
   return l6470_get_param(L6470_REG_DECEL);
 }
 
-// TODO: MAX_SPEED 0x07
-// TODO: MIN_SPEED 0x08
-// TODO: FS_SPD 0x15
+void l6470_set_max_speed(uint16_t steps_per_tick) {
+  // set param
+  l6470_set_param(L6470_REG_MAX_SPEED, steps_per_tick);
+}
+
+uint16_t l6470_get_max_speed() {
+  // read parameter
+  return (uint16_t)l6470_get_param(L6470_REG_MAX_SPEED);
+}
+
+void l6470_set_min_speed(uint16_t steps_per_tick) {
+  // get param and clear min speed
+  uint16_t current = (uint16_t)l6470_get_param(L6470_REG_MIN_SPEED) & (uint16_t)0x1000;
+
+  // set new value and respect mask
+  current |= (steps_per_tick & 0xFFF);
+
+  // set param
+  l6470_set_param(L6470_REG_MIN_SPEED, current);
+}
+
+uint16_t l6470_get_min_speed() {
+  // read parameter
+  return (uint16_t)l6470_get_param(L6470_REG_MIN_SPEED);
+}
+
+void l6470_set_fs_speed(uint16_t steps_per_tick) {
+  // set param
+  l6470_set_param(L6470_REG_FS_SPD, steps_per_tick);
+}
+
+uint16_t l6470_get_fs_speed() {
+  // read parameter
+  return (uint16_t)l6470_get_param(L6470_REG_FS_SPD);
+}
+
 // TODO: KVAL_HOLD 0x09
 // TODO: KVAL_RUN 0x0A
 // TODO: KVAL_ACC 0x0B

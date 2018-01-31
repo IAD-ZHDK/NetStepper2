@@ -92,6 +92,18 @@ void l6470_set_decel(uint32_t steps_per_tick);
 
 uint32_t l6470_get_decel();
 
+void l6470_set_max_speed(uint16_t steps_per_tick);
+
+uint16_t l6470_get_max_speed();
+
+void l6470_set_min_speed(uint16_t steps_per_tick);
+
+uint16_t l6470_get_min_speed();
+
+void l6470_set_fs_speed(uint16_t steps_per_tick);
+
+uint16_t l6470_get_fs_speed();
+
 void l6470_set_step_mode(l6470_step_mode_t value);
 
 l6470_step_mode_t l6470_set_get_step_mode();
