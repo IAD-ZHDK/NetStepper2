@@ -62,6 +62,8 @@ void l6470_go_home();
 
 void l6470_go_mark();
 
+void l6470_reset_pos();
+
 void l6470_soft_stop();
 
 void l6470_hard_stop();
@@ -113,3 +115,29 @@ l6470_status_t l6470_get_status();
 /* HELPERS */
 
 void l6470_wait();
+
+/* CALCULATION */
+
+uint32_t l6470_calc_speed(double stepsPerSec);
+
+double l6470_parse_speed(uint32_t stepsPerSec);
+
+uint16_t l6470_calc_acc(double stepsPerSecPerSec);
+
+double l6470_parse_acc(uint16_t stepsPerSecPerSec);
+
+uint16_t l6470_calc_dec(double stepsPerSecPerSec);
+
+double l6470_parse_dec(uint16_t stepsPerSecPerSec);
+
+uint16_t l6470_calc_max_speed(double stepsPerSec);
+
+double l6470_parse_max_speed(uint16_t stepsPerSec);
+
+uint16_t l6470_calc_min_speed(double stepsPerSec);
+
+double l6470_parse_min_speed(uint16_t stepsPerSec);
+
+uint16_t l6470_calc_fs_peed(double stepsPerSec);
+
+double l6470_parse_fs_speed(uint16_t stepsPerSec);

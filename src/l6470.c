@@ -339,7 +339,11 @@ void l6470_go_mark() {
   l6470_transmit(L6470_CMD_GO_MARK);
 }
 
-// TODO: RESET_POS 0xD8
+void l6470_reset_pos() {
+  // send command
+  l6470_transmit(L6470_CMD_RESET_POS);
+}
+
 // TODO: RESET_DEVICE 0xC0
 
 void l6470_soft_stop() {
@@ -522,4 +526,108 @@ l6470_status_t l6470_get_status() {
 void l6470_wait() {
   while (l6470_get_status().busy == 0) {
   }
+}
+
+/* CALCULATION */
+
+uint32_t l6470_calc_speed(double stepsPerSec) {
+  // calculate internal value
+  uint32_t value = (uint32_t)(stepsPerSec * 67.106);
+
+  // clamp to 20 bits
+  if (value > 0xFFFFF) {
+    value = 0xFFFFF;
+  };
+
+  return value;
+}
+
+double l6470_parse_speed(uint32_t stepsPerSec) {
+  // calculate real value
+  return (stepsPerSec & 0x000FFFFF) / 67.106;
+}
+
+uint16_t l6470_calc_acc(double stepsPerSecPerSec) {
+  // calculate internal value
+  uint16_t value = (uint16_t)(stepsPerSecPerSec * 0.137438);
+
+  // clamp to 12 bits
+  if (value > 0xFFF) {
+    value = 0xFFF;
+  }
+
+  return value;
+}
+
+double l6470_parse_acc(uint16_t stepsPerSecPerSec) {
+  // calculate real value
+  return (stepsPerSecPerSec & 0xFFF) / 0.137438;
+}
+
+uint16_t l6470_calc_dec(double stepsPerSecPerSec) {
+  // calculate internal value
+  uint16_t value = (uint16_t)(stepsPerSecPerSec * 0.137438);
+
+  // clamp to 12 bits
+  if (value > 0xFFF) {
+    value = 0xFFF;
+  }
+
+  return value;
+}
+
+double l6470_parse_dec(uint16_t stepsPerSecPerSec) {
+  // calculate real value
+  return (stepsPerSecPerSec & 0x00000FFF) / 0.137438;
+}
+
+uint16_t l6470_calc_max_speed(double stepsPerSec) {
+  // calculate internal value
+  uint16_t value = (uint16_t)(stepsPerSec * .065536);
+
+  // clamp to 10 bits
+  if (value > 0x3FF) {
+    return 0x3FF;
+  };
+
+  return value;
+}
+
+double l6470_parse_max_speed(uint16_t stepsPerSec) {
+  // calculate real value
+  return (stepsPerSec & 0x000003FF) / 0.065536;
+}
+
+uint16_t l6470_calc_min_speed(double stepsPerSec) {
+  // calculate internal value
+  uint16_t value = (uint16_t)(stepsPerSec / 0.238);
+
+  // clamp to 12 bits
+  if (value > 0xFFF) {
+    value = 0xFFF;
+  }
+
+  return value;
+}
+
+double l6470_parse_min_speed(uint16_t stepsPerSec) {
+  // calculate real value
+  return (stepsPerSec & 0x00000FFF) * 0.238;
+}
+
+uint16_t l6470_calc_fs_peed(double stepsPerSec) {
+  // calculate internal value
+  uint16_t value = (uint16_t)((stepsPerSec * .065536) - .5);
+
+  // clamp to 10 bits
+  if (value > 0x3FF) {
+    return 0x3FF;
+  };
+
+  return value;
+}
+
+double l6470_parse_fs_speed(uint16_t stepsPerSec) {
+  // calculate real value
+  return ((stepsPerSec & 0x000003FF) + 0.5) / 0.065536;
 }
