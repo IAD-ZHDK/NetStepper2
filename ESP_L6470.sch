@@ -14571,8 +14571,8 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <part name="R6" library="SparkFun-Passives" deviceset="RESISTOR" device="0603-RES" value="1k"/>
 <part name="R11" library="SparkFun-Passives" deviceset="RESISTOR" device="0603-RES" value="1k"/>
 <part name="R12" library="SparkFun-Passives" deviceset="RESISTOR" device="0603-RES" value="1k"/>
-<part name="U$13" library="IAD_GRAPHIC" deviceset="INTERFACE_NETSTEPPER" device=""/>
-<part name="U$15" library="IAD_GRAPHIC" deviceset="ZHDK_LOGO_METAL" device=""/>
+<part name="A2" library="IAD_GRAPHIC" deviceset="INTERFACE_NETSTEPPER" device=""/>
+<part name="A1" library="IAD_GRAPHIC" deviceset="ZHDK_LOGO_METAL" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -14693,8 +14693,8 @@ datasheet p36 for details.</text>
 <instance part="R6" gate="G$1" x="279.4" y="106.68"/>
 <instance part="R11" gate="G$1" x="279.4" y="99.06"/>
 <instance part="R12" gate="G$1" x="279.4" y="91.44"/>
-<instance part="U$13" gate="G$1" x="251.46" y="127"/>
-<instance part="U$15" gate="G$1" x="254" y="134.62"/>
+<instance part="A2" gate="G$1" x="251.46" y="127"/>
+<instance part="A1" gate="G$1" x="254" y="134.62"/>
 </instances>
 <busses>
 </busses>

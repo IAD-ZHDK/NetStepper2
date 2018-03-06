@@ -8738,8 +8738,8 @@ design rules under a new name.</description>
 <element name="U$10" library="RP400N501A" package="STAND-OFF" value="" x="40.64" y="5.08"/>
 <element name="U$11" library="RP400N501A" package="STAND-OFF" value="" x="40.64" y="90.17"/>
 <element name="U$12" library="RP400N501A" package="STAND-OFF" value="" x="3.81" y="90.17"/>
-<element name="U$13" library="IAD_GRAPHIC" package="INTERFACE_NETSTEPPER" value="INTERFACE_NETSTEPPER" x="3.81" y="5.08"/>
-<element name="U$15" library="IAD_GRAPHIC" package="ZHDK_LOGO" value="ZHDK_LOGO_METAL" x="8.89" y="81.28" rot="R90"/>
+<element name="A2" library="IAD_GRAPHIC" package="INTERFACE_NETSTEPPER" value="INTERFACE_NETSTEPPER" x="3.81" y="5.08"/>
+<element name="A1" library="IAD_GRAPHIC" package="ZHDK_LOGO" value="ZHDK_LOGO_METAL" x="8.89" y="81.28" rot="R90"/>
 </elements>
 <signals>
 <signal name="GND">
