@@ -14550,8 +14550,8 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <part name="U$4" library="microbuilder" deviceset="GND" device=""/>
 <part name="VS" library="SparkFun" deviceset="VCC" device="" value="VS"/>
 <part name="U$8" library="microbuilder" deviceset="3.3V" device=""/>
-<part name="U$5" library="IAD_ZHDK" deviceset="TRACO12433" device=""/>
-<part name="STEPER" library="SparkFun-Connectors" deviceset="M04" device="LOCK_LONGPADS" value="STEPER"/>
+<part name="U4" library="IAD_ZHDK" deviceset="TRACO12433" device=""/>
+<part name="J6" library="SparkFun-Connectors" deviceset="M04" device="LOCK_LONGPADS" value="STEPER"/>
 <part name="J2" library="SparkFun-Connectors" deviceset="POWER_JACK" device="PTH_LOCK"/>
 <part name="U$17" library="microbuilder" deviceset="3.3V" device=""/>
 <part name="S1" library="IAD-Library" deviceset="B3AL-1002P-MS" device=""/>
@@ -14672,8 +14672,8 @@ datasheet p36 for details.</text>
 <instance part="U$4" gate="G$1" x="320.04" y="63.5" rot="R270"/>
 <instance part="VS" gate="1" x="309.88" y="104.14" rot="R90"/>
 <instance part="U$8" gate="G$1" x="307.34" y="93.98" rot="R90"/>
-<instance part="U$5" gate="G$1" x="320.04" y="104.14"/>
-<instance part="STEPER" gate="G$1" x="139.7" y="20.32" rot="R180"/>
+<instance part="U4" gate="G$1" x="320.04" y="104.14"/>
+<instance part="J6" gate="G$1" x="139.7" y="20.32" rot="R180"/>
 <instance part="J2" gate="G$1" x="68.58" y="5.08" rot="MR0"/>
 <instance part="U$17" gate="G$1" x="304.8" y="175.26"/>
 <instance part="S1" gate="G$1" x="314.96" y="170.18"/>
@@ -14772,7 +14772,7 @@ datasheet p36 for details.</text>
 <segment>
 <wire x1="320.04" y1="99.06" x2="309.88" y2="99.06" width="0.1524" layer="91"/>
 <pinref part="U$14" gate="G$1" pin="GND"/>
-<pinref part="U$5" gate="G$1" pin="GND"/>
+<pinref part="U4" gate="G$1" pin="GND"/>
 </segment>
 <segment>
 <pinref part="J3" gate="G$1" pin="5"/>
@@ -14881,7 +14881,7 @@ datasheet p36 for details.</text>
 <segment>
 <wire x1="134.62" y1="22.86" x2="116.84" y2="22.86" width="0.1524" layer="91"/>
 <label x="116.84" y="22.86" size="1.27" layer="95" rot="MR0" xref="yes"/>
-<pinref part="STEPER" gate="G$1" pin="1"/>
+<pinref part="J6" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="OUT2A" class="0">
@@ -14893,7 +14893,7 @@ datasheet p36 for details.</text>
 <segment>
 <wire x1="134.62" y1="20.32" x2="116.84" y2="20.32" width="0.1524" layer="91"/>
 <label x="116.84" y="20.32" size="1.27" layer="95" rot="MR0" xref="yes"/>
-<pinref part="STEPER" gate="G$1" pin="2"/>
+<pinref part="J6" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="OUT1B" class="0">
@@ -14905,7 +14905,7 @@ datasheet p36 for details.</text>
 <segment>
 <wire x1="134.62" y1="17.78" x2="116.84" y2="17.78" width="0.1524" layer="91"/>
 <label x="116.84" y="17.78" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="STEPER" gate="G$1" pin="3"/>
+<pinref part="J6" gate="G$1" pin="3"/>
 </segment>
 </net>
 <net name="OUT2B" class="0">
@@ -14917,7 +14917,7 @@ datasheet p36 for details.</text>
 <segment>
 <wire x1="134.62" y1="15.24" x2="116.84" y2="15.24" width="0.1524" layer="91"/>
 <label x="116.84" y="15.24" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="STEPER" gate="G$1" pin="4"/>
+<pinref part="J6" gate="G$1" pin="4"/>
 </segment>
 </net>
 <net name="ADC" class="0">
@@ -15048,7 +15048,7 @@ datasheet p36 for details.</text>
 <wire x1="320.04" y1="93.98" x2="312.42" y2="93.98" width="0.1524" layer="91"/>
 <wire x1="312.42" y1="93.98" x2="309.88" y2="93.98" width="0.1524" layer="91"/>
 <pinref part="U$8" gate="G$1" pin="3.3V"/>
-<pinref part="U$5" gate="G$1" pin="3.3VOUT"/>
+<pinref part="U4" gate="G$1" pin="3.3VOUT"/>
 </segment>
 <segment>
 <pinref part="U$17" gate="G$1" pin="3.3V"/>
@@ -15163,7 +15163,7 @@ datasheet p36 for details.</text>
 <segment>
 <pinref part="VS" gate="1" pin="VCC"/>
 <wire x1="309.88" y1="104.14" x2="320.04" y2="104.14" width="0.1524" layer="91"/>
-<pinref part="U$5" gate="G$1" pin="VIN"/>
+<pinref part="U4" gate="G$1" pin="VIN"/>
 </segment>
 </net>
 <net name="SDO" class="0">
