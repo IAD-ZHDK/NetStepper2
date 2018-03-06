@@ -15593,6 +15593,10 @@ datasheet p36 for details.</text>
 <errors>
 <approved hash="102,1,162.56,114.3,VCC,VS,,,,"/>
 <approved hash="102,1,30.48,30.48,VCC,VS,,,,"/>
+<approved hash="202,1,447.04,35.56,IC2G$1,RI,,,,"/>
+<approved hash="202,1,447.04,33.02,IC2G$1,DCD,,,,"/>
+<approved hash="202,1,447.04,27.94,IC2G$1,DSR,,,,"/>
+<approved hash="202,1,447.04,17.78,IC2G$1,CTS,,,,"/>
 </errors>
 </schematic>
 </drawing>
