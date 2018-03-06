@@ -8310,8 +8310,8 @@ design rules under a new name.</description>
 </element>
 <element name="R7" library="SparkFun-Passives" package="0603-RES" value="10k" x="6.477" y="51.689" rot="R180"/>
 <element name="R8" library="SparkFun-Passives" package="0603-RES" value="10k" x="18.161" y="53.213" rot="R90"/>
-<element name="R9" library="SparkFun-Passives" package="0603-RES" value="12k" x="12.065" y="61.722" rot="R180"/>
-<element name="R10" library="SparkFun-Passives" package="0603-RES" value="12k" x="10.287" y="59.055"/>
+<element name="R9" library="SparkFun-Passives" package="0603-RES" value="10k" x="12.065" y="61.722" rot="R180"/>
+<element name="R10" library="SparkFun-Passives" package="0603-RES" value="10k" x="10.287" y="59.055"/>
 <element name="J3" library="SparkFun-Connectors" package="1X05" value="ENCODER" x="5.08" y="26.67" smashed="yes" rot="R270">
 <attribute name="NAME" x="6.9088" y="28.0162" size="1.27" layer="25" ratio="10" rot="R270"/>
 </element>

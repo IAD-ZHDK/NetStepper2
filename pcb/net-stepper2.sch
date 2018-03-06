@@ -14095,8 +14095,8 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <part name="R7" library="SparkFun-Passives" deviceset="RESISTOR" device="0603-RES" value="10k"/>
 <part name="U$22" library="microbuilder" deviceset="3.3V" device=""/>
 <part name="R8" library="SparkFun-Passives" deviceset="RESISTOR" device="0603-RES" value="10k"/>
-<part name="R9" library="SparkFun-Passives" deviceset="RESISTOR" device="0603-RES" value="12k"/>
-<part name="R10" library="SparkFun-Passives" deviceset="RESISTOR" device="0603-RES" value="12k"/>
+<part name="R9" library="SparkFun-Passives" deviceset="RESISTOR" device="0603-RES" value="10k"/>
+<part name="R10" library="SparkFun-Passives" deviceset="RESISTOR" device="0603-RES" value="10k"/>
 <part name="U$14" library="microbuilder" deviceset="GND" device=""/>
 <part name="J3" library="SparkFun-Connectors" deviceset="M05" device="PTH" value="ENCODER"/>
 <part name="U$20" library="microbuilder" deviceset="3.3V" device=""/>
