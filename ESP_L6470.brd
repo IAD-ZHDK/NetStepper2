@@ -3,7 +3,7 @@
 <eagle version="8.6.0">
 <drawing>
 <settings>
-<setting alwaysvectorfont="no"/>
+<setting alwaysvectorfont="yes"/>
 <setting keepoldvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
@@ -170,7 +170,6 @@
 <vertex x="35.56" y="69.85"/>
 <vertex x="35.56" y="62.23"/>
 </polygon>
-<wire x1="32.004" y1="90.932" x2="33.274" y2="90.932" width="0.254" layer="21" curve="-180"/>
 <wire x1="43.18" y1="5.08" x2="43.18" y2="90.17" width="0.1524" layer="20"/>
 <wire x1="43.18" y1="90.17" x2="40.64" y2="92.71" width="0.1524" layer="20" curve="90"/>
 <wire x1="40.64" y1="92.71" x2="3.81" y2="92.71" width="0.1524" layer="20"/>
