@@ -14136,6 +14136,7 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <part name="U$15" library="microbuilder" deviceset="GND" device=""/>
 <part name="P+3" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
 <part name="GND1" library="SparkFun" deviceset="GND" device=""/>
+<part name="U$7" library="microbuilder" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -14212,11 +14213,11 @@ datasheet p36 for details.</text>
 <instance part="S4" gate="G$1" x="134.62" y="-2.54"/>
 <instance part="S3" gate="G$1" x="134.62" y="7.62"/>
 <instance part="IC2" gate="G$1" x="490.22" y="121.92"/>
-<instance part="U$33" gate="G$1" x="452.12" y="119.38" rot="R90"/>
+<instance part="U$33" gate="G$1" x="462.28" y="96.52"/>
 <instance part="U$34" gate="G$1" x="472.44" y="121.92"/>
-<instance part="U$36" gate="G$1" x="459.74" y="124.46"/>
+<instance part="U$36" gate="G$1" x="464.82" y="127"/>
 <instance part="U$38" gate="G$1" x="462.28" y="139.7"/>
-<instance part="J1" gate="G$1" x="441.96" y="114.3" rot="R180"/>
+<instance part="J1" gate="G$1" x="452.12" y="114.3" rot="R180"/>
 <instance part="U3" gate="G$1" x="203.2" y="10.16" rot="R90"/>
 <instance part="U$26" gate="G$1" x="195.58" y="15.24"/>
 <instance part="R6" gate="G$1" x="223.52" y="17.78"/>
@@ -14230,6 +14231,7 @@ datasheet p36 for details.</text>
 <instance part="U$15" gate="G$1" x="347.98" y="111.76"/>
 <instance part="P+3" gate="G$1" x="109.22" y="185.42"/>
 <instance part="GND1" gate="1" x="30.48" y="0"/>
+<instance part="U$7" gate="G$1" x="439.42" y="96.52"/>
 </instances>
 <busses>
 </busses>
@@ -14306,7 +14308,8 @@ datasheet p36 for details.</text>
 <segment>
 <pinref part="U$33" gate="G$1" pin="GND"/>
 <pinref part="J1" gate="G$1" pin="GND"/>
-<wire x1="447.04" y1="119.38" x2="449.58" y2="119.38" width="0.1524" layer="91"/>
+<wire x1="457.2" y1="119.38" x2="462.28" y2="119.38" width="0.1524" layer="91"/>
+<wire x1="462.28" y1="119.38" x2="462.28" y2="99.06" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="IC2" gate="G$1" pin="GND"/>
@@ -14351,6 +14354,12 @@ datasheet p36 for details.</text>
 <junction x="347.98" y="152.4"/>
 <pinref part="U5" gate="G$1" pin="GND@38"/>
 <wire x1="345.44" y1="152.4" x2="347.98" y2="152.4" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="J1" gate="G$1" pin="SHIELD"/>
+<wire x1="444.5" y1="114.3" x2="439.42" y2="114.3" width="0.1524" layer="91"/>
+<pinref part="U$7" gate="G$1" pin="GND"/>
+<wire x1="439.42" y1="99.06" x2="439.42" y2="114.3" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="FLAGN" class="0">
@@ -14892,27 +14901,27 @@ datasheet p36 for details.</text>
 <net name="VBUS" class="0">
 <segment>
 <pinref part="IC2" gate="G$1" pin="VBUS"/>
-<wire x1="459.74" y1="116.84" x2="474.98" y2="116.84" width="0.1524" layer="91"/>
+<wire x1="464.82" y1="116.84" x2="474.98" y2="116.84" width="0.1524" layer="91"/>
 <pinref part="U$36" gate="G$1" pin="VBUS"/>
-<wire x1="459.74" y1="116.84" x2="459.74" y2="121.92" width="0.1524" layer="91"/>
+<wire x1="464.82" y1="116.84" x2="464.82" y2="124.46" width="0.1524" layer="91"/>
 <pinref part="J1" gate="G$1" pin="VBUS"/>
-<wire x1="447.04" y1="109.22" x2="459.74" y2="109.22" width="0.1524" layer="91"/>
-<wire x1="459.74" y1="109.22" x2="459.74" y2="116.84" width="0.1524" layer="91"/>
-<junction x="459.74" y="116.84"/>
+<wire x1="457.2" y1="109.22" x2="464.82" y2="109.22" width="0.1524" layer="91"/>
+<wire x1="464.82" y1="109.22" x2="464.82" y2="116.84" width="0.1524" layer="91"/>
+<junction x="464.82" y="116.84"/>
 </segment>
 </net>
 <net name="N$13" class="0">
 <segment>
 <pinref part="IC2" gate="G$1" pin="D+"/>
 <pinref part="J1" gate="G$1" pin="D+"/>
-<wire x1="447.04" y1="114.3" x2="474.98" y2="114.3" width="0.1524" layer="91"/>
+<wire x1="457.2" y1="114.3" x2="474.98" y2="114.3" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$14" class="0">
 <segment>
 <pinref part="IC2" gate="G$1" pin="D-"/>
 <pinref part="J1" gate="G$1" pin="D-"/>
-<wire x1="447.04" y1="111.76" x2="474.98" y2="111.76" width="0.1524" layer="91"/>
+<wire x1="457.2" y1="111.76" x2="474.98" y2="111.76" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="RED" class="0">

@@ -8461,6 +8461,15 @@ design rules under a new name.</description>
 <wire x1="23.1068" y1="48.74114375" x2="21.59" y2="47.22434375" width="0.254" layer="1"/>
 <wire x1="21.59" y1="43.18" x2="17.78" y2="39.37" width="0.254" layer="1"/>
 <wire x1="21.59" y1="47.22434375" x2="21.59" y2="43.18" width="0.254" layer="1"/>
+<contactref element="J1" pad="P$1"/>
+<contactref element="J1" pad="P$2"/>
+<contactref element="J1" pad="MT1"/>
+<contactref element="J1" pad="MT2"/>
+<wire x1="4.047" y1="76.297" x2="1.427" y2="76.297" width="0.254" layer="1"/>
+<wire x1="1.427" y1="76.297" x2="1.397" y2="76.327" width="0.254" layer="1"/>
+<wire x1="1.397" y1="76.327" x2="1.397" y2="73.597" width="0.254" layer="1"/>
+<wire x1="1.397" y1="76.327" x2="1.397" y2="78.867" width="0.254" layer="1"/>
+<wire x1="1.397" y1="81.597" x2="1.397" y2="78.867" width="0.254" layer="1"/>
 </signal>
 <signal name="FLAGN">
 <contactref element="U1" pad="24"/>
