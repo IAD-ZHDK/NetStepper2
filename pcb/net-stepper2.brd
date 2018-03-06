@@ -8933,7 +8933,7 @@ design rules under a new name.</description>
 <contactref element="U5" pad="34"/>
 <wire x1="8.78" y1="36.75" x2="10.08" y2="36.75" width="0.254" layer="1"/>
 </signal>
-<signal name="ENDSTOP1">
+<signal name="END_STOP_1">
 <contactref element="J5" pad="2"/>
 <wire x1="13.335" y1="50.927" x2="13.081" y2="51.181" width="0.3048" layer="1"/>
 <wire x1="13.081" y1="51.181" x2="9.525" y2="51.181" width="0.3048" layer="1"/>
@@ -8945,7 +8945,7 @@ design rules under a new name.</description>
 <contactref element="U5" pad="23"/>
 <wire x1="13.335" y1="49.67" x2="13.335" y2="50.927" width="0.254" layer="1"/>
 </signal>
-<signal name="ENDSTOP2">
+<signal name="END_STOP_2">
 <contactref element="J4" pad="2"/>
 <wire x1="5.16" y1="34.21" x2="5.08" y2="34.29" width="0.3048" layer="1"/>
 <wire x1="5.08" y1="34.29" x2="5.715" y2="34.29" width="0.3048" layer="1"/>
