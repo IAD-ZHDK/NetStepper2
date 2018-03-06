@@ -15067,9 +15067,10 @@ datasheet p36 for details.</text>
 <label x="231.14" y="17.78" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U5" gate="G$1" pin="26-IOD"/>
-<wire x1="292.1" y1="127" x2="284.48" y2="127" width="0.1524" layer="91"/>
-<label x="284.48" y="127" size="1.27" layer="95" rot="R180" xref="yes"/>
+<label x="284.48" y="121.92" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="287.02" y1="121.92" x2="284.48" y2="121.92" width="0.1524" layer="91"/>
+<wire x1="287.02" y1="121.92" x2="292.1" y2="121.92" width="0.1524" layer="91"/>
+<pinref part="U5" gate="G$1" pin="14-IO"/>
 </segment>
 </net>
 <net name="LED_GREEN" class="0">
@@ -15091,9 +15092,10 @@ datasheet p36 for details.</text>
 <label x="231.14" y="2.54" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U5" gate="G$1" pin="14-IO"/>
-<wire x1="292.1" y1="121.92" x2="284.48" y2="121.92" width="0.1524" layer="91"/>
-<label x="284.48" y="121.92" size="1.27" layer="95" rot="R180" xref="yes"/>
+<label x="284.48" y="127" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="287.02" y1="127" x2="284.48" y2="127" width="0.1524" layer="91"/>
+<wire x1="287.02" y1="127" x2="292.1" y2="127" width="0.1524" layer="91"/>
+<pinref part="U5" gate="G$1" pin="26-IOD"/>
 </segment>
 </net>
 <net name="N$11" class="0">
