@@ -8701,9 +8701,9 @@ design rules under a new name.</description>
 <element name="R8" library="SparkFun-Passives" package="0603-RES" value="10k" x="19.431" y="55.753" rot="R90"/>
 <element name="R9" library="SparkFun-Passives" package="0603-RES" value="12k" x="13.335" y="64.262" rot="R180"/>
 <element name="R10" library="SparkFun-Passives" package="0603-RES" value="12k" x="11.557" y="61.595"/>
-<element name="ENCODER" library="SparkFun-Connectors" package="1X05" value="ENCODER" x="6.35" y="29.21" rot="R270"/>
-<element name="ENDSTOP1" library="SparkFun-Connectors" package="1X03" value="ENDSTOP1" x="6.35" y="44.45" rot="R90"/>
-<element name="ENDSTOP2" library="SparkFun-Connectors" package="1X03" value="ENDSTOP1" x="6.35" y="34.29" rot="R90"/>
+<element name="J3" library="SparkFun-Connectors" package="1X05" value="ENCODER" x="6.35" y="29.21" rot="R270"/>
+<element name="J5" library="SparkFun-Connectors" package="1X03" value="ENDSTOP1" x="6.35" y="44.45" rot="R90"/>
+<element name="J4" library="SparkFun-Connectors" package="1X03" value="ENDSTOP2" x="6.35" y="34.29" rot="R90"/>
 <element name="U$5" library="IAD_ZHDK" package="TRACO12433" value="TRACO12433" x="15.24" y="85.09"/>
 <element name="STEPER" library="SparkFun-Connectors" package="1X04_LOCK_LONGPADS" value="STEPER" x="25.4" y="87.63">
 <attribute name="PROD_ID" value="CONN-09696" x="25.4" y="87.63" size="1.778" layer="27" display="off"/>
@@ -8712,10 +8712,10 @@ design rules under a new name.</description>
 <attribute name="PROD_ID" value="CONN-08197" x="46.99" y="36.195" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="SF_ID" value="PRT-00119" x="46.99" y="36.195" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="U$18" library="IAD-Library" package="B3AL-1002P-MS" value="B3AL-1002P-MS" x="12.7" y="10.16" rot="R180"/>
-<element name="U$19" library="IAD-Library" package="B3AL-1002P-MS" value="B3AL-1002P-MS" x="12.7" y="19.685" rot="R180"/>
-<element name="U$23" library="IAD-Library" package="B3AL-1002P-MS" value="B3AL-1002P-MS" x="22.225" y="10.16" rot="R180"/>
-<element name="U$24" library="IAD-Library" package="B3AL-1002P-MS" value="B3AL-1002P-MS" x="31.75" y="10.16" rot="R180"/>
+<element name="S1" library="IAD-Library" package="B3AL-1002P-MS" value="B3AL-1002P-MS" x="12.7" y="10.16" rot="R180"/>
+<element name="S2" library="IAD-Library" package="B3AL-1002P-MS" value="B3AL-1002P-MS" x="12.7" y="19.685" rot="R180"/>
+<element name="S4" library="IAD-Library" package="B3AL-1002P-MS" value="B3AL-1002P-MS" x="22.225" y="10.16" rot="R180"/>
+<element name="S3" library="IAD-Library" package="B3AL-1002P-MS" value="B3AL-1002P-MS" x="31.75" y="10.16" rot="R180"/>
 <element name="IC2" library="microbuilder" package="QFN24_4MM_SMSC" value="CP2104" x="7.112" y="71.247" smashed="yes" rot="R270"/>
 <element name="JP2" library="SparkFun-Jumpers" package="SMT-JUMPER_2_NC_TRACE_NO-SILK" value="JUMPER-SMT_2_NC_TRACE_NO-SILK" x="12.065" y="67.31" rot="R270"/>
 <element name="JP3" library="SparkFun-Jumpers" package="SMT-JUMPER_2_NC_TRACE_NO-SILK" value="JUMPER-SMT_2_NC_TRACE_NO-SILK" x="10.541" y="67.31" rot="R270"/>
@@ -8746,7 +8746,7 @@ design rules under a new name.</description>
 <contactref element="U2" pad="38"/>
 <contactref element="U2" pad="15"/>
 <contactref element="U2" pad="1"/>
-<contactref element="ENCODER" pad="5"/>
+<contactref element="J3" pad="5"/>
 <wire x1="31.874" y1="78.232" x2="32.131" y2="78.489" width="0.254" layer="1"/>
 <polygon width="0.254" layer="16" isolate="0.3048" rank="3">
 <vertex x="0" y="1.27"/>
@@ -8763,8 +8763,8 @@ design rules under a new name.</description>
 <wire x1="31.874" y1="78.232" x2="32.131" y2="78.489" width="0.254" layer="1"/>
 <wire x1="22.01" y1="59.69" x2="20.32" y2="59.69" width="0.254" layer="1"/>
 <via x="20.32" y="59.69" extent="1-16" drill="0.508"/>
-<contactref element="ENDSTOP2" pad="3"/>
-<contactref element="ENDSTOP1" pad="3"/>
+<contactref element="J4" pad="3"/>
+<contactref element="J5" pad="3"/>
 <contactref element="U$5" pad="GND"/>
 <wire x1="28.05" y1="34.21" x2="27.97" y2="34.29" width="0.3048" layer="1"/>
 <wire x1="27.97" y1="34.29" x2="21.59" y2="34.29" width="0.3048" layer="1"/>
@@ -9018,7 +9018,7 @@ design rules under a new name.</description>
 <contactref element="U2" pad="2"/>
 <contactref element="R8" pad="2"/>
 <contactref element="R7" pad="2"/>
-<contactref element="ENCODER" pad="2"/>
+<contactref element="J3" pad="2"/>
 <contactref element="U1" pad="17"/>
 <contactref element="R1" pad="2"/>
 <contactref element="R2" pad="2"/>
@@ -9041,8 +9041,8 @@ design rules under a new name.</description>
 <wire x1="32.135" y1="75.685" x2="32.131" y2="75.689" width="0.254" layer="1"/>
 <wire x1="32.131" y1="75.689" x2="30.184" y2="75.689" width="0.3048" layer="1"/>
 <wire x1="30.184" y1="75.689" x2="29.972" y2="75.477" width="0.254" layer="1"/>
-<contactref element="ENDSTOP1" pad="1"/>
-<contactref element="ENDSTOP2" pad="1"/>
+<contactref element="J5" pad="1"/>
+<contactref element="J4" pad="1"/>
 <wire x1="27.94" y1="77.685" x2="28.741" y2="77.685" width="0.3048" layer="1"/>
 <wire x1="28.741" y1="77.685" x2="28.829" y2="77.597" width="0.3048" layer="1"/>
 <wire x1="28.829" y1="77.597" x2="28.829" y2="75.819" width="0.3048" layer="1"/>
@@ -9061,10 +9061,10 @@ design rules under a new name.</description>
 <wire x1="5.08" y1="34.29" x2="6.35" y2="34.29" width="0.3048" layer="16"/>
 <wire x1="4.826" y1="51.308" x2="4.826" y2="44.45" width="0.3048" layer="16"/>
 <wire x1="4.826" y1="51.308" x2="4.826" y2="55.88" width="0.3048" layer="16"/>
-<contactref element="U$18" pad="P$2"/>
-<contactref element="U$19" pad="P$2"/>
-<contactref element="U$24" pad="P$2"/>
-<contactref element="U$23" pad="P$2"/>
+<contactref element="S1" pad="P$2"/>
+<contactref element="S2" pad="P$2"/>
+<contactref element="S3" pad="P$2"/>
+<contactref element="S4" pad="P$2"/>
 <wire x1="4.826" y1="55.88" x2="4.826" y2="57.15" width="0.3048" layer="16"/>
 <wire x1="4.826" y1="57.15" x2="4.826" y2="60.96" width="0.3048" layer="16"/>
 <wire x1="28.75" y1="10.16" x2="28.75" y2="14.43" width="0.3048" layer="1"/>
@@ -9345,7 +9345,7 @@ design rules under a new name.</description>
 <wire x1="10.0584" y1="66.802" x2="10.541" y2="66.802" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ENDSTOP1">
-<contactref element="ENDSTOP1" pad="2"/>
+<contactref element="J5" pad="2"/>
 <wire x1="14.605" y1="53.467" x2="14.351" y2="53.721" width="0.3048" layer="1"/>
 <wire x1="14.351" y1="53.721" x2="11.43" y2="53.721" width="0.3048" layer="1"/>
 <wire x1="11.43" y1="53.721" x2="10.795" y2="53.721" width="0.3048" layer="1"/>
@@ -9356,7 +9356,7 @@ design rules under a new name.</description>
 <wire x1="8.001" y1="51.181" x2="10.541" y2="53.721" width="0.3048" layer="16"/>
 </signal>
 <signal name="ENDSTOP2">
-<contactref element="ENDSTOP2" pad="2"/>
+<contactref element="J4" pad="2"/>
 <wire x1="6.43" y1="36.75" x2="6.35" y2="36.83" width="0.3048" layer="1"/>
 <wire x1="6.35" y1="36.83" x2="6.985" y2="36.83" width="0.3048" layer="1"/>
 <wire x1="8.3348" y1="38.1798" x2="8.3348" y2="40.549225" width="0.3048" layer="1"/>
@@ -9366,7 +9366,7 @@ design rules under a new name.</description>
 <wire x1="8.8428" y1="46.5618" x2="9.191" y2="46.91" width="0.3048" layer="1"/>
 </signal>
 <signal name="ENC_A">
-<contactref element="ENCODER" pad="1"/>
+<contactref element="J3" pad="1"/>
 <contactref element="U2" pad="33"/>
 <wire x1="6.35" y1="29.21" x2="8.3348" y2="31.1948" width="0.3048" layer="1"/>
 <wire x1="8.3348" y1="31.1948" x2="8.3348" y2="36.739225" width="0.3048" layer="1"/>
@@ -9377,7 +9377,7 @@ design rules under a new name.</description>
 <wire x1="8.8428" y1="37.247225" x2="8.8428" y2="40.3388" width="0.3048" layer="1"/>
 </signal>
 <signal name="ENC_B">
-<contactref element="ENCODER" pad="3"/>
+<contactref element="J3" pad="3"/>
 <contactref element="U2" pad="36"/>
 <wire x1="10.05" y1="36.75" x2="9.064" y2="36.75" width="0.3048" layer="1"/>
 <wire x1="8.8428" y1="36.5288" x2="8.8428" y2="24.4638" width="0.3048" layer="1"/>
@@ -9386,7 +9386,7 @@ design rules under a new name.</description>
 <wire x1="8.8428" y1="24.4638" x2="8.509" y2="24.13" width="0.3048" layer="1"/>
 </signal>
 <signal name="NC">
-<contactref element="ENCODER" pad="4"/>
+<contactref element="J3" pad="4"/>
 </signal>
 <signal name="N$8">
 <contactref element="U2" pad="4"/>
@@ -9396,7 +9396,7 @@ design rules under a new name.</description>
 </signal>
 <signal name="DOWN">
 <contactref element="U2" pad="11"/>
-<contactref element="U$18" pad="P$1"/>
+<contactref element="S1" pad="P$1"/>
 <wire x1="28.05" y1="46.91" x2="28.13" y2="46.99" width="0.3048" layer="1"/>
 <wire x1="28.05" y1="46.91" x2="29.163" y2="46.91" width="0.254" layer="1"/>
 <wire x1="29.163" y1="46.91" x2="29.7942" y2="46.2788" width="0.254" layer="1"/>
@@ -9407,7 +9407,7 @@ design rules under a new name.</description>
 <wire x1="29.7942" y1="46.2788" x2="29.7942" y2="18.11854375" width="0.254" layer="1"/>
 </signal>
 <signal name="UP">
-<contactref element="U$19" pad="P$1"/>
+<contactref element="S2" pad="P$1"/>
 <contactref element="U2" pad="9"/>
 <wire x1="28.05" y1="44.37" x2="28.13" y2="44.45" width="0.3048" layer="1"/>
 <wire x1="28.05" y1="44.37" x2="29.163" y2="44.37" width="0.254" layer="1"/>
@@ -9424,7 +9424,7 @@ design rules under a new name.</description>
 <wire x1="16.335" y1="19.05" x2="15.7" y2="19.685" width="0.254" layer="1"/>
 </signal>
 <signal name="STOP">
-<contactref element="U$24" pad="P$1"/>
+<contactref element="S3" pad="P$1"/>
 <contactref element="U2" pad="14"/>
 <wire x1="28.05" y1="50.72" x2="28.13" y2="50.8" width="0.3048" layer="1"/>
 <wire x1="28.05" y1="50.72" x2="28.13" y2="50.8" width="0.3048" layer="1"/>
@@ -9441,7 +9441,7 @@ design rules under a new name.</description>
 <wire x1="33.48" y1="11.43" x2="34.75" y2="10.16" width="0.254" layer="1"/>
 </signal>
 <signal name="HOME">
-<contactref element="U$23" pad="P$1"/>
+<contactref element="S4" pad="P$1"/>
 <contactref element="U2" pad="12"/>
 <wire x1="28.05" y1="48.18" x2="28.4382" y2="47.7918" width="0.254" layer="1"/>
 <wire x1="28.4382" y1="47.7918" x2="28.97885625" y2="47.7918" width="0.254" layer="1"/>

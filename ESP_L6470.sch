@@ -14539,11 +14539,11 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <part name="R9" library="SparkFun-Passives" deviceset="RESISTOR" device="0603-RES" value="12k"/>
 <part name="R10" library="SparkFun-Passives" deviceset="RESISTOR" device="0603-RES" value="12k"/>
 <part name="U$14" library="microbuilder" deviceset="GND" device=""/>
-<part name="ENCODER" library="SparkFun-Connectors" deviceset="M05" device="PTH" value="ENCODER"/>
+<part name="J3" library="SparkFun-Connectors" deviceset="M05" device="PTH" value="ENCODER"/>
 <part name="U$20" library="microbuilder" deviceset="3.3V" device=""/>
 <part name="U$21" library="microbuilder" deviceset="GND" device=""/>
-<part name="ENDSTOP1" library="SparkFun-Connectors" deviceset="CONN_03" device="" value="ENDSTOP1"/>
-<part name="ENDSTOP2" library="SparkFun-Connectors" deviceset="CONN_03" device="" value="ENDSTOP1"/>
+<part name="J5" library="SparkFun-Connectors" deviceset="CONN_03" device="" value="ENDSTOP1"/>
+<part name="J4" library="SparkFun-Connectors" deviceset="CONN_03" device="" value="ENDSTOP2"/>
 <part name="U$1" library="microbuilder" deviceset="3.3V" device=""/>
 <part name="U$2" library="microbuilder" deviceset="3.3V" device=""/>
 <part name="U$3" library="microbuilder" deviceset="GND" device=""/>
@@ -14554,10 +14554,10 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <part name="STEPER" library="SparkFun-Connectors" deviceset="M04" device="LOCK_LONGPADS" value="STEPER"/>
 <part name="J2" library="SparkFun-Connectors" deviceset="POWER_JACK" device="PTH_LOCK"/>
 <part name="U$17" library="microbuilder" deviceset="3.3V" device=""/>
-<part name="U$18" library="IAD-Library" deviceset="B3AL-1002P-MS" device=""/>
-<part name="U$19" library="IAD-Library" deviceset="B3AL-1002P-MS" device=""/>
-<part name="U$23" library="IAD-Library" deviceset="B3AL-1002P-MS" device=""/>
-<part name="U$24" library="IAD-Library" deviceset="B3AL-1002P-MS" device=""/>
+<part name="S1" library="IAD-Library" deviceset="B3AL-1002P-MS" device=""/>
+<part name="S2" library="IAD-Library" deviceset="B3AL-1002P-MS" device=""/>
+<part name="S4" library="IAD-Library" deviceset="B3AL-1002P-MS" device=""/>
+<part name="S3" library="IAD-Library" deviceset="B3AL-1002P-MS" device=""/>
 <part name="IC2" library="microbuilder" deviceset="CP2104" device="" value="CP2104"/>
 <part name="U$33" library="microbuilder" deviceset="GND" device=""/>
 <part name="U$34" library="microbuilder" deviceset="GND" device=""/>
@@ -14661,11 +14661,11 @@ datasheet p36 for details.</text>
 <instance part="R9" gate="G$1" x="472.44" y="119.38" rot="R180"/>
 <instance part="R10" gate="G$1" x="477.52" y="101.6" rot="R180"/>
 <instance part="U$14" gate="G$1" x="307.34" y="99.06" rot="R270"/>
-<instance part="ENCODER" gate="G$1" x="281.94" y="53.34" rot="R180"/>
+<instance part="J3" gate="G$1" x="281.94" y="53.34" rot="R180"/>
 <instance part="U$20" gate="G$1" x="256.54" y="55.88" rot="R90"/>
 <instance part="U$21" gate="G$1" x="259.08" y="48.26" rot="R270"/>
-<instance part="ENDSTOP1" gate="J$1" x="335.28" y="66.04" rot="R180"/>
-<instance part="ENDSTOP2" gate="J$1" x="335.28" y="48.26" rot="R180"/>
+<instance part="J5" gate="J$1" x="335.28" y="66.04" rot="R180"/>
+<instance part="J4" gate="J$1" x="335.28" y="48.26" rot="R180"/>
 <instance part="U$1" gate="G$1" x="320.04" y="68.58" rot="R90"/>
 <instance part="U$2" gate="G$1" x="320.04" y="50.8" rot="R90"/>
 <instance part="U$3" gate="G$1" x="320.04" y="45.72" rot="R270"/>
@@ -14676,10 +14676,10 @@ datasheet p36 for details.</text>
 <instance part="STEPER" gate="G$1" x="139.7" y="20.32" rot="R180"/>
 <instance part="J2" gate="G$1" x="68.58" y="5.08" rot="MR0"/>
 <instance part="U$17" gate="G$1" x="304.8" y="175.26"/>
-<instance part="U$18" gate="G$1" x="314.96" y="170.18"/>
-<instance part="U$19" gate="G$1" x="314.96" y="162.56"/>
-<instance part="U$23" gate="G$1" x="314.96" y="142.24"/>
-<instance part="U$24" gate="G$1" x="314.96" y="152.4"/>
+<instance part="S1" gate="G$1" x="314.96" y="170.18"/>
+<instance part="S2" gate="G$1" x="314.96" y="162.56"/>
+<instance part="S4" gate="G$1" x="314.96" y="142.24"/>
+<instance part="S3" gate="G$1" x="314.96" y="152.4"/>
 <instance part="IC2" gate="G$1" x="431.8" y="40.64"/>
 <instance part="U$33" gate="G$1" x="393.7" y="38.1" rot="R90"/>
 <instance part="U$34" gate="G$1" x="414.02" y="40.64"/>
@@ -14775,17 +14775,17 @@ datasheet p36 for details.</text>
 <pinref part="U$5" gate="G$1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="ENCODER" gate="G$1" pin="5"/>
+<pinref part="J3" gate="G$1" pin="5"/>
 <pinref part="U$21" gate="G$1" pin="GND"/>
 <wire x1="274.32" y1="48.26" x2="261.62" y2="48.26" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="ENDSTOP2" gate="J$1" pin="3"/>
+<pinref part="J4" gate="J$1" pin="3"/>
 <pinref part="U$3" gate="G$1" pin="GND"/>
 <wire x1="322.58" y1="45.72" x2="327.66" y2="45.72" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="ENDSTOP1" gate="J$1" pin="3"/>
+<pinref part="J5" gate="J$1" pin="3"/>
 <pinref part="U$4" gate="G$1" pin="GND"/>
 <wire x1="322.58" y1="63.5" x2="327.66" y2="63.5" width="0.1524" layer="91"/>
 </segment>
@@ -15007,7 +15007,7 @@ datasheet p36 for details.</text>
 <wire x1="436.88" y1="172.72" x2="436.88" y2="175.26" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="ENCODER" gate="G$1" pin="2"/>
+<pinref part="J3" gate="G$1" pin="2"/>
 <pinref part="U$20" gate="G$1" pin="3.3V"/>
 <wire x1="274.32" y1="55.88" x2="264.16" y2="55.88" width="0.1524" layer="91"/>
 <wire x1="264.16" y1="55.88" x2="259.08" y2="55.88" width="0.1524" layer="91"/>
@@ -15035,12 +15035,12 @@ datasheet p36 for details.</text>
 <wire x1="160.02" y1="76.2" x2="162.56" y2="76.2" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="ENDSTOP1" gate="J$1" pin="1"/>
+<pinref part="J5" gate="J$1" pin="1"/>
 <pinref part="U$1" gate="G$1" pin="3.3V"/>
 <wire x1="322.58" y1="68.58" x2="327.66" y2="68.58" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="ENDSTOP2" gate="J$1" pin="1"/>
+<pinref part="J4" gate="J$1" pin="1"/>
 <pinref part="U$2" gate="G$1" pin="3.3V"/>
 <wire x1="322.58" y1="50.8" x2="327.66" y2="50.8" width="0.1524" layer="91"/>
 </segment>
@@ -15063,10 +15063,10 @@ datasheet p36 for details.</text>
 <junction x="304.8" y="170.18"/>
 <junction x="304.8" y="162.56"/>
 <junction x="304.8" y="152.4"/>
-<pinref part="U$18" gate="G$1" pin="P$2"/>
-<pinref part="U$19" gate="G$1" pin="P$2"/>
-<pinref part="U$24" gate="G$1" pin="P$2"/>
-<pinref part="U$23" gate="G$1" pin="P$2"/>
+<pinref part="S1" gate="G$1" pin="P$2"/>
+<pinref part="S2" gate="G$1" pin="P$2"/>
+<pinref part="S3" gate="G$1" pin="P$2"/>
+<pinref part="S4" gate="G$1" pin="P$2"/>
 </segment>
 <segment>
 <pinref part="IC2" gate="G$1" pin="REGIN"/>
@@ -15294,21 +15294,21 @@ datasheet p36 for details.</text>
 </net>
 <net name="ENDSTOP1" class="0">
 <segment>
-<pinref part="ENDSTOP1" gate="J$1" pin="2"/>
+<pinref part="J5" gate="J$1" pin="2"/>
 <wire x1="327.66" y1="66.04" x2="320.04" y2="66.04" width="0.1524" layer="91"/>
 <label x="320.04" y="66.04" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="ENDSTOP2" class="0">
 <segment>
-<pinref part="ENDSTOP2" gate="J$1" pin="2"/>
+<pinref part="J4" gate="J$1" pin="2"/>
 <wire x1="327.66" y1="48.26" x2="320.04" y2="48.26" width="0.1524" layer="91"/>
 <label x="320.04" y="48.26" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="ENC_A" class="0">
 <segment>
-<pinref part="ENCODER" gate="G$1" pin="1"/>
+<pinref part="J3" gate="G$1" pin="1"/>
 <wire x1="274.32" y1="58.42" x2="264.16" y2="58.42" width="0.1524" layer="91"/>
 <label x="264.16" y="58.42" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -15320,7 +15320,7 @@ datasheet p36 for details.</text>
 </net>
 <net name="ENC_B" class="0">
 <segment>
-<pinref part="ENCODER" gate="G$1" pin="3"/>
+<pinref part="J3" gate="G$1" pin="3"/>
 <wire x1="274.32" y1="53.34" x2="264.16" y2="53.34" width="0.1524" layer="91"/>
 <label x="264.16" y="53.34" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -15333,7 +15333,7 @@ datasheet p36 for details.</text>
 </net>
 <net name="NC" class="0">
 <segment>
-<pinref part="ENCODER" gate="G$1" pin="4"/>
+<pinref part="J3" gate="G$1" pin="4"/>
 <wire x1="274.32" y1="50.8" x2="264.16" y2="50.8" width="0.1524" layer="91"/>
 <label x="264.16" y="50.8" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -15356,7 +15356,7 @@ datasheet p36 for details.</text>
 <segment>
 <wire x1="322.58" y1="170.18" x2="330.2" y2="170.18" width="0.1524" layer="91"/>
 <label x="330.2" y="170.18" size="1.4224" layer="95" xref="yes"/>
-<pinref part="U$18" gate="G$1" pin="P$1"/>
+<pinref part="S1" gate="G$1" pin="P$1"/>
 </segment>
 <segment>
 <pinref part="U2" gate="G$1" pin="IO26"/>
@@ -15368,7 +15368,7 @@ datasheet p36 for details.</text>
 <segment>
 <wire x1="322.58" y1="162.56" x2="330.2" y2="162.56" width="0.1524" layer="91"/>
 <label x="330.2" y="162.56" size="1.4224" layer="95" xref="yes"/>
-<pinref part="U$19" gate="G$1" pin="P$1"/>
+<pinref part="S2" gate="G$1" pin="P$1"/>
 </segment>
 <segment>
 <pinref part="U2" gate="G$1" pin="IO33"/>
@@ -15380,7 +15380,7 @@ datasheet p36 for details.</text>
 <segment>
 <wire x1="322.58" y1="152.4" x2="330.2" y2="152.4" width="0.1524" layer="91"/>
 <label x="330.2" y="152.4" size="1.4224" layer="95" xref="yes"/>
-<pinref part="U$24" gate="G$1" pin="P$1"/>
+<pinref part="S3" gate="G$1" pin="P$1"/>
 </segment>
 <segment>
 <pinref part="U2" gate="G$1" pin="IO12"/>
@@ -15392,7 +15392,7 @@ datasheet p36 for details.</text>
 <segment>
 <wire x1="322.58" y1="142.24" x2="330.2" y2="142.24" width="0.1524" layer="91"/>
 <label x="330.2" y="142.24" size="1.4224" layer="95" xref="yes"/>
-<pinref part="U$23" gate="G$1" pin="P$1"/>
+<pinref part="S4" gate="G$1" pin="P$1"/>
 </segment>
 <segment>
 <pinref part="U2" gate="G$1" pin="IO27"/>
