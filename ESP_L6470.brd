@@ -3,7 +3,7 @@
 <eagle version="8.6.0">
 <drawing>
 <settings>
-<setting alwaysvectorfont="yes"/>
+<setting alwaysvectorfont="no"/>
 <setting keepoldvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
@@ -998,36 +998,6 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <wire x1="-3" y1="3.45" x2="-3" y2="2" width="0.127" layer="25"/>
 <wire x1="3" y1="3.45" x2="3" y2="2" width="0.127" layer="25"/>
 <wire x1="3" y1="-2" x2="3" y2="-3.45" width="0.127" layer="25"/>
-</package>
-</packages>
-</library>
-<library name="SparkFun-Jumpers">
-<description>&lt;h3&gt;SparkFun Jumpers&lt;/h3&gt;
-In this library you'll find jumpers, or other semipermanent means of changing current paths. The least permanent form is the solder jumper. These can be changed by adding, removing, or moving solder. In cases that are less likely to be changed we have jumpers that are connected with traces. These can be cut with a razor, or reconnected with solder. Reference designator JP.
-&lt;br&gt;
-&lt;br&gt;
-We've spent an enormous amount of time creating and checking these footprints and parts, but it is &lt;b&gt; the end user's responsibility&lt;/b&gt; to ensure correctness and suitablity for a given componet or application. 
-&lt;br&gt;
-&lt;br&gt;If you enjoy using this library, please buy one of our products at &lt;a href=" www.sparkfun.com"&gt;SparkFun.com&lt;/a&gt;.
-&lt;br&gt;
-&lt;br&gt;
-&lt;b&gt;Licensing:&lt;/b&gt; Creative Commons ShareAlike 4.0 International - https://creativecommons.org/licenses/by-sa/4.0/ 
-&lt;br&gt;
-&lt;br&gt;
-You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
-<packages>
-<package name="SMT-JUMPER_2_NC_TRACE_NO-SILK">
-<smd name="1" x="-0.508" y="0" dx="0.635" dy="1.27" layer="1" cream="no"/>
-<smd name="2" x="0.508" y="0" dx="0.635" dy="1.27" layer="1" cream="no"/>
-<text x="0" y="1.143" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;NAME</text>
-<text x="0" y="-1.143" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;VALUE</text>
-<wire x1="-0.508" y1="0" x2="0.508" y2="0" width="0.254" layer="1"/>
-<polygon width="0.127" layer="29">
-<vertex x="-0.1905" y="0.127"/>
-<vertex x="0.1905" y="0.127"/>
-<vertex x="0.1905" y="-0.127"/>
-<vertex x="-0.1905" y="-0.127"/>
-</polygon>
 </package>
 </packages>
 </library>
@@ -8724,8 +8694,6 @@ design rules under a new name.</description>
 <element name="S4" library="IAD-Library" package="B3AL-1002P-MS" value="B3AL-1002P-MS" x="22.225" y="10.16" rot="R180"/>
 <element name="S3" library="IAD-Library" package="B3AL-1002P-MS" value="B3AL-1002P-MS" x="31.75" y="10.16" rot="R180"/>
 <element name="IC2" library="microbuilder" package="QFN24_4MM_SMSC" value="CP2104" x="7.112" y="71.247" smashed="yes" rot="R270"/>
-<element name="JP2" library="SparkFun-Jumpers" package="SMT-JUMPER_2_NC_TRACE_NO-SILK" value="JUMPER-SMT_2_NC_TRACE_NO-SILK" x="12.065" y="67.31" rot="R270"/>
-<element name="JP3" library="SparkFun-Jumpers" package="SMT-JUMPER_2_NC_TRACE_NO-SILK" value="JUMPER-SMT_2_NC_TRACE_NO-SILK" x="10.541" y="67.31" rot="R270"/>
 <element name="J1" library="SparkFun-Connectors" package="USB-MICROB" value="MICRO-USB" x="2.667" y="80.137" rot="R180">
 <attribute name="PROD_ID" value="CONN-09505" x="10.287" y="76.327" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="SF_ID" value="PRT-08533" x="10.287" y="76.327" size="1.778" layer="27" rot="R180" display="off"/>
@@ -9323,22 +9291,22 @@ design rules under a new name.</description>
 </signal>
 <signal name="TX">
 <contactref element="U2" pad="35"/>
-<contactref element="JP2" pad="2"/>
 <wire x1="10.05" y1="38.02" x2="11.35" y2="38.02" width="0.3048" layer="1"/>
 <wire x1="11.35" y1="38.02" x2="13.208" y2="39.878" width="0.3048" layer="1"/>
 <via x="13.208" y="39.878" extent="1-16" drill="0.35"/>
 <wire x1="13.208" y1="39.878" x2="13.208" y2="65.278" width="0.3048" layer="16"/>
 <wire x1="13.208" y1="65.278" x2="12.7" y2="66.04" width="0.3048" layer="16"/>
-<wire x1="12.7" y1="66.04" x2="12.7" y2="66.0428" width="0.3048" layer="16"/>
-<via x="12.7" y="66.0428" extent="1-16" drill="0.35"/>
-<wire x1="12.2174" y1="66.6021" x2="12.2174" y2="66.802" width="0.3048" layer="1"/>
-<wire x1="12.7" y1="66.0428" x2="12.7" y2="66.1195" width="0.3048" layer="1"/>
-<wire x1="12.7" y1="66.1195" x2="12.2174" y2="66.6021" width="0.3048" layer="1"/>
-<wire x1="12.2174" y1="66.802" x2="12.065" y2="66.802" width="0" layer="19" extent="1-1"/>
+<contactref element="IC2" pad="20"/>
+<wire x1="9.112" y1="70.497" x2="9.124" y2="70.485" width="0.3048" layer="1"/>
+<wire x1="9.124" y1="70.485" x2="10.287" y2="70.485" width="0.3048" layer="1"/>
+<wire x1="10.287" y1="70.485" x2="10.287" y2="69.342" width="0.3048" layer="1"/>
+<wire x1="10.287" y1="69.342" x2="10.541" y2="69.088" width="0.3048" layer="1"/>
+<via x="10.541" y="69.088" extent="1-16" drill="0.35"/>
+<wire x1="10.541" y1="69.088" x2="12.7" y2="66.929" width="0.3048" layer="16"/>
+<wire x1="12.7" y1="66.929" x2="12.7" y2="66.04" width="0.3048" layer="16"/>
 </signal>
 <signal name="RX">
 <contactref element="U2" pad="34"/>
-<contactref element="JP3" pad="2"/>
 <wire x1="10.05" y1="39.29" x2="11.35" y2="39.29" width="0.3048" layer="1"/>
 <via x="11.938" y="39.878" extent="1-16" drill="0.35"/>
 <wire x1="11.35" y1="39.29" x2="11.938" y2="39.878" width="0.3048" layer="1"/>
@@ -9349,7 +9317,14 @@ design rules under a new name.</description>
 <wire x1="10.541" y1="65.786" x2="10.541" y2="66.1195" width="0.3048" layer="1"/>
 <wire x1="10.541" y1="66.1195" x2="10.0584" y2="66.6021" width="0.3048" layer="1"/>
 <wire x1="11.938" y1="64.262" x2="10.541" y2="65.659" width="0.3048" layer="16"/>
-<wire x1="10.0584" y1="66.802" x2="10.541" y2="66.802" width="0" layer="19" extent="1-1"/>
+<contactref element="IC2" pad="21"/>
+<wire x1="10.0584" y1="66.802" x2="11.557" y2="68.3006" width="0.3048" layer="1"/>
+<wire x1="11.557" y1="68.3006" x2="11.557" y2="70.104" width="0.3048" layer="1"/>
+<wire x1="11.557" y1="70.104" x2="10.668" y2="70.993" width="0.3048" layer="1"/>
+<wire x1="9.761575" y1="70.993" x2="9.757575" y2="70.997" width="0.3048" layer="1"/>
+<wire x1="10.668" y1="70.993" x2="9.761575" y2="70.993" width="0.3048" layer="1"/>
+<wire x1="9.112" y1="70.997" x2="9.116" y2="70.993" width="0.3048" layer="1"/>
+<wire x1="9.116" y1="70.993" x2="9.761575" y2="70.993" width="0.3048" layer="1"/>
 </signal>
 <signal name="ENDSTOP1">
 <contactref element="J5" pad="2"/>
@@ -9491,21 +9466,6 @@ design rules under a new name.</description>
 <wire x1="5.112" y1="71.997" x2="3.695" y2="71.997" width="0.254" layer="1"/>
 <wire x1="2.54" y1="73.152" x2="2.54" y2="73.66" width="0.254" layer="1"/>
 <wire x1="3.695" y1="71.997" x2="2.54" y2="73.152" width="0.254" layer="1"/>
-</signal>
-<signal name="RXD0">
-<contactref element="IC2" pad="21"/>
-<contactref element="JP2" pad="1"/>
-<wire x1="9.112" y1="70.997" x2="10.664" y2="70.997" width="0.254" layer="1"/>
-<wire x1="12.065" y1="69.596" x2="10.664" y2="70.997" width="0.254" layer="1"/>
-<wire x1="12.065" y1="67.818" x2="12.065" y2="69.596" width="0.254" layer="1"/>
-</signal>
-<signal name="TXD0">
-<contactref element="IC2" pad="20"/>
-<contactref element="JP3" pad="1"/>
-<wire x1="9.112" y1="70.497" x2="10.148" y2="70.497" width="0.254" layer="1"/>
-<wire x1="10.148" y1="70.497" x2="10.287" y2="70.358" width="0.254" layer="1"/>
-<wire x1="10.287" y1="70.358" x2="10.287" y2="68.072" width="0.254" layer="1"/>
-<wire x1="10.287" y1="68.072" x2="10.541" y2="67.818" width="0.254" layer="1"/>
 </signal>
 <signal name="N$13">
 <contactref element="IC2" pad="3"/>
