@@ -15005,11 +15005,6 @@ datasheet p36 for details.</text>
 <pinref part="S2" gate="G$1" pin="P$1"/>
 </segment>
 <segment>
-<pinref part="U5" gate="G$1" pin="25-IOD"/>
-<wire x1="292.1" y1="129.54" x2="284.48" y2="129.54" width="0.1524" layer="91"/>
-<label x="284.48" y="129.54" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-<segment>
 <pinref part="U5" gate="G$1" pin="17-IO"/>
 <wire x1="345.44" y1="127" x2="353.06" y2="127" width="0.1524" layer="91"/>
 <label x="353.06" y="127" size="1.27" layer="95" xref="yes"/>
@@ -15084,11 +15079,6 @@ datasheet p36 for details.</text>
 <label x="231.14" y="10.16" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<label x="510.54" y="129.54" size="1.27" layer="95" xref="yes"/>
-<pinref part="U2" gate="G$1" pin="GPIO0/TXLED"/>
-<wire x1="508" y1="129.54" x2="510.54" y2="129.54" width="0.1524" layer="91"/>
-</segment>
-<segment>
 <pinref part="U5" gate="G$1" pin="27-IO"/>
 <wire x1="292.1" y1="124.46" x2="284.48" y2="124.46" width="0.1524" layer="91"/>
 <label x="284.48" y="124.46" size="1.27" layer="95" rot="R180" xref="yes"/>
@@ -15099,11 +15089,6 @@ datasheet p36 for details.</text>
 <pinref part="R12" gate="G$1" pin="2"/>
 <wire x1="228.6" y1="2.54" x2="231.14" y2="2.54" width="0.1524" layer="91"/>
 <label x="231.14" y="2.54" size="1.27" layer="95" xref="yes"/>
-</segment>
-<segment>
-<label x="510.54" y="127" size="1.27" layer="95" xref="yes"/>
-<pinref part="U2" gate="G$1" pin="GPIO1/RXLED"/>
-<wire x1="508" y1="127" x2="510.54" y2="127" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U5" gate="G$1" pin="14-IO"/>
@@ -15164,7 +15149,9 @@ datasheet p36 for details.</text>
 </sheet>
 </sheets>
 <errors>
+<approved hash="102,1,147.32,142.24,VCC,VS,,,,"/>
 <approved hash="102,1,30.48,30.48,VCC,VS,,,,"/>
+<approved hash="102,1,289.56,15.24,VCC,VS,,,,"/>
 <approved hash="202,1,508,116.84,U2G$1,RI,,,,"/>
 <approved hash="104,1,477.52,142.24,U2G$1,VIO,3.3V,,,"/>
 <approved hash="104,1,477.52,139.7,U2G$1,VDD,3.3V,,,"/>
@@ -15172,7 +15159,7 @@ datasheet p36 for details.</text>
 <approved hash="202,1,508,114.3,U2G$1,DCD,,,,"/>
 <approved hash="202,1,508,109.22,U2G$1,DSR,,,,"/>
 <approved hash="202,1,508,99.06,U2G$1,CTS,,,,"/>
-<approved hash="104,1,528.32,129.54,U2G$2,TP,GND,,,"/>
+<approved hash="104,1,533.4,134.62,U2G$2,TP,GND,,,"/>
 </errors>
 </schematic>
 </drawing>
