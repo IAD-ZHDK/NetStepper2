@@ -14366,8 +14366,8 @@ datasheet p36 for details.</text>
 <instance part="GND1" gate="1" x="30.48" y="0"/>
 <instance part="U$7" gate="G$1" x="426.72" y="96.52"/>
 <instance part="U2" gate="G$1" x="492.76" y="121.92"/>
-<instance part="U2" gate="G$2" x="533.4" y="142.24"/>
-<instance part="U$16" gate="G$1" x="533.4" y="127"/>
+<instance part="U2" gate="G$2" x="523.24" y="144.78"/>
+<instance part="U$16" gate="G$1" x="523.24" y="129.54"/>
 <instance part="GND4" gate="1" x="139.7" y="91.44"/>
 <instance part="P+4" gate="G$1" x="152.4" y="109.22"/>
 <instance part="C7" gate="G$1" x="462.28" y="129.54"/>
@@ -14504,7 +14504,7 @@ datasheet p36 for details.</text>
 <segment>
 <pinref part="U$16" gate="G$1" pin="GND"/>
 <pinref part="U2" gate="G$2" pin="TP"/>
-<wire x1="533.4" y1="129.54" x2="533.4" y2="134.62" width="0.1524" layer="91"/>
+<wire x1="523.24" y1="132.08" x2="523.24" y2="137.16" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U$18" gate="G$1" pin="GND"/>
