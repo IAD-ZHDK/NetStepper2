@@ -7,7 +7,6 @@
 "C7";"1";"10uF";"10UF-0603-6.3V-20%";"603";"10.0µF ceramic capacitors";"Yes";"No";"R2";"";"";""
 "C8";"1";"47uF";"47UF-TANT";"EIA3528";"47uF Tantalum SMT";"Yes";"No";"Mouser";"647-F931A476KBA";"https://www.mouser.ch/ProductDetail/AVX/F931A476KBA?qs=sGAEpiMZZMuEN2agSAc2puC4lhRhLeolV5NgMLhJRWs%3d";""
 "R1, R2, R7, R8, R9, R10";"6";"10k";"RESISTOR0603-RES";"0603-RES";"Resistor";"Yes";"No";"R2";"";"";""
-"R5";"1";"8.2k";"RESISTOR0603-RES";"0603-RES";"Resistor";"Yes";"No";"R2";"";"";""
 "R6, R11, R12";"3";"1k";"RESISTOR0603-RES";"0603-RES";"Resistor";"Yes";"No";"R2";"";"";""
 "Q1, Q2";"2";"600mA/40V";"TRANS_NPN-MMBT2222AL";"SOT23-3";"NPN transistor";"Yes";"No";"Mouser";"863-SMMBT2222ALT3G";"https://www.mouser.ch/ProductDetail/863-SMMBT2222ALT3G?r=863-SMMBT2222ALT3G";""
 "D1";"1";"BAV99";"BAV99";"SOT23-3@1";"Two small signal silicon diodes connected anode to cathode.";"Yes";"No";"Mouser";"512-BAV99";"https://www.mouser.ch/ProductDetail/ON-Semiconductor-Fairchild/BAV99?qs=sGAEpiMZZMudZehw8RjeZe6BnmRwGdH1";""
