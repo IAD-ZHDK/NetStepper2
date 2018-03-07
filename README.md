@@ -8,7 +8,6 @@
 
 - Stepper Controller: `L6470` ([Datasheet](https://www.mouser.com/ds/2/389/l6470-954753.pdf), [Mouser](https://www.mouser.ch/ProductDetail/STMicroelectronics/L6470H?qs=sGAEpiMZZMuP%2fQeRSdvksPGSQkvtk%2fGb))
 - SoC: `ESP-WROOM-32` ([Datasheet](https://espressif.com/sites/default/files/documentation/esp-wroom-32_datasheet_en.pdf), [Mouser](https://www.mouser.ch/ProductDetail/Adafruit/3320?qs=%2fha2pyFaduhvAZY8Ie1SD0odCwfSxZwX5aiqddL%252ba6k%3d))
-- 3.3V VR: `AP2112K-3.3TRG1` ([Datasheet](https://www.mouser.com/ds/2/115/AP2112-271550.pdf), [Mouser](https://www.mouser.ch/ProductDetail/Diodes-Incorporated/AP2112K-33TRG1?qs=%2fha2pyFadugKN4ES11GMq2snst8wH3yje9KIABR%252bTfzTosnOVDqX4A%3d%3d))
 - USB/UART: `CP2104` ([Datasheet](https://www.mouser.com/ds/2/368/cp2104-37496.pdf), [Mouser](https://www.mouser.ch/ProductDetail/Silicon-Labs/CP2104-F03-GMR?qs=sGAEpiMZZMtXqW1IUNX6MBk8lKhQ2c4Y))
 
 ### Interface
