@@ -5520,12 +5520,6 @@ Mating wall wart : TOL-00298 (and others)</description>
 <text x="-1.524" y="1.016" size="1.27" layer="96">&gt;VALUE</text>
 <pin name="3.3V" x="0" y="-2.54" visible="off" length="short" direction="sup" rot="R90"/>
 </symbol>
-<symbol name="VBUS">
-<text x="-1.524" y="1.016" size="1.27" layer="96">&gt;VALUE</text>
-<pin name="VBUS" x="0" y="-2.54" visible="off" length="short" direction="sup" rot="R90"/>
-<wire x1="-1.27" y1="-1.27" x2="0" y2="0" width="0.254" layer="94"/>
-<wire x1="0" y1="0" x2="1.27" y2="-1.27" width="0.254" layer="94"/>
-</symbol>
 <symbol name="CP2104">
 <pin name="RI" x="15.24" y="-5.08" length="short" direction="in" rot="R180"/>
 <pin name="GND" x="-15.24" y="5.08" length="short" direction="pwr"/>
@@ -5637,19 +5631,6 @@ Op. Temp: -40~85°C</text>
 <description>&lt;b&gt;3.3V Supply&lt;/b&gt;</description>
 <gates>
 <gate name="G$1" symbol="3.3V" x="0" y="0"/>
-</gates>
-<devices>
-<device name="">
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-<deviceset name="VBUS">
-<description>&lt;p&gt;VBUS Supply Symbole&lt;/p&gt;</description>
-<gates>
-<gate name="G$1" symbol="VBUS" x="0" y="0"/>
 </gates>
 <devices>
 <device name="">
@@ -14188,6 +14169,147 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="RP400N501A">
+<description>Spark Fun Electronics' preferred foot prints. &lt;b&gt;Not to be used for commercial purposes.&lt;/b&gt; We've spent an enormous amount of time creating and checking these footprints and parts. If you enjoy using this library, please buy one of our products at www.sparkfun.com.</description>
+<packages>
+<package name="1X02">
+<wire x1="-0.635" y1="1.27" x2="0.635" y2="1.27" width="0.2032" layer="21"/>
+<wire x1="0.635" y1="1.27" x2="1.27" y2="0.635" width="0.2032" layer="21"/>
+<wire x1="1.27" y1="-0.635" x2="0.635" y2="-1.27" width="0.2032" layer="21"/>
+<wire x1="1.27" y1="0.635" x2="1.905" y2="1.27" width="0.2032" layer="21"/>
+<wire x1="1.905" y1="1.27" x2="3.175" y2="1.27" width="0.2032" layer="21"/>
+<wire x1="3.175" y1="1.27" x2="3.81" y2="0.635" width="0.2032" layer="21"/>
+<wire x1="3.81" y1="-0.635" x2="3.175" y2="-1.27" width="0.2032" layer="21"/>
+<wire x1="3.175" y1="-1.27" x2="1.905" y2="-1.27" width="0.2032" layer="21"/>
+<wire x1="1.905" y1="-1.27" x2="1.27" y2="-0.635" width="0.2032" layer="21"/>
+<wire x1="-1.27" y1="0.635" x2="-1.27" y2="-0.635" width="0.2032" layer="21"/>
+<wire x1="-0.635" y1="1.27" x2="-1.27" y2="0.635" width="0.2032" layer="21"/>
+<wire x1="-1.27" y1="-0.635" x2="-0.635" y2="-1.27" width="0.2032" layer="21"/>
+<wire x1="0.635" y1="-1.27" x2="-0.635" y2="-1.27" width="0.2032" layer="21"/>
+<wire x1="3.81" y1="0.635" x2="3.81" y2="-0.635" width="0.2032" layer="21"/>
+<pad name="1" x="0" y="0" drill="1.016" rot="R90"/>
+<pad name="2" x="2.54" y="0" drill="1.016" rot="R90"/>
+<text x="-1.3462" y="1.8288" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="-1.27" y="-3.175" size="1.27" layer="27">&gt;VALUE</text>
+<rectangle x1="2.286" y1="-0.254" x2="2.794" y2="0.254" layer="51"/>
+<rectangle x1="-0.254" y1="-0.254" x2="0.254" y2="0.254" layer="51"/>
+</package>
+<package name="SJ_2S">
+<description>Small solder jumper with big paste layer so it will short during reflow.</description>
+<wire x1="0.8" y1="-1" x2="-0.8" y2="-1" width="0.1524" layer="21"/>
+<wire x1="0.8" y1="1" x2="1.1" y2="0.75" width="0.1524" layer="21" curve="-90"/>
+<wire x1="-1.1" y1="0.75" x2="-0.8" y2="1" width="0.1524" layer="21" curve="-90"/>
+<wire x1="-1.1" y1="-0.75" x2="-0.8" y2="-1" width="0.1524" layer="21" curve="90.114706"/>
+<wire x1="0.8" y1="-1" x2="1.1" y2="-0.75" width="0.1524" layer="21" curve="90"/>
+<wire x1="1.1" y1="-0.75" x2="1.1" y2="0.75" width="0.1524" layer="21"/>
+<wire x1="-1.1" y1="-0.75" x2="-1.1" y2="0.75" width="0.1524" layer="21"/>
+<wire x1="-0.8" y1="1" x2="0.8" y2="1" width="0.1524" layer="21"/>
+<smd name="1" x="-0.45" y="0" dx="0.635" dy="1.27" layer="1"/>
+<smd name="2" x="0.45" y="0" dx="0.635" dy="1.27" layer="1"/>
+<text x="-0.9498" y="1.27" size="0.4064" layer="25">&gt;NAME</text>
+<text x="-0.9498" y="-1.651" size="0.4064" layer="27">&gt;VALUE</text>
+<rectangle x1="-1" y1="-1" x2="1" y2="1" layer="31"/>
+</package>
+<package name="1X02_LOCK">
+<wire x1="-0.635" y1="1.27" x2="0.635" y2="1.27" width="0.2032" layer="21"/>
+<wire x1="0.635" y1="1.27" x2="1.27" y2="0.635" width="0.2032" layer="21"/>
+<wire x1="1.27" y1="-0.635" x2="0.635" y2="-1.27" width="0.2032" layer="21"/>
+<wire x1="1.27" y1="0.635" x2="1.905" y2="1.27" width="0.2032" layer="21"/>
+<wire x1="1.905" y1="1.27" x2="3.175" y2="1.27" width="0.2032" layer="21"/>
+<wire x1="3.175" y1="1.27" x2="3.81" y2="0.635" width="0.2032" layer="21"/>
+<wire x1="3.81" y1="-0.635" x2="3.175" y2="-1.27" width="0.2032" layer="21"/>
+<wire x1="3.175" y1="-1.27" x2="1.905" y2="-1.27" width="0.2032" layer="21"/>
+<wire x1="1.905" y1="-1.27" x2="1.27" y2="-0.635" width="0.2032" layer="21"/>
+<wire x1="-1.27" y1="0.635" x2="-1.27" y2="-0.635" width="0.2032" layer="21"/>
+<wire x1="-0.635" y1="1.27" x2="-1.27" y2="0.635" width="0.2032" layer="21"/>
+<wire x1="-1.27" y1="-0.635" x2="-0.635" y2="-1.27" width="0.2032" layer="21"/>
+<wire x1="0.635" y1="-1.27" x2="-0.635" y2="-1.27" width="0.2032" layer="21"/>
+<wire x1="3.81" y1="0.635" x2="3.81" y2="-0.635" width="0.2032" layer="21"/>
+<pad name="1" x="-0.1778" y="0" drill="1.016" rot="R90"/>
+<pad name="2" x="2.7178" y="0" drill="1.016" rot="R90"/>
+<text x="-1.3462" y="1.8288" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="-1.27" y="-3.175" size="1.27" layer="27">&gt;VALUE</text>
+<rectangle x1="-0.2921" y1="-0.2921" x2="0.2921" y2="0.2921" layer="51"/>
+<rectangle x1="2.2479" y1="-0.2921" x2="2.8321" y2="0.2921" layer="51"/>
+</package>
+<package name="SJ_2S-NO">
+<description>Small solder jumper with no paste layer so it will open after reflow.</description>
+<wire x1="0.8" y1="-1" x2="-0.8" y2="-1" width="0.2032" layer="21"/>
+<wire x1="0.8" y1="1" x2="1" y2="0.7" width="0.2032" layer="21" curve="-90"/>
+<wire x1="-1" y1="0.7" x2="-0.8" y2="1" width="0.2032" layer="21" curve="-90"/>
+<wire x1="-1" y1="-0.7" x2="-0.8" y2="-1" width="0.2032" layer="21" curve="90"/>
+<wire x1="0.8" y1="-1" x2="1" y2="-0.7" width="0.2032" layer="21" curve="90"/>
+<wire x1="-0.8" y1="1" x2="0.8" y2="1" width="0.2032" layer="21"/>
+<smd name="1" x="-0.45" y="0" dx="0.635" dy="1.27" layer="1" cream="no"/>
+<smd name="2" x="0.45" y="0" dx="0.635" dy="1.27" layer="1" cream="no"/>
+<text x="-0.908" y="1.27" size="0.4064" layer="25">&gt;NAME</text>
+<text x="-0.908" y="-1.651" size="0.4064" layer="27">&gt;VALUE</text>
+</package>
+</packages>
+<symbols>
+<symbol name="JUMPER-2">
+<wire x1="0" y1="0" x2="0" y2="1.27" width="0.1524" layer="94"/>
+<wire x1="0" y1="2.54" x2="0" y2="1.27" width="0.4064" layer="94"/>
+<wire x1="2.54" y1="0" x2="2.54" y2="1.27" width="0.1524" layer="94"/>
+<wire x1="2.54" y1="2.54" x2="2.54" y2="1.27" width="0.4064" layer="94"/>
+<wire x1="-0.635" y1="0" x2="3.175" y2="0" width="0.4064" layer="94"/>
+<wire x1="3.175" y1="0" x2="3.175" y2="0.635" width="0.4064" layer="94"/>
+<wire x1="3.175" y1="0.635" x2="-0.635" y2="0.635" width="0.4064" layer="94"/>
+<wire x1="-0.635" y1="0.635" x2="-0.635" y2="0" width="0.4064" layer="94"/>
+<text x="-1.27" y="0" size="1.778" layer="95" rot="R90">&gt;NAME</text>
+<text x="5.715" y="0" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
+<pin name="1" x="0" y="-2.54" visible="pad" length="short" direction="pas" rot="R90"/>
+<pin name="2" x="2.54" y="-2.54" visible="pad" length="short" direction="pas" rot="R90"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="JUMPER-2" prefix="JP" uservalue="yes">
+<description>&lt;b&gt;Jumper&lt;/b&gt;
+Basic 0.1" spaced jumper. Use with breakaway headers.</description>
+<gates>
+<gate name="A" symbol="JUMPER-2" x="2.54" y="0"/>
+</gates>
+<devices>
+<device name="PTH" package="1X02">
+<connects>
+<connect gate="A" pin="1" pad="1"/>
+<connect gate="A" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="SMD-NC" package="SJ_2S">
+<connects>
+<connect gate="A" pin="1" pad="1"/>
+<connect gate="A" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="PTH_LOCK" package="1X02_LOCK">
+<connects>
+<connect gate="A" pin="1" pad="1"/>
+<connect gate="A" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="SMD-NO" package="SJ_2S-NO">
+<connects>
+<connect gate="A" pin="1" pad="1"/>
+<connect gate="A" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -14213,7 +14335,6 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <part name="C4" library="SparkFun-Passives" deviceset="CAP" device="0603-CAP" value="0.22uF"/>
 <part name="C3" library="SparkFun-Capacitors" deviceset="100UF-63V-20%(ELECT)" device="" value="100uF"/>
 <part name="P+2" library="SparkFun" deviceset="VCC" device="" value="VS"/>
-<part name="R5" library="SparkFun-Passives" deviceset="RESISTOR" device="0603-RES" value="8.2k"/>
 <part name="GND8" library="SparkFun" deviceset="GND" device=""/>
 <part name="P+5" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
 <part name="C8" library="SparkFun-Capacitors" deviceset="47UF-TANT" device="" value="47uF"/>
@@ -14248,7 +14369,6 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <part name="S3" library="IAD-Library" deviceset="B3AL-1002P-MS" device=""/>
 <part name="U$33" library="microbuilder" deviceset="GND" device=""/>
 <part name="U$34" library="microbuilder" deviceset="GND" device=""/>
-<part name="U$36" library="microbuilder" deviceset="VBUS" device=""/>
 <part name="U$38" library="microbuilder" deviceset="3.3V" device=""/>
 <part name="J1" library="SparkFun-Connectors" deviceset="USB_MICRO-B" device="_SMT" value="MICRO-USB"/>
 <part name="U3" library="Particle" deviceset="RGB-LED-CLMVB-FKA" device="RGB" value="RGB-LED"/>
@@ -14271,6 +14391,7 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <part name="P+4" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
 <part name="C7" library="SparkFun-Capacitors" deviceset="10UF" device="-0603-6.3V-20%" value="10uF"/>
 <part name="U$18" library="microbuilder" deviceset="GND" device=""/>
+<part name="JP1" library="RP400N501A" deviceset="JUMPER-2" device="SMD-NC"/>
 </parts>
 <sheets>
 <sheet>
@@ -14307,13 +14428,10 @@ datasheet p36 for details.</text>
 <instance part="GND6" gate="1" x="109.22" y="162.56"/>
 <instance part="D1" gate="G$1" x="177.8" y="127" rot="R270"/>
 <instance part="C6" gate="G$1" x="162.56" y="127" rot="R270"/>
-<instance part="C5" gate="G$1" x="190.5" y="127" smashed="yes" rot="R180">
-<attribute name="NAME" x="188.976" y="124.079" size="1.778" layer="95" rot="R180"/>
-</instance>
+<instance part="C5" gate="G$1" x="190.5" y="127" rot="R180"/>
 <instance part="C4" gate="G$1" x="48.26" y="15.24"/>
 <instance part="C3" gate="G$1" x="30.48" y="17.78"/>
 <instance part="P+2" gate="1" x="30.48" y="30.48"/>
-<instance part="R5" gate="G$1" x="175.26" y="160.02" rot="R90"/>
 <instance part="GND8" gate="1" x="175.26" y="149.86"/>
 <instance part="P+5" gate="G$1" x="149.86" y="182.88"/>
 <instance part="C8" gate="G$1" x="149.86" y="170.18"/>
@@ -14348,7 +14466,6 @@ datasheet p36 for details.</text>
 <instance part="S3" gate="G$1" x="134.62" y="7.62"/>
 <instance part="U$33" gate="G$1" x="449.58" y="96.52"/>
 <instance part="U$34" gate="G$1" x="472.44" y="121.92"/>
-<instance part="U$36" gate="G$1" x="452.12" y="127"/>
 <instance part="U$38" gate="G$1" x="472.44" y="152.4"/>
 <instance part="J1" gate="G$1" x="439.42" y="114.3" rot="R180"/>
 <instance part="U3" gate="G$1" x="203.2" y="10.16" rot="R90"/>
@@ -14372,6 +14489,7 @@ datasheet p36 for details.</text>
 <instance part="P+4" gate="G$1" x="152.4" y="109.22"/>
 <instance part="C7" gate="G$1" x="462.28" y="129.54"/>
 <instance part="U$18" gate="G$1" x="462.28" y="121.92"/>
+<instance part="JP1" gate="A" x="177.8" y="157.48" rot="R270"/>
 </instances>
 <busses>
 </busses>
@@ -14389,8 +14507,8 @@ datasheet p36 for details.</text>
 </segment>
 <segment>
 <wire x1="175.26" y1="154.94" x2="175.26" y2="152.4" width="0.1524" layer="91"/>
-<pinref part="R5" gate="G$1" pin="1"/>
 <pinref part="GND8" gate="1" pin="GND"/>
+<pinref part="JP1" gate="A" pin="2"/>
 </segment>
 <segment>
 <pinref part="GND9" gate="1" pin="GND"/>
@@ -14613,10 +14731,10 @@ datasheet p36 for details.</text>
 <label x="139.7" y="106.68" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<wire x1="175.26" y1="165.1" x2="175.26" y2="167.64" width="0.1524" layer="91"/>
+<wire x1="175.26" y1="157.48" x2="175.26" y2="167.64" width="0.1524" layer="91"/>
 <wire x1="175.26" y1="167.64" x2="187.96" y2="167.64" width="0.1524" layer="91"/>
-<pinref part="R5" gate="G$1" pin="2"/>
 <label x="187.96" y="167.64" size="1.778" layer="95" xref="yes"/>
+<pinref part="JP1" gate="A" pin="1"/>
 </segment>
 </net>
 <net name="SC_SDI" class="0">
@@ -14650,9 +14768,10 @@ datasheet p36 for details.</text>
 <label x="96.52" y="137.16" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<label x="353.06" y="129.54" size="1.27" layer="95" xref="yes"/>
-<pinref part="U5" gate="G$1" pin="5"/>
-<wire x1="345.44" y1="129.54" x2="353.06" y2="129.54" width="0.1524" layer="91"/>
+<label x="284.48" y="129.54" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="U5" gate="G$1" pin="25-IOD"/>
+<wire x1="289.56" y1="129.54" x2="284.48" y2="129.54" width="0.1524" layer="91"/>
+<wire x1="292.1" y1="129.54" x2="289.56" y2="129.54" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="3.3V" class="0">
@@ -15033,18 +15152,6 @@ datasheet p36 for details.</text>
 <label x="309.88" y="96.52" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="VBUS" class="0">
-<segment>
-<wire x1="452.12" y1="116.84" x2="477.52" y2="116.84" width="0.1524" layer="91"/>
-<pinref part="U$36" gate="G$1" pin="VBUS"/>
-<wire x1="452.12" y1="116.84" x2="452.12" y2="124.46" width="0.1524" layer="91"/>
-<pinref part="J1" gate="G$1" pin="VBUS"/>
-<wire x1="444.5" y1="109.22" x2="452.12" y2="109.22" width="0.1524" layer="91"/>
-<wire x1="452.12" y1="109.22" x2="452.12" y2="116.84" width="0.1524" layer="91"/>
-<junction x="452.12" y="116.84"/>
-<pinref part="U2" gate="G$1" pin="VBUS"/>
-</segment>
-</net>
 <net name="N$13" class="0">
 <segment>
 <pinref part="J1" gate="G$1" pin="D+"/>
@@ -15144,6 +15251,15 @@ datasheet p36 for details.</text>
 <pinref part="J5" gate="J$1" pin="2"/>
 <wire x1="381" y1="15.24" x2="373.38" y2="15.24" width="0.1524" layer="91"/>
 <label x="373.38" y="15.24" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="N$1" class="0">
+<segment>
+<wire x1="452.12" y1="116.84" x2="477.52" y2="116.84" width="0.1524" layer="91"/>
+<pinref part="J1" gate="G$1" pin="VBUS"/>
+<wire x1="444.5" y1="109.22" x2="452.12" y2="109.22" width="0.1524" layer="91"/>
+<wire x1="452.12" y1="109.22" x2="452.12" y2="116.84" width="0.1524" layer="91"/>
+<pinref part="U2" gate="G$1" pin="VBUS"/>
 </segment>
 </net>
 </nets>
