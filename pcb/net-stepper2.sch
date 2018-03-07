@@ -14294,7 +14294,6 @@ datasheet p36 for details.</text>
 <text x="101.6" y="154.94" size="1.778" layer="94">STEPPER CONTROLLER</text>
 <text x="474.98" y="157.48" size="1.778" layer="94">USB TO SERIAL CONVERTER</text>
 <text x="205.74" y="25.4" size="1.778" layer="94">RGB LED</text>
-<text x="248.92" y="111.76" size="2.54" layer="94" font="vector" ratio="20">Fix Wrong Pins</text>
 </plain>
 <instances>
 <instance part="U1" gate="G$1" x="104.14" y="99.06"/>
