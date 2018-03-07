@@ -15160,7 +15160,7 @@ datasheet p36 for details.</text>
 <approved hash="202,1,508,114.3,U2G$1,DCD,,,,"/>
 <approved hash="202,1,508,109.22,U2G$1,DSR,,,,"/>
 <approved hash="202,1,508,99.06,U2G$1,CTS,,,,"/>
-<approved hash="104,1,533.4,134.62,U2G$2,TP,GND,,,"/>
+<approved hash="104,1,523.24,137.16,U2G$2,TP,GND,,,"/>
 </errors>
 </schematic>
 </drawing>
