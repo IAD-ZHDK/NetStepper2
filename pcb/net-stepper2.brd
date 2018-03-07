@@ -3,7 +3,7 @@
 <eagle version="8.6.0">
 <drawing>
 <settings>
-<setting alwaysvectorfont="no"/>
+<setting alwaysvectorfont="yes"/>
 <setting keepoldvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
@@ -8493,6 +8493,12 @@ design rules under a new name.</description>
 <wire x1="2.667" y1="38.989" x2="1.27" y2="37.592" width="0.3048" layer="1"/>
 <wire x1="1.27" y1="37.592" x2="1.27" y2="35.56" width="0.3048" layer="1"/>
 <via x="1.27" y="35.56" extent="1-16" drill="0.35"/>
+<polygon width="0.1524" layer="1">
+<vertex x="-2.54" y="92.71"/>
+<vertex x="44.45" y="92.71"/>
+<vertex x="44.45" y="-2.54"/>
+<vertex x="-2.54" y="-2.54"/>
+</polygon>
 </signal>
 <signal name="FLAGN">
 <contactref element="U1" pad="24"/>
@@ -9261,6 +9267,40 @@ design rules under a new name.</description>
 <approved hash="19,1,30ceb330b04733b9"/>
 <approved hash="5,1,b0b2c656c0a7bf03"/>
 <approved hash="5,16,781fadd3ad8f7e43"/>
+<approved hash="5,1,af2a07dd12c3324b"/>
+<approved hash="5,1,17962e14d8ba992a"/>
+<approved hash="5,1,4811f8e8c4a88ef0"/>
+<approved hash="6,1,f9001553b90ea4a2"/>
+<approved hash="7,39,3b81dd52075306f8"/>
+<approved hash="7,39,d1e95d5f63df0811"/>
+<approved hash="6,1,c92e10d46739e6db"/>
+<approved hash="7,39,478189af2dae88f8"/>
+<approved hash="7,39,7ed6042e07d67d2e"/>
+<approved hash="7,39,1ce0f618f6331ccb"/>
+<approved hash="7,39,e2771738f7cffff8"/>
+<approved hash="7,39,85e921a2ed222211"/>
+<approved hash="7,39,7e0c04f404d27e2a"/>
+<approved hash="7,39,82e69fcd5953a300"/>
+<approved hash="7,39,1f10f5e8f5f21f0a"/>
+<approved hash="7,39,0ae615c562db6680"/>
+<approved hash="7,39,c21015e815f2c20a"/>
+<approved hash="7,39,8ae6b5cea8506a00"/>
+<approved hash="5,1,2c6f0d3b1cdebdc9"/>
+<approved hash="6,1,3d2666215520f201"/>
+<approved hash="5,1,bc50ca53caafba22"/>
+<approved hash="7,39,c8771f3b3ecc0ef8"/>
+<approved hash="7,39,2477db336e454478"/>
+<approved hash="7,39,46e673c413dbf380"/>
+<approved hash="7,39,42779733fb443578"/>
+<approved hash="7,39,c1e016181633c1cb"/>
+<approved hash="6,16,e3398f2f9c76ce06"/>
+<approved hash="6,16,269f649b35739163"/>
+<approved hash="6,16,412541aa703edbce"/>
+<approved hash="5,1,76abdad90de5939e"/>
+<approved hash="6,1,fa23204f2c016eea"/>
+<approved hash="6,1,21818c9d5d633b98"/>
+<approved hash="6,1,b00bd98727806d97"/>
+<approved hash="6,1,e6470521052ae64c"/>
 </errors>
 </board>
 </drawing>
