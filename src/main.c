@@ -5,6 +5,32 @@
 #include "buttons.h"
 #include "l6470.h"
 
+static void approach_home() {
+  // get info
+  uint32_t speed = l6470_get_speed();
+  l6470_status_t status = l6470_get_status();
+
+  // change to run command and wait until speed is reached
+  l6470_run(status.dir, speed);
+  l6470_wait();
+
+  // set new position
+  l6470_go_home();
+}
+
+static void approach_target(int32_t pos) {
+  // get info
+  uint32_t speed = l6470_get_speed();
+  l6470_status_t status = l6470_get_status();
+
+  // change to run command and wait until speed is reached
+  l6470_run(status.dir, speed);
+  l6470_wait();
+
+  // set new position
+  l6470_go_to(pos);
+}
+
 void online() {
   // subscribe to topics
   naos_subscribe("forward", 0, NAOS_LOCAL);
@@ -36,16 +62,8 @@ void message(const char *topic, uint8_t *payload, size_t len, naos_scope_t scope
     // get new position
     int32_t pos = (int32_t)a32_str2l(str);
 
-    // get info
-    uint32_t speed = l6470_get_speed();
-    l6470_status_t status = l6470_get_status();
-
-    // change to run command and wait until speed is reached
-    l6470_run(status.dir, speed);
-    l6470_wait();
-
-    // set new position
-    l6470_go_to(pos);
+    // approach target
+    approach_target(pos);
   }
 
   // handle "stop" command
@@ -62,16 +80,8 @@ void message(const char *topic, uint8_t *payload, size_t len, naos_scope_t scope
 
   // handle "home" command
   if (strcmp(topic, "home") == 0 && scope == NAOS_LOCAL) {
-    // get info
-    uint32_t speed = l6470_get_speed();
-    l6470_status_t status = l6470_get_status();
-
-    // change to run command and wait until speed is reached
-    l6470_run(status.dir, speed);
-    l6470_wait();
-
-    // set new position
-    l6470_go_home();
+    // approach home
+    approach_home();
   }
 }
 
@@ -106,18 +116,10 @@ void press(buttons_type_t type, bool pressed) {
     // get time difference
     uint32_t diff = naos_millis() - home_press;
 
-    // just go to home position if buttons has been pressed shortly
+    // approach home if buttons has been released quickly
     if (diff < 2000) {
-      // get info
-      uint32_t speed = l6470_get_speed();
-      l6470_status_t status = l6470_get_status();
-
-      // change to run command and wait until speed is reached
-      l6470_run(status.dir, speed);
-      l6470_wait();
-
-      // set new position
-      l6470_go_home();
+      // approach home
+      approach_home();
 
       return;
     }
