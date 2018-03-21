@@ -2,6 +2,7 @@
 #include <naos.h>
 #include <string.h>
 
+#include "buttons.h"
 #include "l6470.h"
 
 void online() {
@@ -74,6 +75,63 @@ void message(const char *topic, uint8_t *payload, size_t len, naos_scope_t scope
   }
 }
 
+void press(buttons_type_t type, bool pressed) {
+  // prepare home press counter
+  static uint32_t home_press = 0;
+
+  // turn forward if cw is released
+  if (type == BUTTONS_TYPE_CW && !pressed) {
+    // run forward
+    l6470_run(L6470_DIR_FWD, l6470_calc_speed(500));
+  }
+
+  // turn backwards if ccw is released
+  if (type == BUTTONS_TYPE_CCW && !pressed) {
+    // run backward
+    l6470_run(L6470_DIR_REV, l6470_calc_speed(500));
+  }
+
+  // stop if stop is released
+  if (type == BUTTONS_TYPE_STOP && !pressed) {
+    // stop motor
+    l6470_soft_stop();
+  }
+
+  // set time if pressed
+  if (type == BUTTONS_TYPE_HOME && pressed) {
+    home_press = naos_millis();
+  }
+
+  if (type == BUTTONS_TYPE_HOME && !pressed) {
+    // get time difference
+    uint32_t diff = naos_millis() - home_press;
+
+    // just go to home position if buttons has been pressed shortly
+    if (diff < 2000) {
+      // get info
+      uint32_t speed = l6470_get_speed();
+      l6470_status_t status = l6470_get_status();
+
+      // change to run command and wait until speed is reached
+      l6470_run(status.dir, speed);
+      l6470_wait();
+
+      // set new position
+      l6470_go_home();
+
+      return;
+    }
+
+    // otherwise reset position and stop
+
+    // set home pos
+    l6470_reset_pos();
+
+    // stop motor
+    l6470_soft_stop();
+  }
+}
+
 void update(const char *param, const char *value) {}
 
 void loop() {
@@ -102,6 +160,9 @@ static naos_config_t config = {
 void app_main() {
   // initialize naos
   naos_init(&config);
+
+  // initialize buttons
+  buttons_init(press);
 
   // initialize l6470
   l6470_init();

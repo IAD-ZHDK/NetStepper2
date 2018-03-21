@@ -9,6 +9,10 @@ set(CMAKE_C_STANDARD 99)
 
 # add your source files
 set(SOURCE_FILES
+        src/buttons.c
+        src/buttons.h
+        src/ext.c
+        src/ext.h
         src/l6470.c
         src/l6470.h
         src/l6470_constants.h
