@@ -84,7 +84,8 @@ void loop() {
 }
 
 void offline() {
-  // TODO: Stop motor.
+  // stop motor
+  l6470_soft_stop();
 }
 
 static naos_config_t config = {
