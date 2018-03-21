@@ -132,15 +132,6 @@ void press(buttons_type_t type, bool pressed) {
   }
 }
 
-void update(const char *param, const char *value) {}
-
-void loop() {
-  // log info info
-  // uint32_t speed = l6470_get_speed();
-  // l6470_status_t status = l6470_get_status();
-  // naos_log("speed: %ld, dir: %d, busy: %d", speed, status.dir, status.busy);
-}
-
 void offline() {
   // stop motor
   l6470_soft_stop();
@@ -150,9 +141,7 @@ static naos_config_t config = {
     .device_type = "NetStepper2",
     .firmware_version = "0.1.0",
     .online_callback = online,
-    .update_callback = update,
     .message_callback = message,
-    .loop_callback = loop,
     .offline_callback = offline,
     .crash_on_mqtt_failures = true,
 };
