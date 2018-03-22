@@ -532,9 +532,9 @@ void l6470_wait() {
 
 /* CALCULATION */
 
-uint32_t l6470_calc_speed(double stepsPerSec) {
+uint32_t l6470_calc_speed(double steps_per_sec) {
   // calculate internal value
-  uint32_t value = (uint32_t)(stepsPerSec * 67.106);
+  uint32_t value = (uint32_t)(steps_per_sec * 67.106);
 
   // clamp to 20 bits
   if (value > 0xFFFFF) {
@@ -544,14 +544,14 @@ uint32_t l6470_calc_speed(double stepsPerSec) {
   return value;
 }
 
-double l6470_parse_speed(uint32_t stepsPerSec) {
+double l6470_parse_speed(uint32_t steps_per_sec) {
   // calculate real value
-  return (stepsPerSec & 0x000FFFFF) / 67.106;
+  return (steps_per_sec & 0x000FFFFF) / 67.106;
 }
 
-uint16_t l6470_calc_acc(double stepsPerSecPerSec) {
+uint16_t l6470_calc_acc(double steps_per_sec_per_sec) {
   // calculate internal value
-  uint16_t value = (uint16_t)(stepsPerSecPerSec * 0.137438);
+  uint16_t value = (uint16_t)(steps_per_sec_per_sec * 0.137438);
 
   // clamp to 12 bits
   if (value > 0xFFF) {
@@ -561,14 +561,14 @@ uint16_t l6470_calc_acc(double stepsPerSecPerSec) {
   return value;
 }
 
-double l6470_parse_acc(uint16_t stepsPerSecPerSec) {
+double l6470_parse_acc(uint16_t steps_per_sec_per_sec) {
   // calculate real value
-  return (stepsPerSecPerSec & 0xFFF) / 0.137438;
+  return (steps_per_sec_per_sec & 0xFFF) / 0.137438;
 }
 
-uint16_t l6470_calc_dec(double stepsPerSecPerSec) {
+uint16_t l6470_calc_dec(double steps_per_sec_per_sec) {
   // calculate internal value
-  uint16_t value = (uint16_t)(stepsPerSecPerSec * 0.137438);
+  uint16_t value = (uint16_t)(steps_per_sec_per_sec * 0.137438);
 
   // clamp to 12 bits
   if (value > 0xFFF) {
@@ -578,14 +578,14 @@ uint16_t l6470_calc_dec(double stepsPerSecPerSec) {
   return value;
 }
 
-double l6470_parse_dec(uint16_t stepsPerSecPerSec) {
+double l6470_parse_dec(uint16_t steps_per_sec_per_sec) {
   // calculate real value
-  return (stepsPerSecPerSec & 0x00000FFF) / 0.137438;
+  return (steps_per_sec_per_sec & 0x00000FFF) / 0.137438;
 }
 
-uint16_t l6470_calc_max_speed(double stepsPerSec) {
+uint16_t l6470_calc_max_speed(double steps_per_sec) {
   // calculate internal value
-  uint16_t value = (uint16_t)(stepsPerSec * .065536);
+  uint16_t value = (uint16_t)(steps_per_sec * .065536);
 
   // clamp to 10 bits
   if (value > 0x3FF) {
@@ -595,14 +595,14 @@ uint16_t l6470_calc_max_speed(double stepsPerSec) {
   return value;
 }
 
-double l6470_parse_max_speed(uint16_t stepsPerSec) {
+double l6470_parse_max_speed(uint16_t steps_per_sec) {
   // calculate real value
-  return (stepsPerSec & 0x000003FF) / 0.065536;
+  return (steps_per_sec & 0x000003FF) / 0.065536;
 }
 
-uint16_t l6470_calc_min_speed(double stepsPerSec) {
+uint16_t l6470_calc_min_speed(double steps_per_sec) {
   // calculate internal value
-  uint16_t value = (uint16_t)(stepsPerSec / 0.238);
+  uint16_t value = (uint16_t)(steps_per_sec / 0.238);
 
   // clamp to 12 bits
   if (value > 0xFFF) {
@@ -612,14 +612,14 @@ uint16_t l6470_calc_min_speed(double stepsPerSec) {
   return value;
 }
 
-double l6470_parse_min_speed(uint16_t stepsPerSec) {
+double l6470_parse_min_speed(uint16_t steps_per_sec) {
   // calculate real value
-  return (stepsPerSec & 0x00000FFF) * 0.238;
+  return (steps_per_sec & 0x00000FFF) * 0.238;
 }
 
-uint16_t l6470_calc_fs_peed(double stepsPerSec) {
+uint16_t l6470_calc_fs_peed(double steps_per_sec) {
   // calculate internal value
-  uint16_t value = (uint16_t)((stepsPerSec * .065536) - .5);
+  uint16_t value = (uint16_t)((steps_per_sec * .065536) - .5);
 
   // clamp to 10 bits
   if (value > 0x3FF) {
@@ -629,7 +629,7 @@ uint16_t l6470_calc_fs_peed(double stepsPerSec) {
   return value;
 }
 
-double l6470_parse_fs_speed(uint16_t stepsPerSec) {
+double l6470_parse_fs_speed(uint16_t steps_per_sec) {
   // calculate real value
-  return ((stepsPerSec & 0x000003FF) + 0.5) / 0.065536;
+  return ((steps_per_sec & 0x000003FF) + 0.5) / 0.065536;
 }

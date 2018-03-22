@@ -166,26 +166,26 @@ void l6470_wait();
 
 /* CALCULATION */
 
-uint32_t l6470_calc_speed(double stepsPerSec);
+uint32_t l6470_calc_speed(double steps_per_sec);
 
-double l6470_parse_speed(uint32_t stepsPerSec);
+double l6470_parse_speed(uint32_t steps_per_sec);
 
-uint16_t l6470_calc_acc(double stepsPerSecPerSec);
+uint16_t l6470_calc_acc(double steps_per_sec_per_sec);
 
-double l6470_parse_acc(uint16_t stepsPerSecPerSec);
+double l6470_parse_acc(uint16_t steps_per_sec_per_sec);
 
-uint16_t l6470_calc_dec(double stepsPerSecPerSec);
+uint16_t l6470_calc_dec(double steps_per_sec_per_sec);
 
-double l6470_parse_dec(uint16_t stepsPerSecPerSec);
+double l6470_parse_dec(uint16_t steps_per_sec_per_sec);
 
-uint16_t l6470_calc_max_speed(double stepsPerSec);
+uint16_t l6470_calc_max_speed(double steps_per_sec);
 
-double l6470_parse_max_speed(uint16_t stepsPerSec);
+double l6470_parse_max_speed(uint16_t steps_per_sec);
 
-uint16_t l6470_calc_min_speed(double stepsPerSec);
+uint16_t l6470_calc_min_speed(double steps_per_sec);
 
-double l6470_parse_min_speed(uint16_t stepsPerSec);
+double l6470_parse_min_speed(uint16_t steps_per_sec);
 
-uint16_t l6470_calc_fs_peed(double stepsPerSec);
+uint16_t l6470_calc_fs_peed(double steps_per_sec);
 
-double l6470_parse_fs_speed(uint16_t stepsPerSec);
+double l6470_parse_fs_speed(uint16_t steps_per_sec);
