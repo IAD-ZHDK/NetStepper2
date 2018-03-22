@@ -67,7 +67,7 @@ static void buttons_isr(void* arg) {
 void buttons_task() {
   // get all button events
   buttons_event_t event;
-  while (xQueueReceive(buttons_queue, &event, 0) == pdTRUE) {
+  while (xQueueReceive(buttons_queue, &event, portMAX_DELAY) == pdTRUE) {
     // call handler with event
     buttons_handler(event.type, event.state);
   }
