@@ -259,9 +259,9 @@ l6470_status_t l6470_get_status_and_clear() {
 
 /* PARAMETER HANDLING */
 
-void l6470_set_absolute_position(int32_t value) {
+void l6470_set_absolute_position(int32_t pos) {
   // set parameter
-  l6470_set_param(L6470_REG_ABSOLUTE_POSITION, (uint32_t)value);
+  l6470_set_param(L6470_REG_ABSOLUTE_POSITION, (uint32_t)pos);
 }
 
 int32_t l6470_get_absolute_position() {
@@ -276,9 +276,9 @@ int32_t l6470_get_absolute_position() {
   return (int32_t)value;
 }
 
-void l6470_set_mark(int32_t value) {
+void l6470_set_mark(int32_t pos) {
   // set parameter
-  l6470_set_param(L6470_REG_MARK, (uint32_t)value);
+  l6470_set_param(L6470_REG_MARK, (uint32_t)pos);
 }
 
 int32_t l6470_get_mark() {
@@ -354,12 +354,12 @@ uint16_t l6470_get_full_step_speed() {
   return (uint16_t)l6470_get_param(L6470_REG_FULL_STEP_SPEED);
 }
 
-void l6470_set_step_mode(l6470_step_mode_t value) {
+void l6470_set_step_mode(l6470_step_mode_t mode) {
   // get current register and clear step mode
   uint8_t current = (uint8_t)l6470_get_param(L6470_REG_STEP_MODE) & (uint8_t)0xF8;
 
-  // set new value and respect mask
-  current |= (value & 0x07);
+  // set new mode and respect mask
+  current |= (mode & 0x07);
 
   // update register
   l6470_set_param(L6470_REG_STEP_MODE, current);

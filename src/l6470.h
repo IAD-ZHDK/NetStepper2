@@ -91,11 +91,11 @@ l6470_status_t l6470_get_status_and_clear();
 
 /* PARAMETERS */
 
-void l6470_set_absolute_position(int32_t value);
+void l6470_set_absolute_position(int32_t pos);
 
 int32_t l6470_get_absolute_position();
 
-void l6470_set_mark(int32_t value);
+void l6470_set_mark(int32_t pos);
 
 int32_t l6470_get_mark();
 
@@ -121,7 +121,7 @@ void l6470_set_full_step_speed(uint16_t steps_per_tick);
 
 uint16_t l6470_get_full_step_speed();
 
-void l6470_set_step_mode(l6470_step_mode_t value);
+void l6470_set_step_mode(l6470_step_mode_t mode);
 
 l6470_step_mode_t l6470_set_get_step_mode();
 
