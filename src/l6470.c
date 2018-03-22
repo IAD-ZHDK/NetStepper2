@@ -97,11 +97,6 @@ static uint32_t l6470_handle_param(uint8_t param, uint32_t value) {
     case L6470_REG_ABS_POS:
       return l6470_transfer(value, 22);
 
-    // EL_POS is the current electrical position in the step generation cycle. It can
-    // be set when the motor is not in motion. Value is 0 on power up.
-    case L6470_REG_EL_POS:
-      return l6470_transfer(value, 9);
-
     // MARK is a second position other than 0 that the motor can be told to go to. As
     // with ABS_POS, it is 22-bit two's complement. Value is 0 on power up.
     case L6470_REG_MARK:
@@ -147,57 +142,6 @@ static uint32_t l6470_handle_param(uint8_t param, uint32_t value) {
     case L6470_REG_FS_SPD:
       return l6470_transfer(value, 10);
 
-    // KVAL is the maximum voltage of the PWM outputs. These 8-bit values are ratiometric
-    //  representations: 255 for full output voltage, 128 for half, etc. Default is 0x29.
-    // The implications of different KVAL settings is too complex to dig into here, but
-    //  it will usually work to max the value for RUN, ACC, and DEC. Maxing the value for
-    //  HOLD may result in excessive power dissipation when the motor is not running.
-    case L6470_REG_KVAL_HOLD:
-      return l6470_transfer(value, 8);
-    case L6470_REG_KVAL_RUN:
-      return l6470_transfer(value, 8);
-    case L6470_REG_KVAL_ACC:
-      return l6470_transfer(value, 8);
-    case L6470_REG_KVAL_DEC:
-      return l6470_transfer(value, 8);
-
-    // INT_SPD, ST_SLP, FN_SLP_ACC and FN_SLP_DEC are all related to the back EMF
-    //  compensation functionality. Please see the datasheet for details of this
-    //  function- it is too complex to discuss here. Default values seem to work
-    //  well enough.
-    case L6470_REG_INT_SPD:
-      return l6470_transfer(value, 14);
-    case L6470_REG_ST_SLP:
-      return l6470_transfer(value, 8);
-    case L6470_REG_FN_SLP_ACC:
-      return l6470_transfer(value, 8);
-    case L6470_REG_FN_SLP_DEC:
-      return l6470_transfer(value, 8);
-
-    // K_THERM is motor winding thermal drift compensation. Please see the datasheet
-    //  for full details on operation- the default value should be okay for most users.
-    case L6470_REG_K_THERM:
-      value &= 0x0F;
-      return l6470_transfer(value, 8);
-
-    // ADC_OUT is a read-only register containing the result of the ADC measurements.
-    //  This is less useful than it sounds; see the datasheet for more information.
-    case L6470_REG_ADC_OUT:
-      return l6470_transfer(value, 8);
-
-    // Set the overcurrent threshold. Ranges from 375mA to 6A in steps of 375mA.
-    //  A set of defined constants is provided for the user's convenience. Default
-    //  value is 3.375A- 0x08. This is a 4-bit value.
-    case L6470_REG_OCD_TH:
-      value &= 0x0F;
-      return l6470_transfer(value, 8);
-
-    // Stall current threshold. Defaults to 0x40, or 2.03A. Value is from 31.25mA to
-    //  4A in 31.25mA steps. This is a 7-bit value.
-    case L6470_REG_STALL_TH:
-      value &= 0x7F;
-      return l6470_transfer(value, 8);
-
     // STEP_MODE controls the microstepping settings, as well as the generation of an
     //  output signal from the dSPIN. Bits 2:0 control the number of microsteps per
     //  step the part will generate. Bit 7 controls whether the BUSY/SYNC pin outputs
@@ -208,20 +152,6 @@ static uint32_t l6470_handle_param(uint8_t param, uint32_t value) {
     //  of constants provided for ease of use of these values.
     case L6470_REG_STEP_MODE:
       return l6470_transfer(value, 8);
-
-    // ALARM_EN controls which alarms will cause the FLAG pin to fall. A set of constants
-    //  is provided to make this easy to interpret. By default, ALL alarms will trigger the
-    //  FLAG pin.
-    case L6470_REG_ALARM_EN:
-      return l6470_transfer(value, 8);
-
-    // CONFIG contains some assorted configuration bits and fields. A fairly comprehensive
-    //  set of reasonably self-explanatory constants is provided, but users should refer
-    //  to the datasheet before modifying the contents of this register to be certain they
-    //  understand the implications of their modifications. Value on boot is 0x2E88; this
-    //  can be a useful way to verify proper start up and operation of the dSPIN chip.
-    case L6470_REG_CONFIG:
-      return l6470_transfer(value, 16);
 
     // STATUS contains read-only information about the current condition of the chip. A
     //  comprehensive set of constants for masking and testing this register is provided, but
@@ -396,8 +326,6 @@ int32_t l6470_get_abs_pos() {
   return (int32_t)value;
 }
 
-// TODO: EL_POS 0x02
-
 void l6470_set_mark(int32_t value) {
   // set parameter
   l6470_set_param(L6470_REG_MARK, (uint32_t)value);
@@ -475,22 +403,6 @@ uint16_t l6470_get_fs_speed() {
   // read parameter
   return (uint16_t)l6470_get_param(L6470_REG_FS_SPD);
 }
-
-// TODO: KVAL_HOLD 0x09
-// TODO: KVAL_RUN 0x0A
-// TODO: KVAL_ACC 0x0B
-// TODO: KVAL_DEC 0x0C
-// TODO: INT_SPD 0x0D
-// TODO: ST_SLP 0x0E
-// TODO: FN_SLP_ACC 0x0F
-// TODO: FN_SLP_DEC 0x10
-// TODO: K_THERM 0x11
-// TODO: ADC_OUT 0x12
-// TODO: OCD_TH 0x13
-// TODO: STALL_TH 0x14
-// TODO: STEP_MODE
-// TODO: ALARM_EN 0x17
-// TODO: CONFIG 0x18
 
 void l6470_set_step_mode(l6470_step_mode_t value) {
   // get current register and clear step mode
