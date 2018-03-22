@@ -86,86 +86,34 @@ static uint32_t l6470_transfer(uint32_t data, size_t bits) {
   return ret & mask;
 }
 
-/* COMMANDS */
-
 static uint32_t l6470_handle_param(uint8_t param, uint32_t value) {
   switch (param) {
-    // ABS_POS is the current absolute offset from home. It is a 22 bit number expressed
-    // in two's complement. At power up, this value is 0. It cannot be written when
-    // the motor is running, but at any other time, it can be updated to change the
-    // interpreted position of the motor.
-    case L6470_REG_ABS_POS:
+    case L6470_REG_ABSOLUTE_POSITION:
       return l6470_transfer(value, 22);
-
-    // MARK is a second position other than 0 that the motor can be told to go to. As
-    // with ABS_POS, it is 22-bit two's complement. Value is 0 on power up.
     case L6470_REG_MARK:
       return l6470_transfer(value, 22);
-
-    // SPEED contains information about the current speed. It is read-only. It does
-    // NOT provide direction information.
     case L6470_REG_SPEED:
       return l6470_transfer(0, 20);
-
-    // ACC and DEC set the acceleration and deceleration rates. Set ACC to 0xFFF
-    //  to get infinite acceleration/deceleration- there is no way to get infinite
-    //  deceleration w/o infinite acceleration (except the HARD STOP command).
-    //  Cannot be written while motor is running. Both default to 0x08A on power up.
-    // AccCalc() and DecCalc() functions exist to convert steps/s/s values into
-    //  12-bit values for these two registers.
-    case L6470_REG_ACC:
+    case L6470_REG_ACCELERATION:
       return l6470_transfer(value, 12);
-    case L6470_REG_DECEL:
+    case L6470_REG_DECELERATION:
       return l6470_transfer(value, 12);
-
-    // MAX_SPEED is just what it says- any command which attempts to set the speed
-    //  of the motor above this value will simply cause the motor to turn at this
-    //  speed. Value is 0x041 on power up.
-    // MaxSpdCalc() function exists to convert steps/s value into a 10-bit value
-    //  for this register.
-    case L6470_REG_MAX_SPEED:
+    case L6470_REG_MAXIMUM_SPEED:
       return l6470_transfer(value, 10);
-
-    // MIN_SPEED controls two things- the activation of the low-speed optimization
-    //  feature and the lowest speed the motor will be allowed to operate at. LSPD_OPT
-    //  is the 13th bit, and when it is set, the minimum allowed speed is automatically
-    //  set to zero. This value is 0 on startup.
-    // MinSpdCalc() function exists to convert steps/s value into a 12-bit value for this
-    //  register. SetLSPDOpt() function exists to enable/disable the optimization feature.
-    case L6470_REG_MIN_SPEED:
+    case L6470_REG_MINIMUM_SPEED:
       return l6470_transfer(value, 13);
-
-    // FS_SPD register contains a threshold value above which microstepping is disabled
-    //  and the dSPIN operates in full-step mode. Defaults to 0x027 on power up.
-    // FSCalc() function exists to convert steps/s value into 10-bit integer for this
-    //  register.
-    case L6470_REG_FS_SPD:
+    case L6470_REG_FULL_STEP_SPEED:
       return l6470_transfer(value, 10);
-
-    // STEP_MODE controls the microstepping settings, as well as the generation of an
-    //  output signal from the dSPIN. Bits 2:0 control the number of microsteps per
-    //  step the part will generate. Bit 7 controls whether the BUSY/SYNC pin outputs
-    //  a BUSY signal or a step synchronization signal. Bits 6:4 control the frequency
-    //  of the output signal relative to the full-step frequency; see datasheet for
-    //  that relationship as it is too complex to reproduce here.
-    // Most likely, only the microsteps per step value will be needed; there is a set
-    //  of constants provided for ease of use of these values.
     case L6470_REG_STEP_MODE:
       return l6470_transfer(value, 8);
-
-    // STATUS contains read-only information about the current condition of the chip. A
-    //  comprehensive set of constants for masking and testing this register is provided, but
-    //  users should refer to the datasheet to ensure that they fully understand each one of
-    //  the bits in the register.
-    case L6470_REG_STATUS:  // STATUS is a read-only register
+    case L6470_REG_STATUS:
       return l6470_transfer(0, 16);
-
     default:
       return 0;
   }
 }
 
-void l6470_set_param(uint8_t param, uint32_t value) {
+static void l6470_set_param(uint8_t param, uint32_t value) {
   // send command
   l6470_transmit(param | (uint8_t)L6470_CMD_SET_PARAM);
 
@@ -173,7 +121,7 @@ void l6470_set_param(uint8_t param, uint32_t value) {
   l6470_handle_param(param, value);
 }
 
-uint32_t l6470_get_param(uint8_t param) {
+static uint32_t l6470_get_param(uint8_t param) {
   // send command
   l6470_transmit(param | (uint8_t)L6470_CMD_GET_PARAM);
 
@@ -181,7 +129,9 @@ uint32_t l6470_get_param(uint8_t param) {
   return l6470_handle_param(param, 0);
 }
 
-void l6470_run(l6470_dir_t dir, uint32_t steps_per_tick) {
+/* COMMANDS */
+
+void l6470_run(l6470_direction_t dir, uint32_t steps_per_tick) {
   // send command
   l6470_transmit((uint8_t)(L6470_CMD_RUN | dir));
 
@@ -199,7 +149,7 @@ void l6470_run(l6470_dir_t dir, uint32_t steps_per_tick) {
   l6470_transmit(_steps_per_tick[0]);
 }
 
-void l6470_move(uint8_t dir, uint32_t steps) {
+void l6470_move(l6470_direction_t dir, uint32_t steps) {
   // send command
   l6470_transmit((uint8_t)(L6470_CMD_MOVE | dir));
 
@@ -227,7 +177,7 @@ void l6470_go_to(int32_t pos) {
   uint8_t* _pos = (uint8_t*)&pos;
 
   // send command
-  l6470_transmit(L6470_CMD_GOTO);
+  l6470_transmit(L6470_CMD_GO_TO);
 
   // send position
   l6470_transmit(_pos[2]);
@@ -235,7 +185,7 @@ void l6470_go_to(int32_t pos) {
   l6470_transmit(_pos[0]);
 }
 
-void l6470_go_to_dir(int32_t pos, l6470_dir_t dir) {
+void l6470_go_to_direction(int32_t pos, l6470_direction_t dir) {
   // clamp to 22 bits
   if (pos > 0x3FFFFF) {
     pos = 0x3FFFFF;
@@ -245,7 +195,7 @@ void l6470_go_to_dir(int32_t pos, l6470_dir_t dir) {
   uint8_t* _pos = (uint8_t*)&pos;
 
   // send command
-  l6470_transmit((uint8_t)(L6470_CMD_GOTO_DIR | dir));
+  l6470_transmit((uint8_t)(L6470_CMD_GO_TO_DIR | dir));
 
   // send position
   l6470_transmit(_pos[2]);
@@ -263,9 +213,9 @@ void l6470_go_mark() {
   l6470_transmit(L6470_CMD_GO_MARK);
 }
 
-void l6470_reset_pos() {
+void l6470_reset_position() {
   // send command
-  l6470_transmit(L6470_CMD_RESET_POS);
+  l6470_transmit(L6470_CMD_RESET_POSITION);
 }
 
 void l6470_reset_device() {
@@ -307,16 +257,16 @@ l6470_status_t l6470_get_status_and_clear() {
   return status;
 }
 
-void l6470_set_abs_pos(int32_t value) {
-  // set parameter
-  l6470_set_param(L6470_REG_ABS_POS, (uint32_t)value);
-}
-
 /* PARAMETER HANDLING */
 
-int32_t l6470_get_abs_pos() {
+void l6470_set_absolute_position(int32_t value) {
+  // set parameter
+  l6470_set_param(L6470_REG_ABSOLUTE_POSITION, (uint32_t)value);
+}
+
+int32_t l6470_get_absolute_position() {
   // read parameter
-  uint32_t value = l6470_get_param(L6470_REG_ABS_POS);
+  uint32_t value = l6470_get_param(L6470_REG_ABSOLUTE_POSITION);
 
   // fix sign for 22bit 2s complement
   if (value & 0x00200000) {
@@ -350,58 +300,58 @@ uint32_t l6470_get_speed() {
 
 void l6470_set_acceleration(uint32_t steps_per_tick) {
   // set param
-  l6470_set_param(L6470_REG_ACC, steps_per_tick);
+  l6470_set_param(L6470_REG_ACCELERATION, steps_per_tick);
 }
 
 uint32_t l6470_get_acceleration() {
   // read parameter
-  return l6470_get_param(L6470_REG_ACC);
+  return l6470_get_param(L6470_REG_ACCELERATION);
 }
 
 void l6470_set_deceleration(uint32_t steps_per_tick) {
   // set param
-  l6470_set_param(L6470_REG_DECEL, steps_per_tick);
+  l6470_set_param(L6470_REG_DECELERATION, steps_per_tick);
 }
 
 uint32_t l6470_get_deceleration() {
   // read parameter
-  return l6470_get_param(L6470_REG_DECEL);
+  return l6470_get_param(L6470_REG_DECELERATION);
 }
 
-void l6470_set_max_speed(uint16_t steps_per_tick) {
+void l6470_set_maximum_speed(uint16_t steps_per_tick) {
   // set param
-  l6470_set_param(L6470_REG_MAX_SPEED, steps_per_tick);
+  l6470_set_param(L6470_REG_MAXIMUM_SPEED, steps_per_tick);
 }
 
-uint16_t l6470_get_max_speed() {
+uint16_t l6470_get_maximum_speed() {
   // read parameter
-  return (uint16_t)l6470_get_param(L6470_REG_MAX_SPEED);
+  return (uint16_t)l6470_get_param(L6470_REG_MAXIMUM_SPEED);
 }
 
-void l6470_set_min_speed(uint16_t steps_per_tick) {
+void l6470_set_minimum_speed(uint16_t steps_per_tick) {
   // get param and clear min speed
-  uint16_t current = (uint16_t)l6470_get_param(L6470_REG_MIN_SPEED) & (uint16_t)0x1000;
+  uint16_t current = (uint16_t)l6470_get_param(L6470_REG_MINIMUM_SPEED) & (uint16_t)0x1000;
 
   // set new value and respect mask
   current |= (steps_per_tick & 0xFFF);
 
   // set param
-  l6470_set_param(L6470_REG_MIN_SPEED, current);
+  l6470_set_param(L6470_REG_MINIMUM_SPEED, current);
 }
 
-uint16_t l6470_get_min_speed() {
+uint16_t l6470_get_minimum_speed() {
   // read parameter
-  return (uint16_t)l6470_get_param(L6470_REG_MIN_SPEED);
+  return (uint16_t)l6470_get_param(L6470_REG_MINIMUM_SPEED);
 }
 
-void l6470_set_fs_speed(uint16_t steps_per_tick) {
+void l6470_set_full_step_speed(uint16_t steps_per_tick) {
   // set param
-  l6470_set_param(L6470_REG_FS_SPD, steps_per_tick);
+  l6470_set_param(L6470_REG_FULL_STEP_SPEED, steps_per_tick);
 }
 
-uint16_t l6470_get_fs_speed() {
+uint16_t l6470_get_full_step_speed() {
   // read parameter
-  return (uint16_t)l6470_get_param(L6470_REG_FS_SPD);
+  return (uint16_t)l6470_get_param(L6470_REG_FULL_STEP_SPEED);
 }
 
 void l6470_set_step_mode(l6470_step_mode_t value) {
@@ -439,7 +389,7 @@ void l6470_wait() {
 
 /* CALCULATION */
 
-uint32_t l6470_calc_speed(double steps_per_sec) {
+uint32_t l6470_calculate_speed(double steps_per_sec) {
   // calculate internal value
   uint32_t value = (uint32_t)(steps_per_sec * 67.106);
 
@@ -456,7 +406,7 @@ double l6470_parse_speed(uint32_t steps_per_sec) {
   return (steps_per_sec & 0x000FFFFF) / 67.106;
 }
 
-uint16_t l6470_calc_acceleration(double steps_per_sec_per_sec) {
+uint16_t l6470_calculate_acceleration(double steps_per_sec_per_sec) {
   // calculate internal value
   uint16_t value = (uint16_t)(steps_per_sec_per_sec * 0.137438);
 
@@ -473,7 +423,7 @@ double l6470_parse_acceleration(uint16_t steps_per_sec_per_sec) {
   return (steps_per_sec_per_sec & 0xFFF) / 0.137438;
 }
 
-uint16_t l6470_calc_deceleration(double steps_per_sec_per_sec) {
+uint16_t l6470_calculate_deceleration(double steps_per_sec_per_sec) {
   // calculate internal value
   uint16_t value = (uint16_t)(steps_per_sec_per_sec * 0.137438);
 
@@ -490,7 +440,7 @@ double l6470_parse_deceleration(uint16_t steps_per_sec_per_sec) {
   return (steps_per_sec_per_sec & 0x00000FFF) / 0.137438;
 }
 
-uint16_t l6470_calc_max_speed(double steps_per_sec) {
+uint16_t l6470_calculate_maximum_speed(double steps_per_sec) {
   // calculate internal value
   uint16_t value = (uint16_t)(steps_per_sec * .065536);
 
@@ -502,12 +452,12 @@ uint16_t l6470_calc_max_speed(double steps_per_sec) {
   return value;
 }
 
-double l6470_parse_max_speed(uint16_t steps_per_sec) {
+double l6470_parse_maximum_speed(uint16_t steps_per_sec) {
   // calculate real value
   return (steps_per_sec & 0x000003FF) / 0.065536;
 }
 
-uint16_t l6470_calc_min_speed(double steps_per_sec) {
+uint16_t l6470_calculate_minimum_speed(double steps_per_sec) {
   // calculate internal value
   uint16_t value = (uint16_t)(steps_per_sec / 0.238);
 
@@ -519,12 +469,12 @@ uint16_t l6470_calc_min_speed(double steps_per_sec) {
   return value;
 }
 
-double l6470_parse_min_speed(uint16_t steps_per_sec) {
+double l6470_parse_minimum_speed(uint16_t steps_per_sec) {
   // calculate real value
   return (steps_per_sec & 0x00000FFF) * 0.238;
 }
 
-uint16_t l6470_calc_fs_peed(double steps_per_sec) {
+uint16_t l6470_calc_full_step_speed(double steps_per_sec) {
   // calculate internal value
   uint16_t value = (uint16_t)((steps_per_sec * .065536) - .5);
 
@@ -536,7 +486,7 @@ uint16_t l6470_calc_fs_peed(double steps_per_sec) {
   return value;
 }
 
-double l6470_parse_fs_speed(uint16_t steps_per_sec) {
+double l6470_parse_full_step_speed(uint16_t steps_per_sec) {
   // calculate real value
   return ((steps_per_sec & 0x000003FF) + 0.5) / 0.065536;
 }
