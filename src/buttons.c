@@ -99,5 +99,5 @@ void buttons_init(buttons_handler_t handler) {
   gpio_isr_handler_add(BUTTONS_HOME_NUM, buttons_isr, (void*)BUTTONS_TYPE_HOME);
 
   // run task
-  naos_run("buttons_task", 2048, buttons_task);
+  naos_run("buttons", 2048, buttons_task);
 }
