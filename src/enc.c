@@ -1,6 +1,7 @@
 #include <driver/gpio.h>
 #include <freertos/FreeRTOS.h>
 #include <freertos/queue.h>
+#include <freertos/task.h>
 
 #include "enc.h"
 #include "ext.h"
@@ -79,16 +80,19 @@ static void enc_isr(void *_) {
   }
 }
 
-static void enc_task() {
-  // get all button events
-  int32_t n;
-  while (xQueueReceive(enc_queue, &n, portMAX_DELAY) == pdTRUE) {
-    // calculate real position
-    double pos = n;
-    pos /= ENC_RESOLUTION;
+static void enc_task(void *_) {
+  // loop forever
+  for (;;) {
+    // get all button events
+    int32_t n;
+    while (xQueueReceive(enc_queue, &n, portMAX_DELAY) == pdTRUE) {
+      // calculate real position
+      double pos = n;
+      pos /= ENC_RESOLUTION;
 
-    // call handler with position
-    enc_handler(pos);
+      // call handler with position
+      enc_handler(pos);
+    }
   }
 }
 
@@ -117,5 +121,5 @@ void enc_init(enc_handler_t handler) {
   gpio_isr_handler_add(ENC_B_NUM, enc_isr, NULL);
 
   // run task
-  naos_run("enc", 2048, enc_task);
+  xTaskCreatePinnedToCore(enc_task, "enc", 2048, NULL, 2, NULL, 1);
 }

@@ -1,9 +1,9 @@
 #include <driver/gpio.h>
 #include <freertos/FreeRTOS.h>
 #include <freertos/queue.h>
+#include <freertos/task.h>
 
 #include "buttons.h"
-#include "ext.h"
 
 #define BUTTONS_CW_SEL GPIO_SEL_33
 #define BUTTONS_CCW_SEL GPIO_SEL_26
@@ -64,12 +64,15 @@ static void buttons_isr(void* arg) {
   xQueueSendFromISR(buttons_queue, &event, NULL);
 }
 
-void buttons_task() {
-  // get all button events
-  buttons_event_t event;
-  while (xQueueReceive(buttons_queue, &event, portMAX_DELAY) == pdTRUE) {
-    // call handler with event
-    buttons_handler(event.type, event.state);
+void buttons_task(void* _) {
+  // loop forever
+  for (;;) {
+    // get all button events
+    buttons_event_t event;
+    while (xQueueReceive(buttons_queue, &event, portMAX_DELAY) == pdTRUE) {
+      // call handler with event
+      buttons_handler(event.type, event.state);
+    }
   }
 }
 
@@ -99,5 +102,5 @@ void buttons_init(buttons_handler_t handler) {
   gpio_isr_handler_add(BUTTONS_HOME_NUM, buttons_isr, (void*)BUTTONS_TYPE_HOME);
 
   // run task
-  naos_run("buttons", 2048, buttons_task);
+  xTaskCreatePinnedToCore(buttons_task, "buttons", 2048, NULL, 2, NULL, 1);
 }

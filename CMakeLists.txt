@@ -13,8 +13,6 @@ set(SOURCE_FILES
         src/buttons.h
         src/enc.c
         src/enc.h
-        src/ext.c
-        src/ext.h
         src/l6470.c
         src/l6470.h
         src/l6470_constants.h
