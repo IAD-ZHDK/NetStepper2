@@ -115,13 +115,13 @@ int32_t l6470_get_mark();
 
 uint32_t l6470_get_speed();
 
-void l6470_set_acc(uint32_t steps_per_tick);
+void l6470_set_acceleration(uint32_t steps_per_tick);
 
-uint32_t l6470_get_acc();
+uint32_t l6470_get_acceleration();
 
-void l6470_set_decel(uint32_t steps_per_tick);
+void l6470_set_deceleration(uint32_t steps_per_tick);
 
-uint32_t l6470_get_decel();
+uint32_t l6470_get_deceleration();
 
 void l6470_set_max_speed(uint16_t steps_per_tick);
 
@@ -151,13 +151,13 @@ uint32_t l6470_calc_speed(double steps_per_sec);
 
 double l6470_parse_speed(uint32_t steps_per_sec);
 
-uint16_t l6470_calc_acc(double steps_per_sec_per_sec);
+uint16_t l6470_calc_acceleration(double steps_per_sec_per_sec);
 
-double l6470_parse_acc(uint16_t steps_per_sec_per_sec);
+double l6470_parse_acceleration(uint16_t steps_per_sec_per_sec);
 
-uint16_t l6470_calc_dec(double steps_per_sec_per_sec);
+uint16_t l6470_calc_deceleration(double steps_per_sec_per_sec);
 
-double l6470_parse_dec(uint16_t steps_per_sec_per_sec);
+double l6470_parse_deceleration(uint16_t steps_per_sec_per_sec);
 
 uint16_t l6470_calc_max_speed(double steps_per_sec);
 

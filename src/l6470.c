@@ -348,22 +348,22 @@ uint32_t l6470_get_speed() {
   return l6470_get_param(L6470_REG_SPEED);
 }
 
-void l6470_set_acc(uint32_t steps_per_tick) {
+void l6470_set_acceleration(uint32_t steps_per_tick) {
   // set param
   l6470_set_param(L6470_REG_ACC, steps_per_tick);
 }
 
-uint32_t l6470_get_acc() {
+uint32_t l6470_get_acceleration() {
   // read parameter
   return l6470_get_param(L6470_REG_ACC);
 }
 
-void l6470_set_decel(uint32_t steps_per_tick) {
+void l6470_set_deceleration(uint32_t steps_per_tick) {
   // set param
   l6470_set_param(L6470_REG_DECEL, steps_per_tick);
 }
 
-uint32_t l6470_get_decel() {
+uint32_t l6470_get_deceleration() {
   // read parameter
   return l6470_get_param(L6470_REG_DECEL);
 }
@@ -456,7 +456,7 @@ double l6470_parse_speed(uint32_t steps_per_sec) {
   return (steps_per_sec & 0x000FFFFF) / 67.106;
 }
 
-uint16_t l6470_calc_acc(double steps_per_sec_per_sec) {
+uint16_t l6470_calc_acceleration(double steps_per_sec_per_sec) {
   // calculate internal value
   uint16_t value = (uint16_t)(steps_per_sec_per_sec * 0.137438);
 
@@ -468,12 +468,12 @@ uint16_t l6470_calc_acc(double steps_per_sec_per_sec) {
   return value;
 }
 
-double l6470_parse_acc(uint16_t steps_per_sec_per_sec) {
+double l6470_parse_acceleration(uint16_t steps_per_sec_per_sec) {
   // calculate real value
   return (steps_per_sec_per_sec & 0xFFF) / 0.137438;
 }
 
-uint16_t l6470_calc_dec(double steps_per_sec_per_sec) {
+uint16_t l6470_calc_deceleration(double steps_per_sec_per_sec) {
   // calculate internal value
   uint16_t value = (uint16_t)(steps_per_sec_per_sec * 0.137438);
 
@@ -485,7 +485,7 @@ uint16_t l6470_calc_dec(double steps_per_sec_per_sec) {
   return value;
 }
 
-double l6470_parse_dec(uint16_t steps_per_sec_per_sec) {
+double l6470_parse_deceleration(uint16_t steps_per_sec_per_sec) {
   // calculate real value
   return (steps_per_sec_per_sec & 0x00000FFF) / 0.137438;
 }
