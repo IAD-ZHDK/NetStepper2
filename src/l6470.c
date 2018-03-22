@@ -494,7 +494,7 @@ double l6470_parse_deceleration(uint16_t steps_per_sec_per_sec) {
 
 uint16_t l6470_calculate_maximum_speed(double steps_per_sec) {
   // calculate internal value
-  uint16_t value = (uint16_t)(steps_per_sec * .065536);
+  uint16_t value = (uint16_t)(steps_per_sec * 0.065536);
 
   // clamp to 10 bits
   if (value > 0x3FF) {

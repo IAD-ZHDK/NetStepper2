@@ -13,9 +13,9 @@ typedef union {
   struct {
     uint8_t hiz : 1;
     uint8_t busy : 1;
-    uint8_t _ : 2;
+    uint8_t _1 : 2;
     l6470_direction_t direction : 1;
-    uint16_t _ : 11;
+    uint16_t _2 : 11;
   };
 } l6470_status_t;
 
