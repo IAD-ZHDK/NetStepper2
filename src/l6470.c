@@ -3,7 +3,6 @@
 #include <naos.h>
 
 #include "l6470.h"
-#include "l6470_constants.h"
 
 #define L6470_CS 5
 
