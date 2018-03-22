@@ -3,7 +3,7 @@
 #include <string.h>
 
 #include "buttons.h"
-#include "enc.h"
+#include "encoder.h"
 #include "l6470.h"
 
 static void approach_home() {
@@ -159,7 +159,7 @@ void app_main() {
   buttons_init(press);
 
   // initialize encoder
-  enc_init(position);
+  encoder_init(position);
 
   // initialize l6470
   l6470_init();
