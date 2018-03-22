@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "buttons.h"
+#include "enc.h"
 #include "l6470.h"
 
 static void approach_home() {
@@ -134,6 +135,8 @@ static void press(buttons_type_t type, bool pressed) {
   }
 }
 
+static void position(double p) { naos_log("pos %f", p); }
+
 static void offline() {
   // stop motor
   l6470_soft_stop();
@@ -154,6 +157,9 @@ void app_main() {
 
   // initialize buttons
   buttons_init(press);
+
+  // initialize encoder
+  enc_init(position);
 
   // initialize l6470
   l6470_init();
