@@ -130,6 +130,6 @@ uint16_t l6470_calculate_minimum_speed(double steps_per_sec);
 
 double l6470_parse_minimum_speed(uint16_t steps_per_sec);
 
-uint16_t l6470_calc_full_step_speed(double steps_per_sec);
+uint16_t l6470_calculate_full_step_speed(double steps_per_sec);
 
 double l6470_parse_full_step_speed(uint16_t steps_per_sec);

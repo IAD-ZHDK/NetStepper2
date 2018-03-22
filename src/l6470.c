@@ -526,7 +526,7 @@ double l6470_parse_minimum_speed(uint16_t steps_per_sec) {
   return (steps_per_sec & 0x00000FFF) * 0.238;
 }
 
-uint16_t l6470_calc_full_step_speed(double steps_per_sec) {
+uint16_t l6470_calculate_full_step_speed(double steps_per_sec) {
   // calculate internal value
   uint16_t value = (uint16_t)((steps_per_sec * .065536) - .5);
 
