@@ -269,8 +269,6 @@ void l6470_run(l6470_dir_t dir, uint32_t steps_per_tick) {
   l6470_transmit(_steps_per_tick[0]);
 }
 
-// TODO: STEP_CLOCK 0x58
-
 void l6470_move(uint8_t dir, uint32_t steps) {
   // send command
   l6470_transmit((uint8_t)(L6470_CMD_MOVE | dir));
@@ -324,9 +322,6 @@ void l6470_go_to_dir(int32_t pos, l6470_dir_t dir) {
   l6470_transmit(_pos[1]);
   l6470_transmit(_pos[0]);
 }
-
-// TODO: GO_UNTIL 0x82
-// TODO: RELEASE_SW 0x92
 
 void l6470_go_home() {
   // send command
