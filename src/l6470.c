@@ -387,6 +387,32 @@ void l6470_wait() {
   }
 }
 
+void l6470_approach_home() {
+  // get info
+  uint32_t speed = l6470_get_speed();
+  l6470_status_t status = l6470_get_status();
+
+  // change to run command and wait until speed is reached
+  l6470_run(status.direction, speed);
+  l6470_wait();
+
+  // set new position
+  l6470_go_home();
+}
+
+void l6470_approach_target(int32_t pos) {
+  // get info
+  uint32_t speed = l6470_get_speed();
+  l6470_status_t status = l6470_get_status();
+
+  // change to run command and wait until speed is reached
+  l6470_run(status.direction, speed);
+  l6470_wait();
+
+  // set new position
+  l6470_go_to(pos);
+}
+
 /* CALCULATION */
 
 uint32_t l6470_calculate_speed(double steps_per_sec) {

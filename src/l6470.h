@@ -131,6 +131,10 @@ l6470_status_t l6470_get_status();
 
 void l6470_wait();
 
+void l6470_approach_home();
+
+void l6470_approach_target(int32_t pos);
+
 /* CALCULATION */
 
 uint32_t l6470_calculate_speed(double steps_per_sec);
