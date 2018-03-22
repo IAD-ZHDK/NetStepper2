@@ -31,7 +31,7 @@ static void approach_target(int32_t pos) {
   l6470_go_to(pos);
 }
 
-void online() {
+static void online() {
   // subscribe to topics
   naos_subscribe("forward", 0, NAOS_LOCAL);
   naos_subscribe("backward", 0, NAOS_LOCAL);
@@ -41,7 +41,7 @@ void online() {
   naos_subscribe("home", 0, NAOS_LOCAL);
 }
 
-void message(const char *topic, uint8_t *payload, size_t len, naos_scope_t scope) {
+static void message(const char *topic, uint8_t *payload, size_t len, naos_scope_t scope) {
   // make string
   char *str = (char *)payload;
 
@@ -85,7 +85,7 @@ void message(const char *topic, uint8_t *payload, size_t len, naos_scope_t scope
   }
 }
 
-void press(buttons_type_t type, bool pressed) {
+static void press(buttons_type_t type, bool pressed) {
   // prepare home press counter
   static uint32_t home_press = 0;
 
@@ -134,7 +134,7 @@ void press(buttons_type_t type, bool pressed) {
   }
 }
 
-void offline() {
+static void offline() {
   // stop motor
   l6470_soft_stop();
 }
