@@ -14,6 +14,13 @@
 // 900 steps per second is the maximum speed before we encounter jitter
 #define MAX_SPEED 900
 
+// steppers usually have 200 full steps per revolution (1.8°)
+#define FULL_STEPS_PER_REV 200
+
+#define MICRO_STEPS 128
+
+#define GEAR_RATIO 5.18
+
 double max_speed = 0;
 double acceleration = 0;
 double deceleration = 0;
@@ -113,8 +120,14 @@ static void message(const char *topic, uint8_t *payload, size_t len, naos_scope_
 
   // handle "target" command
   if (strcmp(topic, "target") == 0 && scope == NAOS_LOCAL) {
+    // get target
+    double target = a32_str2d(str);
+
+    // calculate real position
+    int32_t pos = (int32_t)(target * MICRO_STEPS * FULL_STEPS_PER_REV * GEAR_RATIO);
+
     // approach target
-    l6470_approach_target((int32_t)a32_str2l(str));
+    l6470_approach_target(pos);
   }
 
   // handle "stop" command
