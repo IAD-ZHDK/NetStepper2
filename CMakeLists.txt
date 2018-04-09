@@ -15,6 +15,8 @@ set(SOURCE_FILES
         src/encoder.h
         src/l6470.c
         src/l6470.h
+        src/led.c
+        src/led.h
         src/main.c)
 
 # create a fake library target

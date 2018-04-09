@@ -6,6 +6,7 @@
 #include "buttons.h"
 #include "encoder.h"
 #include "l6470.h"
+#include "led.h"
 
 // 128 micro stepping results in the smoothest motion
 #define STEP_MODE L6470_STEP_MODE_128
@@ -16,6 +17,35 @@
 double max_speed = 0;
 double acceleration = 0;
 double deceleration = 0;
+
+static naos_status_t last_status = NAOS_DISCONNECTED;
+
+static void status(naos_status_t status) {
+  // set last status
+  last_status = status;
+
+  // set led accordingly
+  switch (status) {
+    case NAOS_DISCONNECTED:
+      led_set(1024, 0, 0);
+      break;
+    case NAOS_CONNECTED:
+      led_set(0, 0, 1024);
+      break;
+    case NAOS_NETWORKED:
+      led_set(0, 1024, 0);
+      break;
+  }
+}
+
+static void ping() {
+  // blink white once
+  led_set(1024, 1024, 1024);
+  naos_delay(300);
+
+  // set status led
+  status(last_status);
+}
 
 static void online() {
   // subscribe to topics
@@ -165,6 +195,8 @@ static void offline() {
 static naos_config_t config = {
     .device_type = "NetStepper2",
     .firmware_version = "0.1.0",
+    .ping_callback = ping,
+    .status_callback = status,
     .online_callback = online,
     .update_callback = update,
     .message_callback = message,
@@ -173,6 +205,9 @@ static naos_config_t config = {
 };
 
 void app_main() {
+  // initialize led
+  led_init();
+
   // initialize buttons
   buttons_init(press);
 
