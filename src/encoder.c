@@ -7,11 +7,11 @@
 
 // https://github.com/PaulStoffregen/Encoder/blob/master/Encoder.h
 
-#define ENCODER_A_SEL GPIO_SEL_15
-#define ENCODER_B_SEL GPIO_SEL_22
+#define ENCODER_A_SEL GPIO_SEL_22
+#define ENCODER_B_SEL GPIO_SEL_21
 
-#define ENCODER_A_NUM GPIO_NUM_15
-#define ENCODER_B_NUM GPIO_NUM_22
+#define ENCODER_A_NUM GPIO_NUM_22
+#define ENCODER_B_NUM GPIO_NUM_21
 
 #define ENCODER_RESOLUTION 400
 #define ENCODER_ACCURACY 40
