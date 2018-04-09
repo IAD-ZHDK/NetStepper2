@@ -27,6 +27,7 @@ double max_speed = 0;
 double acceleration = 0;
 double deceleration = 0;
 
+bool blocked = false;
 
 static void status(naos_status_t status) {
   // set last status
@@ -104,6 +105,11 @@ static void update(const char *param, const char *value) {
 }
 
 static void message(const char *topic, uint8_t *payload, size_t len, naos_scope_t scope) {
+  // immediately return if blocked
+  if (blocked) {
+    return;
+  }
+
   // make string
   char *str = (char *)payload;
 
@@ -153,6 +159,7 @@ static void message(const char *topic, uint8_t *payload, size_t len, naos_scope_
 static void press(buttons_type_t type, bool pressed) {
   // prepare home press counter
   static uint32_t home_press = 0;
+  static uint32_t stop_press = 0;
 
   // turn forward if cw is released
   if (type == BUTTONS_TYPE_CW && !pressed) {
@@ -166,10 +173,32 @@ static void press(buttons_type_t type, bool pressed) {
     l6470_run(L6470_REVERSE, l6470_calculate_speed(MAX_SPEED));
   }
 
-  // stop if stop is released
-  if (type == BUTTONS_TYPE_STOP && !pressed) {
+  // stop motor and block if stop is pressed
+  if (type == BUTTONS_TYPE_STOP && pressed) {
     // stop motor
     l6470_soft_stop();
+
+    // set stop flag
+    blocked = true;
+
+    // save time
+    stop_press = naos_millis();
+  }
+
+  // handle stop button release
+  if (type == BUTTONS_TYPE_STOP && !pressed) {
+    // get time difference
+    uint32_t diff = naos_millis() - stop_press;
+
+    // reset blocked flag if button has been released quickly
+    if (diff < 1000) {
+      // set flag
+      blocked = false;
+
+      return;
+    }
+
+    // otherwise keep blocked flag set
   }
 
   // set time if pressed
@@ -177,12 +206,13 @@ static void press(buttons_type_t type, bool pressed) {
     home_press = naos_millis();
   }
 
+  // handle home button release
   if (type == BUTTONS_TYPE_HOME && !pressed) {
     // get time difference
     uint32_t diff = naos_millis() - home_press;
 
     // approach home if buttons has been released quickly
-    if (diff < 2000) {
+    if (diff < 1000) {
       // approach home
       l6470_approach_home();
 
