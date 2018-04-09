@@ -21,7 +21,7 @@
 
 #define GEAR_RATIO 5.18
 
-static naos_status_t last_status = NAOS_DISCONNECTED;
+static naos_status_t current_status = NAOS_DISCONNECTED;
 
 double max_speed = 0;
 double acceleration = 0;
@@ -29,12 +29,9 @@ double deceleration = 0;
 
 bool blocked = false;
 
-static void status(naos_status_t status) {
-  // set last status
-  last_status = status;
-
+static void set_status() {
   // set led accordingly
-  switch (status) {
+  switch (current_status) {
     case NAOS_DISCONNECTED:
       led_set(1024, 0, 0);
       break;
@@ -42,9 +39,21 @@ static void status(naos_status_t status) {
       led_set(0, 0, 1024);
       break;
     case NAOS_NETWORKED:
-      led_set(0, 1024, 0);
+      if (blocked) {
+        led_set(1024, 1024, 0);
+      } else {
+        led_set(0, 1024, 0);
+      }
       break;
   }
+}
+
+static void status(naos_status_t status) {
+  // set last status
+  current_status = status;
+
+  // set new status
+  set_status();
 }
 
 static void ping() {
@@ -52,8 +61,8 @@ static void ping() {
   led_set(1024, 1024, 1024);
   naos_delay(300);
 
-  // set status led
-  status(last_status);
+  // set status
+  set_status();
 }
 
 static void online() {
@@ -180,6 +189,7 @@ static void press(buttons_type_t type, bool pressed) {
 
     // set stop flag
     blocked = true;
+    set_status();
 
     // save time
     stop_press = naos_millis();
@@ -191,9 +201,10 @@ static void press(buttons_type_t type, bool pressed) {
     uint32_t diff = naos_millis() - stop_press;
 
     // reset blocked flag if button has been released quickly
-    if (diff < 1000) {
+    if (diff < 500) {
       // set flag
       blocked = false;
+      set_status();
 
       return;
     }
@@ -212,7 +223,7 @@ static void press(buttons_type_t type, bool pressed) {
     uint32_t diff = naos_millis() - home_press;
 
     // approach home if buttons has been released quickly
-    if (diff < 1000) {
+    if (diff < 500) {
       // approach home
       l6470_approach_home();
 
