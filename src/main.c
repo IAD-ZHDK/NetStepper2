@@ -185,7 +185,9 @@ static void press(buttons_type_t type, bool pressed) {
   }
 }
 
-static void position(double p) { naos_log("pos %f", p); }
+static void position(double p) {
+  // naos_log("pos %f", p);
+}
 
 static void offline() {
   // stop motor
