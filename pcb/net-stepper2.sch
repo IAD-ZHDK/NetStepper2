@@ -14415,6 +14415,7 @@ datasheet p36 for details.</text>
 <text x="101.6" y="154.94" size="1.778" layer="94">STEPPER CONTROLLER</text>
 <text x="474.98" y="157.48" size="1.778" layer="94">USB TO SERIAL CONVERTER</text>
 <text x="205.74" y="25.4" size="1.778" layer="94">RGB LED</text>
+<text x="149.86" y="210.82" size="5.08" layer="94">FIX: External power requirement to flash the device. Actually, the esp32 is powered somehow through the usb bridge...</text>
 </plain>
 <instances>
 <instance part="U1" gate="G$1" x="104.14" y="99.06"/>
