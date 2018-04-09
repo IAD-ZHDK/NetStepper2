@@ -251,7 +251,7 @@ static void offline() {
 
 static naos_config_t config = {
     .device_type = "NetStepper2",
-    .firmware_version = "0.1.0",
+    .firmware_version = "0.2.0",
     .ping_callback = ping,
     .status_callback = status,
     .online_callback = online,
