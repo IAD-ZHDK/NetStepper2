@@ -21,11 +21,12 @@
 
 #define GEAR_RATIO 5.18
 
+static naos_status_t last_status = NAOS_DISCONNECTED;
+
 double max_speed = 0;
 double acceleration = 0;
 double deceleration = 0;
 
-static naos_status_t last_status = NAOS_DISCONNECTED;
 
 static void status(naos_status_t status) {
   // set last status
