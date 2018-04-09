@@ -31,7 +31,7 @@
 #define L6470_REG_STEP_MODE 0x16
 #define L6470_REG_STATUS 0x19
 
-#define L6470_CS 5
+#define L6470_CS 25
 #define L6470_RESET GPIO_NUM_16
 
 spi_device_handle_t l6470_spi;
