@@ -1,8 +1,9 @@
 #include <art32/numbers.h>
 #include <art32/strconv.h>
+#include <driver/adc.h>
+#include <driver/gpio.h>
 #include <naos.h>
 #include <string.h>
-#include <driver/gpio.h>
 
 #include "buttons.h"
 #include "encoder.h"
@@ -167,6 +168,13 @@ static void message(const char *topic, uint8_t *payload, size_t len, naos_scope_
   }
 }
 
+static void loop() {
+  // read end stops
+  double es1 = end_stop_read_1();
+  double es2 = end_stop_read_2();
+  naos_log("es: %f, %f", es1, es2);
+}
+
 static void press(buttons_type_t type, bool pressed) {
   naos_log("but: %d, %d", type, pressed);
 
@@ -244,13 +252,9 @@ static void press(buttons_type_t type, bool pressed) {
   }
 }
 
-static void position(double p) {
-  naos_log("pos: %f", p);
-}
+static void position(double p) { naos_log("pos: %f", p); }
 
-static void end_stop(end_stop_pin_t pin, bool on) {
-  naos_log("end stop: %d, %d", pin, on);
-}
+static void end_stop(end_stop_pin_t pin, bool on) { naos_log("end stop: %d, %d", pin, on); }
 
 static void offline() {
   // stop motor
@@ -265,6 +269,8 @@ static naos_config_t config = {
     .online_callback = online,
     .update_callback = update,
     .message_callback = message,
+    .loop_callback = loop,
+    .loop_interval = 100,
     .offline_callback = offline,
     .crash_on_mqtt_failures = true,
 };
@@ -272,6 +278,9 @@ static naos_config_t config = {
 void app_main() {
   // install gpio interrupt service
   gpio_install_isr_service(0);
+
+  // set adc capture width
+  adc1_config_width(ADC_WIDTH_12Bit);
 
   // initialize led
   led_init();
@@ -298,7 +307,7 @@ void app_main() {
   naos_init(&config);
 
   // initialize end stops
-  end_stop_init(end_stop);
+  end_stop_init(end_stop, true);
 
   // ensure parameters
   naos_ensure_d("max-speed", MAX_SPEED);
