@@ -170,10 +170,26 @@ static void message(const char *topic, uint8_t *payload, size_t len, naos_scope_
 }
 
 static void loop() {
+  // this loop is called at a rate of 100/s
+
+  // prepare counter
+  static uint32_t last_send = 0;
+
+  // get time
+  uint32_t now = naos_millis();
+
   // read sensor
   double es1 = end_stop_read_1();
   double dist = sharp_convert(es1);
-  naos_log("es1: %f, %f", es1, dist);
+
+  // check if 100ms passed
+  if(last_send + 100 < now) {
+    // set time
+    last_send = now;
+
+    // publish sensor value
+    naos_publish_d("sensor1", dist, 0, false, NAOS_LOCAL);
+  }
 }
 
 static void press(buttons_type_t type, bool pressed) {
@@ -271,7 +287,7 @@ static naos_config_t config = {
     .update_callback = update,
     .message_callback = message,
     .loop_callback = loop,
-    .loop_interval = 100,
+    .loop_interval = 10,
     .offline_callback = offline,
     .crash_on_mqtt_failures = true,
 };

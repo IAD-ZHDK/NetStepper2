@@ -1,6 +1,7 @@
 #include <art32/numbers.h>
 #include <art32/smooth.h>
 #include <math.h>
+#include <stdint.h>
 
 // Imported from https://github.com/DrGFreeman/SharpDistSensor.
 
@@ -16,7 +17,7 @@ double sharp_convert(double v) {
   v = a32_constrain_d(v, 30, 875);
 
   // Calculate distance from polynomial fit function
-  double dist = 0;
+  uint16_t dist = 0;
   dist += -2.037E-12 * pow(v, 5);
   dist += 1.167E-8 * pow(v, 4);
   dist += -2.251E-5 * pow(v, 3);
