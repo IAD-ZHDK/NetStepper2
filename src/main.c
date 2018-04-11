@@ -280,7 +280,7 @@ void app_main() {
   gpio_install_isr_service(0);
 
   // set adc capture width
-  adc1_config_width(ADC_WIDTH_12Bit);
+  adc1_config_width(ADC_WIDTH_10Bit);
 
   // initialize led
   led_init();
