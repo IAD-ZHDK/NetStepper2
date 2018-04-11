@@ -168,6 +168,8 @@ static void message(const char *topic, uint8_t *payload, size_t len, naos_scope_
 }
 
 static void press(buttons_type_t type, bool pressed) {
+  naos_log("but: %d, %d", type, pressed);
+
   // prepare home press counter
   static uint32_t home_press = 0;
   static uint32_t stop_press = 0;
@@ -243,11 +245,11 @@ static void press(buttons_type_t type, bool pressed) {
 }
 
 static void position(double p) {
-  // naos_log("pos %f", p);
+  naos_log("pos: %f", p);
 }
 
 static void end_stop(end_stop_pin_t pin, bool on) {
-  naos_log("end stop: %d - %d", pin, on);
+  naos_log("end stop: %d, %d", pin, on);
 }
 
 static void offline() {
