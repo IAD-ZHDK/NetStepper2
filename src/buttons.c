@@ -92,9 +92,6 @@ void buttons_init(buttons_handler_t handler) {
   bc.pull_down_en = GPIO_PULLDOWN_ENABLE;
   gpio_config(&bc);
 
-  // install gpio interrupt service
-  gpio_install_isr_service(0);
-
   // add interrupt handler
   gpio_isr_handler_add(BUTTONS_CW_NUM, buttons_isr, (void*)BUTTONS_TYPE_CW);
   gpio_isr_handler_add(BUTTONS_CCW_NUM, buttons_isr, (void*)BUTTONS_TYPE_CCW);

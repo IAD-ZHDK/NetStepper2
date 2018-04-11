@@ -13,6 +13,8 @@ set(SOURCE_FILES
         src/buttons.h
         src/encoder.c
         src/encoder.h
+        src/end_stop.c
+        src/end_stop.h
         src/l6470.c
         src/l6470.h
         src/led.c

@@ -2,9 +2,11 @@
 #include <art32/strconv.h>
 #include <naos.h>
 #include <string.h>
+#include <driver/gpio.h>
 
 #include "buttons.h"
 #include "encoder.h"
+#include "end_stop.h"
 #include "l6470.h"
 #include "led.h"
 
@@ -244,6 +246,10 @@ static void position(double p) {
   // naos_log("pos %f", p);
 }
 
+static void end_stop(end_stop_pin_t pin, bool on) {
+  naos_log("end stop: %d - %d", pin, on);
+}
+
 static void offline() {
   // stop motor
   l6470_soft_stop();
@@ -262,6 +268,9 @@ static naos_config_t config = {
 };
 
 void app_main() {
+  // install gpio interrupt service
+  gpio_install_isr_service(0);
+
   // initialize led
   led_init();
 
@@ -285,6 +294,9 @@ void app_main() {
 
   // initialize naos
   naos_init(&config);
+
+  // initialize end stops
+  end_stop_init(end_stop);
 
   // ensure parameters
   naos_ensure_d("max-speed", MAX_SPEED);
