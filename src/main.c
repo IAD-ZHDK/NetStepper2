@@ -10,6 +10,7 @@
 #include "end_stop.h"
 #include "l6470.h"
 #include "led.h"
+#include "sharp.h"
 
 // 128 micro stepping results in the smoothest motion
 #define STEP_MODE L6470_STEP_MODE_128
@@ -169,10 +170,10 @@ static void message(const char *topic, uint8_t *payload, size_t len, naos_scope_
 }
 
 static void loop() {
-  // read end stops
+  // read sensor
   double es1 = end_stop_read_1();
-  double es2 = end_stop_read_2();
-  naos_log("es: %f, %f", es1, es2);
+  double dist = sharp_convert(es1);
+  naos_log("es1: %f, %f", es1, dist);
 }
 
 static void press(buttons_type_t type, bool pressed) {
@@ -308,6 +309,9 @@ void app_main() {
 
   // initialize end stops
   end_stop_init(end_stop, true);
+
+  // initialize sharp
+  sharp_init();
 
   // ensure parameters
   naos_ensure_d("max-speed", MAX_SPEED);
