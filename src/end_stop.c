@@ -1,3 +1,4 @@
+#include <driver/adc.h>
 #include <driver/gpio.h>
 #include <freertos/FreeRTOS.h>
 #include <freertos/queue.h>
@@ -15,6 +16,8 @@ typedef struct {
   end_stop_pin_t pin;
   bool state;
 } end_stop_event_t;
+
+static bool end_stop_analog = false;
 
 static end_stop_handler_t end_stop_handler;
 
@@ -66,7 +69,19 @@ void end_stop_task(void* _) {
   }
 }
 
-void end_stop_init(end_stop_handler_t handler) {
+void end_stop_init(end_stop_handler_t handler, bool analog) {
+  // set flag
+  end_stop_analog = analog;
+
+  // setup adc
+  adc1_config_channel_atten(ADC1_CHANNEL_4, ADC_ATTEN_11db);
+  adc1_config_channel_atten(ADC1_CHANNEL_5, ADC_ATTEN_11db);
+
+  // skip isr setup in analog mode
+  if (analog) {
+    return;
+  }
+
   // set handler
   end_stop_handler = handler;
 
@@ -88,4 +103,24 @@ void end_stop_init(end_stop_handler_t handler) {
 
   // run task
   xTaskCreatePinnedToCore(end_stop_task, "end_stop", 2048, NULL, 2, NULL, 1);
+}
+
+double end_stop_read_1() {
+  // return zero if not in analog mode
+  if (!end_stop_analog) {
+    return 0;
+  }
+
+  // read sensor
+  return adc1_get_voltage(ADC1_CHANNEL_4) / 3.9 * 3.3;
+}
+
+double end_stop_read_2() {
+  // return zero if not in analog mode
+  if (!end_stop_analog) {
+    return 0;
+  }
+
+  // read sensor
+  return adc1_get_voltage(ADC1_CHANNEL_5) / 3.9 * 3.3;
 }
