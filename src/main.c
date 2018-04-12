@@ -183,12 +183,12 @@ static void loop() {
   double dist = sharp_convert(es1);
 
   // check if 100ms passed
-  if(last_send + 100 < now) {
+  if (last_send + 100 < now) {
     // set time
     last_send = now;
 
     // publish sensor value
-    naos_publish_d("sensor1", dist, 0, false, NAOS_LOCAL);
+    naos_publish_d("sensor", dist, 0, false, NAOS_LOCAL);
   }
 }
 
@@ -280,7 +280,7 @@ static void offline() {
 
 static naos_config_t config = {
     .device_type = "NetStepper2",
-    .firmware_version = "0.2.0",
+    .firmware_version = "0.3.0",
     .ping_callback = ping,
     .status_callback = status,
     .online_callback = online,

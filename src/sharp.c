@@ -1,4 +1,3 @@
-#include <art32/numbers.h>
 #include <art32/smooth.h>
 #include <math.h>
 #include <stdint.h>
@@ -14,7 +13,7 @@ void sharp_init() {
 
 double sharp_convert(double v) {
   // constrain sensor value
-  v = a32_constrain_d(v, 30, 875);
+  // v = a32_constrain_d(v, 30, 875);
 
   // Calculate distance from polynomial fit function
   uint16_t dist = 0;
@@ -24,6 +23,9 @@ double sharp_convert(double v) {
   dist += 2.023E-2 * pow(v, 2);
   dist += -9.005 * v;
   dist += 1734;
+
+  // TODO: Fix this.
+  dist *= 0.6;
 
   // return smoothed value
   return a32_smooth_update(smooth, dist);
