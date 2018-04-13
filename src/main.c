@@ -113,7 +113,7 @@ static void update(const char *param, const char *value) {
     naos_set_d("deceleration", deceleration);
 
     // set setting
-    l6470_parse_deceleration(l6470_calculate_deceleration(deceleration));
+    l6470_set_deceleration(l6470_calculate_deceleration(deceleration));
   }
 }
 
