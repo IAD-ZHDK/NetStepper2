@@ -129,13 +129,13 @@ static void message(const char *topic, uint8_t *payload, size_t len, naos_scope_
   // handle "forward" command
   if (strcmp(topic, "forward") == 0 && scope == NAOS_LOCAL) {
     // run forward
-    l6470_run(L6470_FORWARD, l6470_calculate_speed(MAX_SPEED));
+    l6470_run(L6470_FORWARD, l6470_calculate_speed(max_speed));
   }
 
   // handle "backward command
   if (strcmp(topic, "backward") == 0 && scope == NAOS_LOCAL) {
     // run backward
-    l6470_run(L6470_REVERSE, l6470_calculate_speed(MAX_SPEED));
+    l6470_run(L6470_REVERSE, l6470_calculate_speed(max_speed));
   }
 
   // handle "target" command
@@ -193,8 +193,6 @@ static void loop() {
 }
 
 static void press(buttons_type_t type, bool pressed) {
-  naos_log("but: %d, %d", type, pressed);
-
   // prepare home press counter
   static uint32_t home_press = 0;
   static uint32_t stop_press = 0;
@@ -202,13 +200,13 @@ static void press(buttons_type_t type, bool pressed) {
   // turn forward if cw is released
   if (type == BUTTONS_TYPE_CW && !pressed) {
     // run forward
-    l6470_run(L6470_FORWARD, l6470_calculate_speed(MAX_SPEED));
+    l6470_run(L6470_FORWARD, l6470_calculate_speed(max_speed));
   }
 
   // turn backwards if ccw is released
   if (type == BUTTONS_TYPE_CCW && !pressed) {
     // run backward
-    l6470_run(L6470_REVERSE, l6470_calculate_speed(MAX_SPEED));
+    l6470_run(L6470_REVERSE, l6470_calculate_speed(max_speed));
   }
 
   // stop motor and block if stop is pressed
@@ -269,18 +267,26 @@ static void press(buttons_type_t type, bool pressed) {
   }
 }
 
-static void position(double p) { naos_log("pos: %f", p); }
+static void position(double p) {  }
 
-static void end_stop(end_stop_pin_t pin, bool on) { naos_log("end stop: %d, %d", pin, on); }
+static void end_stop(end_stop_pin_t pin, bool on) { }
 
 static void offline() {
   // stop motor
   l6470_soft_stop();
 }
 
+static naos_param_t params[] = {
+    {.name = "max-speed", .type = NAOS_DOUBLE, .default_d = MAX_SPEED },
+    {.name = "acceleration", .type = NAOS_DOUBLE, .default_d = MAX_SPEED / 2 },
+    {.name = "deceleration", .type = NAOS_DOUBLE, .default_d = MAX_SPEED / 2 },
+};
+
 static naos_config_t config = {
     .device_type = "NetStepper2",
     .firmware_version = "0.3.0",
+    .parameters = params,
+    .num_parameters = 3,
     .ping_callback = ping,
     .status_callback = status,
     .online_callback = online,
@@ -328,11 +334,6 @@ void app_main() {
 
   // initialize sharp
   sharp_init();
-
-  // ensure parameters
-  naos_ensure_d("max-speed", MAX_SPEED);
-  naos_ensure_d("acceleration", MAX_SPEED / 2);
-  naos_ensure_d("deceleration", MAX_SPEED / 2);
 
   // get speeds
   max_speed = a32_constrain_d(naos_get_d("max-speed"), 0, MAX_SPEED);
