@@ -295,7 +295,6 @@ static naos_config_t config = {
     .loop_callback = loop,
     .loop_interval = 10,
     .offline_callback = offline,
-    .crash_on_mqtt_failures = true,
 };
 
 void app_main() {
