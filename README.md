@@ -1,6 +1,7 @@
 # NetStepper2
-
+A networked stepper motor controller based on the ESP-WROOM-32 and the L6470.  
 ![Board](https://github.com/IAD-ZHDK/NetStepper2/raw/master/pcb/net-stepper2.png)
+![Video](https://vimeo.com/278343342)
 
 ## Parts
 
