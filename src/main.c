@@ -1,6 +1,6 @@
 #include <art32/numbers.h>
-#include <art32/strconv.h>
 #include <art32/smooth.h>
+#include <art32/strconv.h>
 #include <driver/adc.h>
 #include <driver/gpio.h>
 #include <naos.h>
@@ -321,7 +321,7 @@ static void offline() {
 
 static naos_param_t params[] = {
     {.name = "gear-ratio", .type = NAOS_DOUBLE, .default_d = 5.18, .sync_d = &gear_ratio},
-    {.name = "resolution", .type=NAOS_LONG, .default_l = 200, .sync_l = &resolution},
+    {.name = "resolution", .type = NAOS_LONG, .default_l = 200, .sync_l = &resolution},
     {.name = "max-speed", .type = NAOS_DOUBLE, .default_d = MAX_SPEED},
     {.name = "acceleration", .type = NAOS_DOUBLE, .default_d = MAX_SPEED},
     {.name = "deceleration", .type = NAOS_DOUBLE, .default_d = MAX_SPEED},
