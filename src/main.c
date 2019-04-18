@@ -281,8 +281,8 @@ static void offline() {
 
 static naos_param_t params[] = {
     {.name = "max-speed", .type = NAOS_DOUBLE, .default_d = MAX_SPEED },
-    {.name = "acceleration", .type = NAOS_DOUBLE, .default_d = MAX_SPEED / 2 },
-    {.name = "deceleration", .type = NAOS_DOUBLE, .default_d = MAX_SPEED / 2 },
+    {.name = "acceleration", .type = NAOS_DOUBLE, .default_d = MAX_SPEED },
+    {.name = "deceleration", .type = NAOS_DOUBLE, .default_d = MAX_SPEED },
 };
 
 static naos_config_t config = {
