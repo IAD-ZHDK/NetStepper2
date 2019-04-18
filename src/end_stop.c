@@ -51,7 +51,7 @@ static void end_stop_isr(void* arg) {
   end_stop_state[pin] = state;
 
   // allocate event
-  end_stop_event_t event = {pin : pin, state : state};
+  end_stop_event_t event = {.pin = pin, .state = state};
 
   // send event
   xQueueSendFromISR(end_stop_queue, &event, NULL);
