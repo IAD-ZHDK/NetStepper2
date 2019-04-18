@@ -15,6 +15,10 @@
 
 // 128 micro stepping results in the smoothest motion
 #define STEP_MODE L6470_STEP_MODE_128
+#define MICRO_STEPS 128
+
+// steppers usually have 200 full steps per revolution (1.8°)
+#define FULL_STEPS_PER_REV 200
 
 // 900 steps per second is the maximum speed before we encounter jitter
 #define MAX_SPEED 900
@@ -22,15 +26,9 @@
 // 1800 steps per second is the maximum acceleration/deceleration
 #define MAX_ACC 1800
 
-// steppers usually have 200 full steps per revolution (1.8°)
-#define FULL_STEPS_PER_REV 200
-
-#define MICRO_STEPS 128
-
-#define GEAR_RATIO 5.18
-
 static naos_status_t current_status = NAOS_DISCONNECTED;
 
+double gear_ratio = 0;
 double max_speed = 0;
 double acceleration = 0;
 double deceleration = 0;
@@ -155,7 +153,7 @@ static void message(const char *topic, uint8_t *payload, size_t len, naos_scope_
     double target = a32_str2d(str);
 
     // calculate real position
-    int32_t pos = (int32_t)(target * MICRO_STEPS * FULL_STEPS_PER_REV * GEAR_RATIO);
+    int32_t pos = (int32_t)(target * MICRO_STEPS * FULL_STEPS_PER_REV * gear_ratio);
 
     // approach target
     l6470_approach_target(pos);
@@ -324,6 +322,7 @@ static void offline() {
 }
 
 static naos_param_t params[] = {
+    {.name = "gear-ratio", .type = NAOS_DOUBLE, .default_d = 5.18, .sync_d = &gear_ratio},
     {.name = "max-speed", .type = NAOS_DOUBLE, .default_d = MAX_SPEED},
     {.name = "acceleration", .type = NAOS_DOUBLE, .default_d = MAX_SPEED},
     {.name = "deceleration", .type = NAOS_DOUBLE, .default_d = MAX_SPEED},
@@ -336,7 +335,7 @@ static naos_config_t config = {
     .device_type = "NetStepper2",
     .firmware_version = "0.4.0",
     .parameters = params,
-    .num_parameters = 6,
+    .num_parameters = 7,
     .ping_callback = ping,
     .status_callback = status,
     .online_callback = online,
