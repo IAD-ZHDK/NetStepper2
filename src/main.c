@@ -1,5 +1,6 @@
 #include <art32/numbers.h>
 #include <art32/strconv.h>
+#include <art32/smooth.h>
 #include <driver/adc.h>
 #include <driver/gpio.h>
 #include <naos.h>
@@ -33,6 +34,13 @@ static naos_status_t current_status = NAOS_DISCONNECTED;
 double max_speed = 0;
 double acceleration = 0;
 double deceleration = 0;
+
+bool use_sensor_1 = false;
+bool use_sensor_2 = false;
+bool convert_sharp = false;
+
+a32_smooth_t *sensor_smooth_1;
+a32_smooth_t *sensor_smooth_2;
 
 bool blocked = false;
 
@@ -175,23 +183,59 @@ static void message(const char *topic, uint8_t *payload, size_t len, naos_scope_
 static void loop() {
   // this loop is called at a rate of 100/s
 
-  // prepare counter
-  static uint32_t last_send = 0;
-
   // get time
   uint32_t now = naos_millis();
 
-  // read sensor
-  double es1 = end_stop_read_1();
-  double dist = sharp_convert(es1);
+  // check sensor 1
+  if (use_sensor_1) {
+    // prepare counter
+    static uint32_t last_send_1 = 0;
 
-  // check if 100ms passed
-  if (last_send + 100 < now) {
-    // set time
-    last_send = now;
+    // read sensor
+    double es1 = end_stop_read_1();
 
-    // publish sensor value
-    naos_publish_d("sensor", dist, 0, false, NAOS_LOCAL);
+    // convert value if requested
+    if (convert_sharp) {
+      es1 = sharp_convert(es1);
+    }
+
+    // smooth value
+    es1 = a32_smooth_update(sensor_smooth_1, es1);
+
+    // check if 100ms passed
+    if (last_send_1 + 100 < now) {
+      // set time
+      last_send_1 = now;
+
+      // publish sensor value
+      naos_publish_d("sensor1", es1, 0, false, NAOS_LOCAL);
+    }
+  }
+
+  // check sensor 2
+  if (use_sensor_2) {
+    // prepare counter
+    static uint32_t last_send_2 = 0;
+
+    // read sensors
+    double es2 = end_stop_read_2();
+
+    // convert value if requested
+    if (convert_sharp) {
+      es2 = sharp_convert(es2);
+    }
+
+    // smooth value
+    es2 = a32_smooth_update(sensor_smooth_2, es2);
+
+    // check if 100ms passed
+    if (last_send_2 + 100 < now) {
+      // set time
+      last_send_2 = now;
+
+      // publish sensor value
+      naos_publish_d("sensor2", es2, 0, false, NAOS_LOCAL);
+    }
   }
 }
 
@@ -270,9 +314,9 @@ static void press(buttons_type_t type, bool pressed) {
   }
 }
 
-static void position(double p) {  }
+static void position(double p) {}
 
-static void end_stop(end_stop_pin_t pin, bool on) { }
+static void end_stop(end_stop_pin_t pin, bool on) {}
 
 static void offline() {
   // stop motor
@@ -280,16 +324,19 @@ static void offline() {
 }
 
 static naos_param_t params[] = {
-    {.name = "max-speed", .type = NAOS_DOUBLE, .default_d = MAX_SPEED },
-    {.name = "acceleration", .type = NAOS_DOUBLE, .default_d = MAX_SPEED },
-    {.name = "deceleration", .type = NAOS_DOUBLE, .default_d = MAX_SPEED },
+    {.name = "max-speed", .type = NAOS_DOUBLE, .default_d = MAX_SPEED},
+    {.name = "acceleration", .type = NAOS_DOUBLE, .default_d = MAX_SPEED},
+    {.name = "deceleration", .type = NAOS_DOUBLE, .default_d = MAX_SPEED},
+    {.name = "use-sensor-1", .type = NAOS_BOOL, .default_b = false, .sync_b = &use_sensor_1},
+    {.name = "use-sensor-2", .type = NAOS_BOOL, .default_b = false, .sync_b = &use_sensor_2},
+    {.name = "convert-sharp", .type = NAOS_BOOL, .default_b = false, .sync_b = &convert_sharp},
 };
 
 static naos_config_t config = {
     .device_type = "NetStepper2",
-    .firmware_version = "0.3.0",
+    .firmware_version = "0.4.0",
     .parameters = params,
-    .num_parameters = 3,
+    .num_parameters = 6,
     .ping_callback = ping,
     .status_callback = status,
     .online_callback = online,
@@ -331,18 +378,19 @@ void app_main() {
   // initialize naos
   naos_init(&config);
 
+  // initialize sensors
+  sensor_smooth_1 = a32_smooth_new(16);
+  sensor_smooth_2 = a32_smooth_new(16);
+
   // initialize end stops
   end_stop_init(end_stop, true);
-
-  // initialize sharp
-  sharp_init();
 
   // get speeds
   max_speed = a32_constrain_d(naos_get_d("max-speed"), 0, MAX_SPEED);
   acceleration = a32_constrain_d(naos_get_d("acceleration"), 0, MAX_SPEED);
   deceleration = a32_constrain_d(naos_get_d("deceleration"), 0, MAX_SPEED);
 
-  // set speeds
+  // set initial speeds
   l6470_set_maximum_speed(l6470_calculate_maximum_speed(max_speed));
   l6470_set_acceleration(l6470_calculate_acceleration(acceleration));
   l6470_set_deceleration(l6470_calculate_deceleration(deceleration));
