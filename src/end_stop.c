@@ -112,7 +112,7 @@ double end_stop_read_1() {
   }
 
   // read sensor
-  return adc1_get_voltage(ADC1_CHANNEL_4) / 3.3 * 3.6;
+  return adc1_get_raw(ADC1_CHANNEL_4) / 3.3 * 3.6;
 }
 
 double end_stop_read_2() {
@@ -122,5 +122,5 @@ double end_stop_read_2() {
   }
 
   // read sensor
-  return adc1_get_voltage(ADC1_CHANNEL_5) / 3.3 * 3.6;
+  return adc1_get_raw(ADC1_CHANNEL_5) / 3.3 * 3.6;
 }
