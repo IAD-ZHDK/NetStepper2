@@ -18,6 +18,9 @@
 // 900 steps per second is the maximum speed before we encounter jitter
 #define MAX_SPEED 900
 
+// 1800 steps per second is the maximum acceleration/deceleration
+#define MAX_ACC 1800
+
 // steppers usually have 200 full steps per revolution (1.8°)
 #define FULL_STEPS_PER_REV 200
 
@@ -95,7 +98,7 @@ static void update(const char *param, const char *value) {
   // handle "acceleration"
   if (strcmp(param, "acceleration") == 0) {
     // constrain value
-    acceleration = a32_constrain_d(naos_get_d("acceleration"), 0, MAX_SPEED);
+    acceleration = a32_constrain_d(naos_get_d("acceleration"), 0, MAX_ACC);
 
     // set constrained value
     naos_set_d("acceleration", acceleration);
@@ -107,7 +110,7 @@ static void update(const char *param, const char *value) {
   // handle "deceleration"
   if (strcmp(param, "deceleration") == 0) {
     // constrain value
-    deceleration = a32_constrain_d(naos_get_d("deceleration"), 0, MAX_SPEED);
+    deceleration = a32_constrain_d(naos_get_d("deceleration"), 0, MAX_ACC);
 
     // set constrained value
     naos_set_d("deceleration", deceleration);
