@@ -13,10 +13,6 @@
 #include "led.h"
 #include "sharp.h"
 
-// 128 micro stepping results in the smoothest motion
-#define STEP_MODE L6470_STEP_MODE_128
-#define MICRO_STEPS 128
-
 // 900 steps per second is the maximum speed before we encounter jitter
 #define MAX_SPEED 900
 
@@ -25,6 +21,7 @@
 
 static naos_status_t current_status = NAOS_DISCONNECTED;
 
+int32_t micro_steps = 128;
 double gear_ratio = 0;
 int32_t resolution = 0;
 double max_speed = 0;
@@ -87,6 +84,24 @@ static void online() {
 }
 
 static void update(const char *param, const char *value) {
+  // handle "micro-steps"
+  if (strcmp(param, "micro-steps") == 0) {
+    // make motor stop (remove power)
+    l6470_hard_hiz();
+
+    // constrain value
+    micro_steps = a32_constrain_l(naos_get_l("micro-steps"), 1, 128);
+
+    // set setting
+    micro_steps = l6470_set_step_mode_int(micro_steps);
+
+    // set constrained and corrected value
+    naos_set_l("micro-steps", micro_steps);
+
+    // reset position
+    l6470_reset_position();
+  }
+
   // handle "max-speed"
   if (strcmp(param, "max-speed") == 0) {
     // constrain value
@@ -151,7 +166,7 @@ static void message(const char *topic, uint8_t *payload, size_t len, naos_scope_
     double target = a32_str2d(str);
 
     // calculate real position
-    int32_t pos = (int32_t)(target * MICRO_STEPS * resolution * gear_ratio);
+    int32_t pos = (int32_t)(target * micro_steps * resolution * gear_ratio);
 
     // approach target
     l6470_approach_target(pos);
@@ -320,6 +335,7 @@ static void offline() {
 }
 
 static naos_param_t params[] = {
+    {.name = "micro-steps", .type = NAOS_LONG, .default_l = 128},
     {.name = "gear-ratio", .type = NAOS_DOUBLE, .default_d = 5.18, .sync_d = &gear_ratio},
     {.name = "resolution", .type = NAOS_LONG, .default_l = 200, .sync_l = &resolution},
     {.name = "max-speed", .type = NAOS_DOUBLE, .default_d = MAX_SPEED},
@@ -334,7 +350,7 @@ static naos_config_t config = {
     .device_type = "NetStepper2",
     .firmware_version = "0.4.0",
     .parameters = params,
-    .num_parameters = 8,
+    .num_parameters = 9,
     .ping_callback = ping,
     .status_callback = status,
     .online_callback = online,
@@ -368,7 +384,7 @@ void app_main() {
   naos_init(&config);
 
   // set step mode
-  l6470_set_step_mode(STEP_MODE);
+  micro_steps = l6470_set_step_mode_int(a32_constrain_l(naos_get_l("micro-steps"), 1, 128));
 
   // set full step mode to two times max speed (no full stepping)
   l6470_set_full_step_speed(l6470_calculate_full_step_speed(MAX_SPEED * 2));
