@@ -386,10 +386,10 @@ uint16_t l6470_get_full_step_speed() {
 
 void l6470_set_step_mode(l6470_step_mode_t mode) {
   // get current register and clear step mode
-  uint8_t current = (uint8_t)l6470_get_param(L6470_REG_STEP_MODE) & (uint8_t)0xF8;
+  uint8_t current = l6470_get_param(L6470_REG_STEP_MODE) & 0xF8u;
 
   // set new mode and respect mask
-  current |= (mode & 0x07);
+  current |= mode & 0x7u;
 
   // update register
   l6470_set_param(L6470_REG_STEP_MODE, current);

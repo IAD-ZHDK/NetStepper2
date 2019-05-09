@@ -30,9 +30,9 @@ typedef enum {
   L6470_STEP_MODE_128 = 0x07
 } l6470_step_mode_t;
 
-#define L6470_I22_MAX ((1<<21) - 1)
-#define L6470_I22_MIN ((-1u) << 21)
-#define L6470_U22_MAX ((1<<22) - 1)
+#define L6470_I22_MIN -2097152
+#define L6470_I22_MAX 2097151
+#define L6470_U22_MAX 4194303
 
 /* INITIALIZATION */
 
