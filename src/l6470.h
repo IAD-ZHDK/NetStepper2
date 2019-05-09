@@ -100,7 +100,7 @@ uint16_t l6470_get_full_step_speed();
 
 void l6470_set_step_mode(l6470_step_mode_t mode);
 
-int l6740_set_step_mode_int(int mode);
+int l6470_set_step_mode_int(int mode);
 
 l6470_step_mode_t l6470_set_get_step_mode();
 

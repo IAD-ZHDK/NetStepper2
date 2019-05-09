@@ -395,7 +395,7 @@ void l6470_set_step_mode(l6470_step_mode_t mode) {
   l6470_set_param(L6470_REG_STEP_MODE, current);
 }
 
-int l6740_set_step_mode_int(int mode) {
+int l6470_set_step_mode_int(int mode) {
   switch (mode) {
     case 1:
       l6470_set_step_mode(L6470_STEP_MODE_1);
