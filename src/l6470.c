@@ -395,6 +395,38 @@ void l6470_set_step_mode(l6470_step_mode_t mode) {
   l6470_set_param(L6470_REG_STEP_MODE, current);
 }
 
+int l6740_set_step_mode_int(int mode) {
+  switch (mode) {
+    case 1:
+      l6470_set_step_mode(L6470_STEP_MODE_1);
+      return 1;
+    case 2:
+      l6470_set_step_mode(L6470_STEP_MODE_2);
+      return 2;
+    case 4:
+      l6470_set_step_mode(L6470_STEP_MODE_4);
+      return 4;
+    case 8:
+      l6470_set_step_mode(L6470_STEP_MODE_8);
+      return 8;
+    case 16:
+      l6470_set_step_mode(L6470_STEP_MODE_16);
+      return 16;
+    case 32:
+      l6470_set_step_mode(L6470_STEP_MODE_32);
+      return 32;
+    case 64:
+      l6470_set_step_mode(L6470_STEP_MODE_64);
+      return 64;
+    case 128:
+      l6470_set_step_mode(L6470_STEP_MODE_128);
+      return 128;
+    default:
+      l6470_set_step_mode(L6470_STEP_MODE_1);
+      return 1;
+  }
+}
+
 l6470_step_mode_t l6470_set_get_step_mode() {
   // set parameter
   return (l6470_step_mode_t)(l6470_get_param(L6470_REG_STEP_MODE) & 0x07);
