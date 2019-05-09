@@ -180,8 +180,8 @@ void l6470_move(l6470_direction_t dir, uint32_t steps) {
   l6470_transmit((uint8_t)(L6470_CMD_MOVE | dir));
 
   // clamp to 22 bits
-  if (steps > 0x3FFFFF) {
-    steps = 0x3FFFFF;
+  if (steps > L6470_U22_MAX) {
+    steps = L6470_U22_MAX;
   }
 
   // get pos as pointer
@@ -195,8 +195,10 @@ void l6470_move(l6470_direction_t dir, uint32_t steps) {
 
 void l6470_go_to(int32_t pos) {
   // clamp to 22 bits
-  if (pos > 0x3FFFFF) {
-    pos = 0x3FFFFF;
+  if (pos > L6470_I22_MAX) {
+    pos = L6470_I22_MAX;
+  } else if(pos < L6470_I22_MIN) {
+    pos = L6470_I22_MIN;
   }
 
   // get pos as pointer
@@ -213,8 +215,10 @@ void l6470_go_to(int32_t pos) {
 
 void l6470_go_to_direction(int32_t pos, l6470_direction_t dir) {
   // clamp to 22 bits
-  if (pos > 0x3FFFFF) {
-    pos = 0x3FFFFF;
+  if (pos > L6470_I22_MAX) {
+    pos = L6470_I22_MAX;
+  } else if(pos < L6470_I22_MIN) {
+    pos = L6470_I22_MIN;
   }
 
   // get pos as pointer
