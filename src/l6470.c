@@ -427,7 +427,7 @@ int l6470_set_step_mode_int(int mode) {
   }
 }
 
-l6470_step_mode_t l6470_set_get_step_mode() {
+l6470_step_mode_t l6470_get_step_mode() {
   // set parameter
   return (l6470_step_mode_t)(l6470_get_param(L6470_REG_STEP_MODE) & 0x07);
 }
