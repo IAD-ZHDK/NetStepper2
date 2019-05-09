@@ -70,7 +70,7 @@ void l6470_init() {
 static uint8_t l6470_transmit(uint8_t data) {
   // prepare transaction
   spi_transaction_t t = {
-    flags : SPI_TRANS_USE_RXDATA | SPI_TRANS_USE_TXDATA,
+    .flags = SPI_TRANS_USE_RXDATA | SPI_TRANS_USE_TXDATA,
   };
 
   // set tx and rx data
