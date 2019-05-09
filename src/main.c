@@ -364,6 +364,9 @@ void app_main() {
   // initialize l6470
   l6470_init();
 
+  // initialize naos
+  naos_init(&config);
+
   // set step mode
   l6470_set_step_mode(STEP_MODE);
 
@@ -372,9 +375,6 @@ void app_main() {
 
   // reset minimum speed
   l6470_set_minimum_speed(l6470_calculate_minimum_speed(0));
-
-  // initialize naos
-  naos_init(&config);
 
   // initialize sensors
   sensor_smooth_1 = a32_smooth_new(16);
