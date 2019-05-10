@@ -13,12 +13,6 @@
 #include "led.h"
 #include "sharp.h"
 
-// 900 steps per second is the maximum speed before we encounter jitter
-#define MAX_SPEED 900
-
-// 1800 steps per second is the maximum acceleration/deceleration
-#define MAX_ACC 1800
-
 static naos_status_t current_status = NAOS_DISCONNECTED;
 
 int32_t micro_steps = 128;
@@ -104,19 +98,22 @@ static void update(const char *param, const char *value) {
   // handle "max-speed"
   if (strcmp(param, "max-speed") == 0) {
     // constrain value
-    max_speed = a32_constrain_d(naos_get_d("max-speed"), 0, MAX_SPEED);
+    max_speed = naos_get_d("max-speed");
 
     // set constrained value
     naos_set_d("max-speed", max_speed);
 
     // set setting
     l6470_set_maximum_speed(l6470_calculate_maximum_speed(max_speed));
+
+    // set full step mode to two times max speed (no full stepping)
+    l6470_set_full_step_speed(l6470_calculate_full_step_speed(max_speed * 2));
   }
 
   // handle "acceleration"
   if (strcmp(param, "acceleration") == 0) {
     // constrain value
-    acceleration = a32_constrain_d(naos_get_d("acceleration"), 0, MAX_ACC);
+    acceleration = naos_get_d("acceleration");
 
     // set constrained value
     naos_set_d("acceleration", acceleration);
@@ -128,7 +125,7 @@ static void update(const char *param, const char *value) {
   // handle "deceleration"
   if (strcmp(param, "deceleration") == 0) {
     // constrain value
-    deceleration = a32_constrain_d(naos_get_d("deceleration"), 0, MAX_ACC);
+    deceleration = naos_get_d("deceleration");
 
     // set constrained value
     naos_set_d("deceleration", deceleration);
@@ -350,9 +347,9 @@ static naos_param_t params[] = {
     {.name = "micro-steps", .type = NAOS_LONG, .default_l = 128},
     {.name = "gear-ratio", .type = NAOS_DOUBLE, .default_d = 5.18, .sync_d = &gear_ratio},
     {.name = "resolution", .type = NAOS_LONG, .default_l = 200, .sync_l = &resolution},
-    {.name = "max-speed", .type = NAOS_DOUBLE, .default_d = MAX_SPEED},
-    {.name = "acceleration", .type = NAOS_DOUBLE, .default_d = MAX_SPEED},
-    {.name = "deceleration", .type = NAOS_DOUBLE, .default_d = MAX_SPEED},
+    {.name = "max-speed", .type = NAOS_DOUBLE, .default_d = 900},
+    {.name = "acceleration", .type = NAOS_DOUBLE, .default_d = 900},
+    {.name = "deceleration", .type = NAOS_DOUBLE, .default_d = 900},
     {.name = "use-sensor-1", .type = NAOS_BOOL, .default_b = false, .sync_b = &use_sensor_1},
     {.name = "use-sensor-2", .type = NAOS_BOOL, .default_b = false, .sync_b = &use_sensor_2},
     {.name = "convert-sharp", .type = NAOS_BOOL, .default_b = false, .sync_b = &convert_sharp},
@@ -392,18 +389,6 @@ void app_main() {
   // initialize l6470
   l6470_init();
 
-  // initialize naos
-  naos_init(&config);
-
-  // set step mode
-  micro_steps = l6470_set_step_mode_int(a32_constrain_l(naos_get_l("micro-steps"), 1, 128));
-
-  // set full step mode to two times max speed (no full stepping)
-  l6470_set_full_step_speed(l6470_calculate_full_step_speed(MAX_SPEED * 2));
-
-  // reset minimum speed
-  l6470_set_minimum_speed(l6470_calculate_minimum_speed(0));
-
   // initialize sensors
   sensor_smooth_1 = a32_smooth_new(16);
   sensor_smooth_2 = a32_smooth_new(16);
@@ -411,13 +396,25 @@ void app_main() {
   // initialize end stops
   end_stop_init(end_stop, true);
 
+  // initialize naos
+  naos_init(&config);
+
+  // set step mode
+  micro_steps = l6470_set_step_mode_int(a32_constrain_l(naos_get_l("micro-steps"), 1, 128));
+
   // get speeds
-  max_speed = a32_constrain_d(naos_get_d("max-speed"), 0, MAX_SPEED);
-  acceleration = a32_constrain_d(naos_get_d("acceleration"), 0, MAX_SPEED);
-  deceleration = a32_constrain_d(naos_get_d("deceleration"), 0, MAX_SPEED);
+  max_speed = naos_get_d("max-speed");
+  acceleration = naos_get_d("acceleration");
+  deceleration = naos_get_d("deceleration");
+
+  // reset minimum speed
+  l6470_set_minimum_speed(l6470_calculate_minimum_speed(0));
 
   // set initial speeds
   l6470_set_maximum_speed(l6470_calculate_maximum_speed(max_speed));
   l6470_set_acceleration(l6470_calculate_acceleration(acceleration));
   l6470_set_deceleration(l6470_calculate_deceleration(deceleration));
+
+  // set full step mode to two times max speed (no full stepping)
+  l6470_set_full_step_speed(l6470_calculate_full_step_speed(max_speed * 2));
 }
