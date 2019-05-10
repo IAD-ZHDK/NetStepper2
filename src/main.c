@@ -328,6 +328,11 @@ static void press(buttons_type_t type, bool pressed) {
 
     // stop motor
     l6470_soft_stop();
+
+    // flash led
+    led_set(255, 255, 255);
+    naos_delay(300);
+    set_status();
   }
 }
 
