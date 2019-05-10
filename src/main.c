@@ -82,13 +82,10 @@ static void update(const char *param, const char *value) {
     // make motor stop (remove power)
     l6470_hard_hiz();
 
-    // constrain value
-    micro_steps = a32_constrain_l(naos_get_l("micro-steps"), 1, 128);
-
     // set setting
-    micro_steps = l6470_set_step_mode_int(micro_steps);
+    micro_steps = l6470_set_step_mode_int(naos_get_l("micro-steps"));
 
-    // set constrained and corrected value
+    // set corrected value
     naos_set_l("micro-steps", micro_steps);
 
     // reset position
@@ -400,7 +397,7 @@ void app_main() {
   naos_init(&config);
 
   // set step mode
-  micro_steps = l6470_set_step_mode_int(a32_constrain_l(naos_get_l("micro-steps"), 1, 128));
+  micro_steps = l6470_set_step_mode_int(naos_get_l("micro-steps"));
 
   // get speeds
   max_speed = naos_get_d("max-speed");
