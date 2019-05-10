@@ -27,7 +27,6 @@ int32_t resolution = 0;
 double max_speed = 0;
 double acceleration = 0;
 double deceleration = 0;
-
 bool use_sensor_1 = false;
 bool use_sensor_2 = false;
 bool convert_sharp = false;
@@ -162,11 +161,24 @@ static void message(const char *topic, uint8_t *payload, size_t len, naos_scope_
 
   // handle "target" command
   if (strcmp(topic, "target") == 0 && scope == NAOS_LOCAL) {
+    // calculate position factor
+    double steps_per_rev = micro_steps * resolution * gear_ratio;
+
+    // calculate minimum and maximum position
+    double min_target = L6470_I22_MIN / steps_per_rev;
+    double max_target = L6470_I22_MAX / steps_per_rev;
+
     // get target
     double target = a32_str2d(str);
 
+    // constrain target
+    target = a32_constrain_d(target, min_target, max_target);
+
     // calculate real position
-    int32_t pos = (int32_t)(target * micro_steps * resolution * gear_ratio);
+    int32_t pos = (int32_t)(target * steps_per_rev);
+
+    // constrain position
+    pos = a32_constrain_l(pos, L6470_I22_MIN, L6470_I22_MAX);
 
     // approach target
     l6470_approach_target(pos);
