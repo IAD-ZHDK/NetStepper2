@@ -21,6 +21,8 @@ int32_t resolution = 0;
 double max_speed = 0;
 double acceleration = 0;
 double deceleration = 0;
+double min_target = 0;
+double max_target = 0;
 bool use_sensor_1 = false;
 bool use_sensor_2 = false;
 bool convert_sharp = false;
@@ -158,14 +160,15 @@ static void message(const char *topic, uint8_t *payload, size_t len, naos_scope_
     // calculate position factor
     double steps_per_rev = micro_steps * resolution * gear_ratio;
 
-    // calculate minimum and maximum position
-    double min_target = L6470_I22_MIN / steps_per_rev;
-    double max_target = L6470_I22_MAX / steps_per_rev;
+    // calculate minimum and maximum physical position
+    double min_phys_target = L6470_I22_MIN / steps_per_rev;
+    double max_phys_target = L6470_I22_MAX / steps_per_rev;
 
     // get target
     double target = a32_str2d(str);
 
     // constrain target
+    target = a32_constrain_d(target, min_phys_target, max_phys_target);
     target = a32_constrain_d(target, min_target, max_target);
 
     // calculate real position
@@ -352,6 +355,8 @@ static naos_param_t params[] = {
     {.name = "max-speed", .type = NAOS_DOUBLE, .default_d = 900},
     {.name = "acceleration", .type = NAOS_DOUBLE, .default_d = 900},
     {.name = "deceleration", .type = NAOS_DOUBLE, .default_d = 900},
+    {.name = "min-target", .type = NAOS_DOUBLE, .default_d = -5, .sync_d = &min_target},
+    {.name = "max-target", .type = NAOS_DOUBLE, .default_d = 5, .sync_d = &max_target},
     {.name = "use-sensor-1", .type = NAOS_BOOL, .default_b = false, .sync_b = &use_sensor_1},
     {.name = "use-sensor-2", .type = NAOS_BOOL, .default_b = false, .sync_b = &use_sensor_2},
     {.name = "convert-sharp", .type = NAOS_BOOL, .default_b = false, .sync_b = &convert_sharp},
@@ -361,7 +366,7 @@ static naos_config_t config = {
     .device_type = "NetStepper2",
     .firmware_version = "0.5.0",
     .parameters = params,
-    .num_parameters = 9,
+    .num_parameters = 11,
     .ping_callback = ping,
     .status_callback = status,
     .online_callback = online,
