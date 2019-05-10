@@ -28,7 +28,7 @@ bool convert_sharp = false;
 a32_smooth_t *sensor_smooth_1;
 a32_smooth_t *sensor_smooth_2;
 
-bool blocked = false;
+bool blocked = true;
 
 static void set_status() {
   // set led accordingly
