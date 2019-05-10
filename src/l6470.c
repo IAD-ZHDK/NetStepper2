@@ -70,7 +70,7 @@ void l6470_init() {
 static uint8_t l6470_transmit(uint8_t data) {
   // prepare transaction
   spi_transaction_t t = {
-    .flags = SPI_TRANS_USE_RXDATA | SPI_TRANS_USE_TXDATA,
+      .flags = SPI_TRANS_USE_RXDATA | SPI_TRANS_USE_TXDATA,
   };
 
   // set tx and rx data
@@ -197,7 +197,7 @@ void l6470_go_to(int32_t pos) {
   // clamp to 22 bits
   if (pos > L6470_I22_MAX) {
     pos = L6470_I22_MAX;
-  } else if(pos < L6470_I22_MIN) {
+  } else if (pos < L6470_I22_MIN) {
     pos = L6470_I22_MIN;
   }
 
@@ -217,7 +217,7 @@ void l6470_go_to_direction(int32_t pos, l6470_direction_t dir) {
   // clamp to 22 bits
   if (pos > L6470_I22_MAX) {
     pos = L6470_I22_MAX;
-  } else if(pos < L6470_I22_MIN) {
+  } else if (pos < L6470_I22_MIN) {
     pos = L6470_I22_MIN;
   }
 
